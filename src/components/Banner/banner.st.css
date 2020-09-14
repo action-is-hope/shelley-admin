@@ -1,0 +1,35 @@
+/* banner.st.css */
+
+:import {
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+
+.root {
+  /*= Main background including fallback. */
+  /* background-color: value(--color-background-4-default);
+  background-color: var(--color-background-4, value(--color-background-4-default)); */
+  /* background: rgba(11, 13, 18, 0.3411764705882353); */
+  min-height: 330px;
+  height: 40vh;
+  max-height: 450px;
+  margin-bottom: 56px;
+  align-items: center;
+  align-content: center;
+  grid-row-gap: 8px;
+
+  /* background-image: url(https://www.visitswanseabay.com/wp-content/uploads/2018/01/sea-swansea-bay-cover3-1920x650.jpg); */
+  /* width: 2017px; */
+  background-size: cover;
+  background-color: pink;
+  background-color: var(--color-background-4);
+}
+
+.root Text {
+  width: 10em;
+}
+
+.root .linkText {
+  align-self: flex-end;
+}

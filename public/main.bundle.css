@@ -1,0 +1,1292 @@
+/* button.st.css */
+
+.Button2871549472__root {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+/*==== Input Positions ====*/
+
+/* top */
+.Button2871549472__root.Button2871549472---iconPos-3-top {
+  flex-direction: column-reverse;
+}
+
+/* end / right */
+.Button2871549472__root.Button2871549472---iconPos-3-end {
+  flex-direction: row-reverse;
+}
+
+/* bottom */
+.Button2871549472__root.Button2871549472---iconPos-6-bottom {
+  flex-direction: column;
+}
+
+/* start / left */
+.Button2871549472__root.Button2871549472---iconPos-5-start {
+  flex-direction: row;
+}
+
+/* The 'inner' button. */
+.Button2871549472__inner {}
+
+/* The divider which is rendered with an icon only. */
+.Button2871549472__divider {}
+
+/* The infotip element for inline tooltip style on focus/hover. */
+.Button2871549472__tip {}
+
+/** text.st.css */
+
+.Text4012002477__root {
+}
+
+/* Extras */
+
+.Text4012002477__root.Text4012002477--truncate {
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/**
+ * = GLOBALS - allGlobal.st.css
+ *
+ * Some globals, mostly resets.
+ * 
+ * ========================================================================= */
+
+
+
+/* 
+    General purpose CSS reset
+ */
+html,body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*,*:before,*:after {
+  box-sizing: inherit;
+}
+
+
+[hidden] {
+  display: none;
+}
+
+[hidden]+* {
+  margin-top: 0 !important;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a:visited {
+  color: inherit
+}
+
+footer,header,main,nav {
+  display: block;
+}
+
+/* We are resetting these so when we use the <Text vol={false}> we don't end up with the defaults. */
+h1,h2,h3,h4,h5,h6,p {
+  font-size: 1em;
+  margin: 0;
+}
+
+/**
+ * Project - Default
+ * 
+ * Our main project which is essentially a theme but it itself can have themes
+ * so project seems more appropriate. 
+ */
+
+/*=== BUILD-TIME 'VARIABLE' DEFINITIONS ===*/
+
+/*=== GLOBAL CSS ===*/
+
+/** 
+ * This ideally will just be a spinkling of higher level styles that use 
+ * variables. For the reset globals we set them in ./css/allGlobals.st.css 
+ * which is pulled in within index.ts */
+.Default3362045812__root {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  /* font-size: 100%; */
+  min-height: 100vh;
+}
+
+/* = Map stylable build time variables to CSS variables for theme switching. */
+:root {
+  /* = Forground colours - main and inverted plus rgb versions as 'raw'. */
+  --Default3362045812-color-ui: rgb(255, 255, 255);
+  --Default3362045812-color-ui-raw: rgb(255, 255, 255);
+  --Default3362045812-color-ui-inverse: rgb(51, 51, 51);
+  --Default3362045812-color-ui-raw-inverse: 51, 51, 51;
+
+  /* = Accent colours */
+  --Default3362045812-color-accent-1: #65bfff;
+  --Default3362045812-color-accent-2: #52fba7;
+  --Default3362045812-color-accent-3: #ea91ff;
+  --Default3362045812-color-accent-4: #f7e1b9;
+
+  /* = Background colours */
+  --Default3362045812-color-background-1: rgb(23, 26, 35);
+  --Default3362045812-color-background-2: rgba(0, 0, 0, 0.4);
+  --Default3362045812-color-background-3: rgba(160, 160, 160, 0.06);
+  --Default3362045812-color-background-4: rgba(11, 13, 18, 0.34);
+  --Default3362045812-color-background-modal: rgba(23, 26, 35, 0.98);
+
+  /* = Text colours */
+  --Default3362045812-color-text-1: rgb(255, 255, 255);
+  --Default3362045812-color-text-2: rgba(255, 255, 255, 0.9);
+  --Default3362045812-color-text-3: rgba(255, 255, 255, 0.8);
+  --Default3362045812-color-text-4: #f7e1b9;
+
+  /* = Status colours */
+  --Default3362045812-color-status-error: #b66b6e;
+  --Default3362045812-color-status-warn: orange;
+  --Default3362045812-color-status-neutral: blue;
+  --Default3362045812-color-status-success: green;
+
+  /* = Indicator colours */
+  --Default3362045812-color-focus: #09b1f1;
+
+  /* = Form colours */
+  --Default3362045812-color-form-mark: rgba(119, 140, 157, 0.7);
+  --Default3362045812-color-form-selection-track: rgba(119, 140, 157, 1);
+  --Default3362045812-color-form-selection-mark: #52fba7;
+  --Default3362045812-color-toggle-mark: rgb(255, 255, 255);
+
+  /* = Gradiants */
+  --Default3362045812-grad-1: linear-gradient(to bottom, rgba(30, 87, 153, 0) 0%, rgba(35, 38, 49, 0.14) 100px, rgba(35, 38, 49, 0.8) 500px, rgba(35, 38, 49, 1) 100%);
+
+  /* = Misc */
+  --Default3362045812-select-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white' xml:space='preserve'><path d='M3 2v2l5 5 5-5v-2l-5 5z'></path><path d='M3 7v2l5 5 5-5v-2l-5 5z'></path></svg>");
+  --Default3362045812-status-background: #692e2e;
+  --Default3362045812-support-background: #2e5b69
+}
+
+/*= Give ourselves a fluid rem value to use for padding or whatever. */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@supports (display: grid) {
+  html {
+    /** This is our responsive rem value, this will equal 1rem wherever we are.*/
+    font-size: calc(1em + 0.625 * ((100vw - 20em) / (92.5)))
+  }
+
+  @media screen and (min-width: 1800px) {
+    html {
+      /* font-size: value(text-vol-3-max); */
+      font-size: 26px;
+    }
+  }
+}
+
+body {
+  /**
+   * = Set the body font-size to initial value.
+   *
+   * Why? Using rem for everything means we can't set a container to say 
+   * font-size: 90% to tweak the size of the contained elements as they would 
+   * always size off the root html element.
+   *
+   * This way we can use a responsive rem value when we want to but also 
+   * leverage ems as described above.
+   */
+  font-size: initial;
+  /*= Set fallbacks here to avoid fouc on body. */
+  background-color: rgb(23, 26, 35);
+  color: var(--Default3362045812-color-ui, rgb(255, 255, 255));
+}
+
+.visuallyHidden587789948__root {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+	clip-path: inset(50%) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+	word-wrap: normal !important;
+}
+
+.visuallyHidden587789948__focusable {}
+
+/* 
+.focusable:focus,
+.focusable:active {
+	clip: auto !important;
+	-webkit-clip-path: none !important;
+	clip-path: none !important;
+	height: auto !important;
+	margin: auto !important;
+	overflow: visible !important;
+	width: auto !important;
+	white-space: normal !important;
+} */
+
+/** blcokquote.st.css */
+
+/* Useful if you want some quote chars via the content property https://css-tricks.com/css-content/ */
+
+/* project and vars */
+
+
+/* Root Component */
+
+/* Base styles. */
+
+/**
+   * =Variant 1 - Informal - 'chat'
+   *
+   * A useful style to get across a chat/conversation of some kind.
+   * @todo: should be able to alternate the styles for a chat? 
+   * Maybe we need a chat wrapper? Maybe in that format they should not be blockquotes...
+   */
+
+/* @todo: Same time as upgrade switch to 'state' helpers as I much prefer this syntax: Blockquote:variant(1)::content { */
+
+/**
+   * = Variant 2 - 'academic'
+   *
+   * A typical main body style for proper quotes.
+   */
+
+/**
+ * = Error Text - errorText.st.css
+ *
+ * Could have been a class only but we have a component and here is it's style.
+ * 
+ * ========================================================================= */
+
+
+/* = Project and vars. */
+
+/* = Root */
+
+/* = Error indicator bar. */
+
+@media screen and (min-width: 600px) {
+}
+
+/**
+ * = HINT TEXT - hintText.st.css
+ *
+ * Could have been a class only but we have a component and here is it's style.
+ * 
+ * ========================================================================= */
+
+
+/* = Project and vars */
+
+/* = Root Component. */
+
+/* = Root */
+
+/** label.st.css */
+
+/* = Project and vars */
+
+/* = Root Component */
+
+/*==== Has Input  ====*/
+
+@media screen and (min-width: 600px) {
+}
+
+/*==== Input Positions ====*/
+/* = top */
+/* = end / right */
+/* = bottom */
+/* = start / left */
+/*==== Icon ====*/
+
+/** logo.st.css WIP */
+
+/* = Root Component */
+
+/* https://www.sacredgeometryshop.com/sacred-geometry/vesica-piscis-sacred-geometry/ */
+@keyframes logo383609052__headTilt {
+  0% {
+    transform: rotate(4deg);
+  }
+
+  1% {
+    transform: rotate(-4deg);
+  }
+
+  33% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(-4deg);
+  }
+
+  66% {
+    transform: rotate(-4deg);
+  }
+
+  100% {
+    transform: rotate(-4deg);
+  }
+}
+
+/** propsDemo.st.css */
+
+/* = Root Component */
+
+@media screen and (min-width: 951px) {
+}
+
+@media screen and (max-width: 950px) {
+}
+
+@media screen and (min-width: 767px) {
+}
+
+@media screen and (min-width: 950px) {
+}
+
+@media screen and (max-width: 950px) {
+}
+
+
+
+/* .tsLogo {
+  display: inline-block;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1em;
+  padding-top: 1em;
+  width: 1.9em;
+  text-align: end;
+  font-family: Arial;
+  letter-spacing: .05em;
+  padding: .22em;
+  padding-top: .9em;
+  letter-spacing: -0.5px;
+  background: #037acc;
+  margin-right: 12px
+} */
+
+/** text.st.css */
+
+/* = = Project and vars */
+
+/* = Root Component */
+
+.Default3362045812__root .Text4012002477__root {
+    font-weight: 400;
+    /* = switch off for light / dark bgs.... */
+    -webkit-font-smoothing: antialiased;
+  }
+
+/* = Volume 1 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-1"] {
+  font-size: calc(0.7901234567901234em + 0.14708366598400968 * ((100vw - 20em) / (92.5)));
+  line-height: 1.45;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-1"] {
+    font-size: 0.9372071227741331em;
+  }
+}
+
+/* = Volume 2 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-2"] {
+  font-size: calc(0.8888888888888888em + 0.1527777777777779 * ((100vw - 20em) / (92.5)));
+  line-height: 1.65;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-2"] {
+    font-size: 1.0416666666666667em;
+  }
+}
+
+/* = Volume 3 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-3"] {
+  font-size: calc(1em + 0.25 * ((100vw - 20em) / (92.5)));
+  line-height: 1.8;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-3"] {
+    font-size: 1.25em;
+  }
+}
+
+/* = Volume 4 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-4"] {
+  font-size: calc(1.125em + 0.4375 * ((100vw - 20em) / (92.5)));
+  line-height: 1.45;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-4"] {
+    font-size: 1.5625em;
+  }
+}
+
+/* = Volume 5 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-5"] {
+  font-size: calc(1.3499999999999999em + 0.7328124999999999 * ((100vw - 20em) / (92.5)));
+  line-height: 1.4;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-5"] {
+    font-size: 2.0828124999999997em;
+  }
+}
+
+/* = Volume 6 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-6"] {
+  font-size: calc(1.51875em + 1.084765625 * ((100vw - 20em) / (92.5)));
+  line-height: 1.3;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-6"] {
+    font-size: 2.603515625em;
+  }
+}
+
+/* = Volume 7 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-7"] {
+  font-size: calc(1.77978515625em + 1.6907011718749998 * ((100vw - 20em) / (92.5)));
+  line-height: 1.15;
+    font-weight: 300;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-7"] {
+    font-size: 3.470486328125em;
+  }
+}
+
+/* = Volume 8 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-8"] {
+  font-size: calc(2.2247314453125em + 2.4014268300781243 * ((100vw - 20em) / (92.5)));
+  line-height: 1.1;
+    font-weight: 300;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-8"] {
+    font-size: 4.626158275390624em;
+  }
+}
+
+/* = Volume 9 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-9"] {
+  font-size: calc(2.780914306640625em + 3.385754674455077 * ((100vw - 20em) / (92.5)));
+  line-height: 1.05;
+    font-weight: 300;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-9"] {
+    font-size: 6.166668981095702em;
+  }
+}
+
+/* = Volume 10 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-2-10"] {
+  font-size: calc(3.128528594970703em + 4.099843710327148 * ((100vw - 20em) / (92.5)));
+  line-height: 1.05;
+    font-weight: 300;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-2-10"] {
+    font-size: 7.228372305297851em;
+  }
+}
+
+/* = Volume 11 */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-2-11"] {
+  font-size: calc(4.345178604125977em + 5.930033585624738 * ((100vw - 20em) / (92.5)));
+  line-height: 1.05;
+    font-weight: 300;
+  }
+
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-2-11"] {
+    font-size: 10.275212189750714em;
+  }
+}
+
+/* = Uppercase */
+
+.Default3362045812__root .Text4012002477__root.Text4012002477--uppercase {
+    text-transform: uppercase;
+    letter-spacing: .25em;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-1"].Text4012002477--uppercase {
+    letter-spacing: .41em;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-2"].Text4012002477--uppercase {
+    letter-spacing: .41em;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-3"].Text4012002477--uppercase {
+    letter-spacing: .41em;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---vol-1-4"].Text4012002477--uppercase {
+    letter-spacing: .31em;
+  }
+
+/* = State selectors - Note: Inherits functional styles from Shelley. */
+
+.Default3362045812__root .Text4012002477__root.Text4012002477--truncate {
+    /*
+      Probably best remove this and set widths as and when you use truncate. 
+      The styles require a known width container and this is an example we use.
+
+      Try not to use truncate but we know that sometimes it can be a compromise.
+    */
+    max-width: 32rem
+      /* = FYI: We will change the API to support multiline via https://caniuse.com/#feat=css-line-clamp*/
+  }
+
+/* = State selectors */
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---weight-1-1"] {
+    font-weight: 100;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---weight-1-2"] {
+    font-weight: 200;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---weight-1-3"] {
+    font-weight: 300;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---weight-1-4"] {
+    font-weight: 400;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---weight-1-5"] {
+    font-weight: 500;
+  }
+
+.Default3362045812__root .Text4012002477__root[class~="Text4012002477---weight-1-6"] {
+    font-weight: 600;
+  }
+
+/* = Styles - typical child children. @todo tidy... */
+
+abbr[title] {
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(243, 243, 202, 0.39);
+    cursor: help;
+    padding-bottom: 0.1rem;
+  }
+
+code [title]:hover {
+    text-shadow: 0 0 10px rgb(197, 197, 197)
+  }
+
+.Default3362045812__root .Text4012002477__root a {
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 1px;
+    color: #65bfff;
+    color: var(--Default3362045812-color-accent-1, #65bfff);
+    border: 0 solid rgba(110, 164, 218, 0.5);
+    border-width: 0 0 0.05em 0;
+    transition: border-color .15s ease-out;
+  }
+
+.Default3362045812__root .Text4012002477__root a:hover,.Default3362045812__root .Text4012002477__root a:focus {
+    border-color: #81c1ff
+  }
+
+.Default3362045812__root .Text4012002477__root del,.Default3362045812__root .Text4012002477__root ins {
+    text-decoration: none;
+    padding: 0.1rem 0;
+  }
+
+.Default3362045812__root .Text4012002477__root del {
+    background-position: 0 -0.5em;
+    background-image: linear-gradient(0deg, #ff6a6a 0%, transparent 2px);
+  }
+
+.Default3362045812__root .Text4012002477__root ins {
+    background-image: linear-gradient(0deg, #23c48d 0%, transparent 2px);
+  }
+
+.Default3362045812__root .Text4012002477__root em {
+    font-weight: 400;
+  }
+
+.Default3362045812__root .Text4012002477__root code {
+    font-family: Inconsolata, Monaco, Consolas, "Courier New", Courier, monospace;
+    font-size: .8em;
+    font-weight: 600; color: #f7e1b9;
+    color: var(--Default3362045812-color-accent-4, #f7e1b9);
+  }
+
+/* = Styles - typical child children. */
+
+.Default3362045812__root .text211639050__large {
+    background: green
+  }
+
+.Default3362045812__root .text211639050__dl {
+    display: grid;
+    grid-column-gap: 1vw;
+    grid-template-columns: 1fr 4fr;
+  }
+
+.Default3362045812__root .text211639050__dl dt {
+    text-align: end;
+  }
+
+.Default3362045812__root .text211639050__dl dd::before {
+    /* = content: " - " */
+  }
+
+/**
+ * = Dark
+ *
+ * Most of this is done as per the default in project.
+ * Somehthing interesting to follow... @todo
+ */
+
+.dark2578745781__root {}
+
+.dark2578745781__root body {
+  /* = Set CSS vars for switcher to utilise, fallbacks are in project.st.css */
+  color: var(--dark2578745781-color-ui, rgb(255, 255, 255));
+  background-color: var(--dark2578745781-color-background-1, rgb(23, 26, 35));
+}
+
+/* 
+ * = Theme differences
+ * 
+ * While all sounds well with "just change the colors" it is never that 
+ * simple, ever. So here we can tweak styles for the theme specifically.
+ * 
+ */
+
+/* = Override our uppercase headings.*/
+.dark2578745781__root h2.Text4012002477__root.Text4012002477--uppercase,.dark2578745781__root h3.Text4012002477__root.Text4012002477--uppercase,.dark2578745781__root h4.Text4012002477__root.Text4012002477--uppercase {
+  color: #52fba7;
+  color: var(--dark2578745781-color-accent-2, #52fba7);
+}
+
+/* 
+ * :global(h2)Text:uppercase {...}
+ *
+ * = Handy use of :global() if you want to style based on a tag.
+ * Useful where a component, like our 'Text' can output a number
+ * of tags as its root element. 
+ */
+
+/** codeSample.st.css */
+
+/* project and vars */
+
+/* = Root Component */
+
+/* ff51a9 */
+
+/* = inputText.st.css */
+
+/* = Root Component */
+
+/* = Base styles taken care of by InputBase. */
+
+/**
+ * = GRID - grid.st.css 
+ *
+ * Our main grid styles live here, you maybe tempted to make add a load of
+ * utilities that configure your grid in a load of ways... Be warned that having
+ * too much layout specified with the markup via props/classnames is a real pain 
+ * when you are trying to make changes to a page full of grids. Opinion.
+ * 
+ * ========================================================================= */
+
+/* = Root Component */
+
+/* = Mixins & Utils */
+
+/* = IE Fallback for images only on nested grids? */
+
+/* = Reset children else they will inherit the text-align. */
+
+/* = Reset for grid. */
+@supports (display: grid) {
+}
+
+/* = Hook up the formatting styles to this prop. */
+
+/* = Variant 1: Core Grid */
+
+/* = See grid docs on shelley.earth for initial walkthrough. */
+
+/* = width tweaks and seperating 'pen' from 'goal' for sm and above. */
+@media only screen and (min-width: 568px) {
+}
+
+/* = width tweaks for md and above. */
+@media only screen and (min-width: 950px) {
+}
+
+/* = Set any direct descendant Grid on the 'goal' grid lines. */
+/* Grid:variant(1)>Grid {
+    grid-column: goal;
+  } */
+
+/* = Set direct descendant Grid variant1 to 'edge' grid lines. */
+
+/* = Columms: Align common grid items, including fallback styles. */
+
+/* = @todo: #stylable These are outside of @st-scope XXX {) due to a bug with 
+ *  stylable where only the first item gets the scope prefix. */
+/* = If you need to jump these based on media query then do it with a custom class. */
+/* = Common jump patterns, you can set these up like a bootstrap grid if you like 
+littering your HTML with conditional positional info*/
+
+@media only screen and (min-width: 950px) {
+}
+
+/* = @todo: This should be able to move to the gridItem mixin, if stylable bug confirmed. */
+@supports (display: grid) {
+
+  /* = end */
+
+  /** 
+   * = Other grid variants
+   *
+   * One might call these our 'subgrids' as we usually will use them as children
+   * of the main grid, variant 1. 
+   * 
+   * When to add a new variant/subgrid? Not straightway?? maybe after you use it
+   * on more than one component, you don't really want a variant with just one 
+   * usage and in custom cases you migth use use some variables to build up a grid
+   * within a component CSS insteads. I think commony used patterns are fine, especially
+   * ones with a well defined responsive rules including fallback.
+   *
+   * You might like to use one as the basis of a custom style leveraging the fallback 
+   * but then overiding grid-template-columns with something else.
+   */
+
+
+  /* = Variant 2: 1 | 1 */
+
+
+  @media only screen and (min-width: 950px) {
+
+      /* = Fallbacks: Just because a browser is old doesn't mean it is stupid, calc is useful. */
+
+    /* = Reset fallback styles: no need for floats as they loose 'rock paper scissors' to grid in terms of layout. */
+    @supports (display: grid) {
+    }
+  }
+
+
+
+
+  /* = Variant 3: 7 | 5 */
+
+  @media only screen and (min-width: 568px) {
+  }
+}
+
+.Default3362045812__root .grid1918440975__mt1 {
+    margin-top: calc(0.69231rem * 4)
+  }
+
+.Default3362045812__root .grid1918440975__mb1 {
+    margin-bottom: calc(0.69231rem * 4)
+  }
+
+.Default3362045812__root .grid1918440975__mt2 {
+    margin-top: calc(0.69231rem * 8)
+  }
+
+.Default3362045812__root .grid1918440975__mb2 {
+    margin-bottom: calc(0.69231rem * 8)
+  }
+
+.Default3362045812__root .grid1918440975__mtAuto {
+    margin-top: auto;
+  }
+
+/**
+ * = BUTTON - button.st.css
+ *
+ * We only have one, so far so good. YOu should have enough sizes and hooks
+ * but you can always add your own custome classes for whatever you need or 
+ * wrap this button up inside other buttons pre configured for your usecases.
+ * 
+ * ========================================================================= */
+
+
+/* = Project and vars */
+
+/* = Root Component */
+
+/* = Mixins, Utils & Formatters */
+
+/* This is how we can scope the styles in Stylable. */
+/* = The base <button> element. */
+.Default3362045812__root .Button2871549472__root {
+    /* = Removes system styles. */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+    /* = Local variables values which are manipulated by other selectors. */
+    --button3055629119-accent: transparent;
+    --button3055629119-bg-color: transparent;
+    --button3055629119-border-color: transparent;
+    --button3055629119-text-color: inherit;
+    /* = Set the like for like property: var; Accent is special, we use 
+    it to store the colour index. */
+    color: var(--button3055629119-text-color);
+    background-color: var(--button3055629119-bg-color);
+    border-color: var(--button3055629119-border-color);
+    /* = Vertical content alignment - kicks in when heights are 'known'. */
+    align-items: center;
+    /* = Persist border to maintain alignment should you be using borders as 
+    part of additonal visual states. */
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    /**
+     * = Opininated: Some disagree with setting cursor: pointer (the hand) on 
+     * interactive elements arguing system controls don't do this. Meh, for 
+     * us it offers an additional cue to interaction which we feel asserts 
+     * confidence. Many sites do this so perhaps it's expected by many users. 
+     */
+    cursor: pointer;
+    /* = Explicitly set font-family else it will default to system style. */
+    font-family: inherit;
+    /* = Weight choice will likely factor the font-smoothing used. */
+    font-weight: 400;
+    /* = Horizontal alignment. */
+    justify-content: center;
+    /* = Spaced out the characters a little as they are a little squashed in 
+    uppercase land. */
+    letter-spacing: .034em;
+    /* Using em values allowing the button to 'grow' insync with font-size. */
+    padding: .2em 1em;
+    /* = Caters postioned children, e.g focus pseudo element. Also 
+    'activates' z-index should you need it. */
+    position: relative;
+    /* = Effects - 'all' --maybe-- IS too much... project var perhaps. */
+    transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    /* = Material defo popularised uppercase buttons, we like it but readability 
+    takes a hit and be careful in some langauges such as Greek. */
+    text-transform: uppercase;
+    /* = Really really opinionated, only do this if you are willing to provide 
+    a suitable replacement. We are control freaks. */
+    outline: none;
+  }
+.Default3362045812__root .Button2871549472__root:-webkit-autofill,.Default3362045812__root .Button2871549472__root:-webkit-autofill:hover,.Default3362045812__root .Button2871549472__root:-webkit-autofill:focus,.Default3362045812__root .Button2871549472__root:-webkit-autofill:active {
+  transition-delay: 99999s;
+  -webkit-transition-delay: 99999s;
+}
+/* = Inner <span> */
+.Default3362045812__root .Button2871549472__root .Button2871549472__inner {
+    /*= Put the padding on top so an icon can grow a little without affecting 
+    the height.*/
+    padding-top: 0.58em;
+    padding-bottom: 0.55em;
+  }
+/* = Divider - <span> rendered with Icon only, rename perhaps?*/
+.Default3362045812__root .Button2871549472__root .Button2871549472__divider {
+    display: inline-block;
+    width: 1em;
+    line-height: 0;
+  }
+/* = Targets an Icon component if present. */
+.Default3362045812__root .Button2871549472__root:hover {
+    opacity: 0.7;
+  }
+.Default3362045812__root .Button2871549472__root::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  bottom: -3px;
+  right: -3px;
+  box-shadow: 0 0 1px 2px #09b1f1;
+  box-shadow: 0 0 1px 2px var(--Default3362045812-color-focus, #09b1f1);
+  opacity: 0;
+  transition: opacity 120ms; border-radius: 4px
+  }
+.Default3362045812__root .Button2871549472__root:focus::after {
+  opacity: 1;
+  }
+/* Button CSS STATES PSEUDO */
+/* Disabled */
+.Default3362045812__root .Button2871549472__root:disabled,.Default3362045812__root .Button2871549472__root:disabled:hover,.Default3362045812__root .Button2871549472__root:disabled:focus,.Default3362045812__root .Button2871549472__root:disabled:active,.Default3362045812__root .Button2871549472__root:disabled:active:hover {
+    opacity: 0.5
+  }
+/* ACTIVE */
+.Default3362045812__root .Button2871549472__root:active,.Default3362045812__root .Button2871549472__root:active:hover {}
+/*==== VOLUMES ====*/
+/* Volume 1 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-1"] {
+  font-size: calc(0.625em + 0.125 * ((100vw - 20em) / (92.5)));
+  line-height: 1.5;
+  }
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-1"] {
+    font-size: 0.75em;
+  }
+}
+/* Volume 2 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-2"] {
+  font-size: calc(0.75em + 0.125 * ((100vw - 20em) / (92.5)));
+  line-height: 1.5;
+  }
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-2"] {
+    font-size: 0.875em;
+  }
+}
+/* Volume 3 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-3"] {
+  font-size: calc(0.875em + 0.125 * ((100vw - 20em) / (92.5)));
+  line-height: 1.5;
+  }
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-3"] {
+    font-size: 1em;
+  }
+}
+/* Volume 4 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-4"] {
+  font-size: calc(1em + 0.125 * ((100vw - 20em) / (92.5)));
+  line-height: 1.5;
+  }
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-4"] {
+    font-size: 1.125em;
+  }
+}
+/* Volume 5 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-5"] {
+  font-size: calc(1.125em + 0.125 * ((100vw - 20em) / (92.5)));
+  line-height: 1.5;
+  }
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-5"] {
+    font-size: 1.25em;
+  }
+}
+/* Volume 6 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-6"] {
+    font-size: calc(1.25em + 0.125 * ((100vw - 20em) / (92.5)));
+  font-size: calc(1.25em + 0.125 * ((100vw - 20em) / (92.5)));
+  line-height: 1.5;
+  }
+@media screen and (min-width: 1800px) {
+  .Default3362045812__root .Button2871549472__root[class~="Button2871549472---vol-1-6"] {
+    font-size: 1.375em;
+  }
+}
+/* Button COLOURS */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---tone-1-1"] {
+    --button3055629119-accent: var(--Default3362045812-color-accent-1);
+  }
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---tone-1-2"] {
+    --button3055629119-accent: var(--Default3362045812-color-accent-2);
+  }
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---tone-1-3"] {
+    --button3055629119-accent: var(--Default3362045812-color-accent-3);
+  }
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---tone-1-4"] {
+    --button3055629119-accent: var(--Default3362045812-color-accent-4);
+  }
+/* DEFAULT */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-1"] {
+    --button3055629119-text-color: var(--Default3362045812-color-ui-inverse);
+    --button3055629119-bg-color: var(--button3055629119-accent);
+  }
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-2"] {
+    --button3055629119-border-color: var(--button3055629119-accent);
+    -webkit-font-smoothing: antialiased;
+  }
+/*= Variant 3 - FAB */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"] {
+    --button3055629119-text-color: var(--Default3362045812-color-ui-inverse);
+    --button3055629119-bg-color: var(--button3055629119-accent);
+    padding: 0;
+    border-radius: 999px;
+    justify-content: center;
+  }
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"] .Button2871549472__divider {
+    display: none;
+  }
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"] .Button2871549472__inner {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+	clip-path: inset(50%) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+	word-wrap: normal !important;
+  }
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"]::after {
+    border-radius: 999px;
+  }
+/*= FAB are all about the icons so we don't want rounding issues on these. Set with values that / 2. */
+/*= FAB - Volume 1 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"][class~="Button2871549472---vol-1-1"] {
+    width: 32px;
+    height: 32px;
+  }
+/*= FAB - Volume 2 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"][class~="Button2871549472---vol-1-2"] {
+    width: 40px;
+    height: 40px;
+  }
+/*= FAB - Volume 3 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"][class~="Button2871549472---vol-1-3"] {
+    width: 48px;
+    height: 48px;
+  }
+/*= FAB - Volume 4 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"][class~="Button2871549472---vol-1-4"] {
+    width: 56px;
+    height: 56px;
+  }
+/*= FAB - Volume 5 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"][class~="Button2871549472---vol-1-5"] {
+    width: 64px;
+    height: 64px;
+  }
+/*= FAB - Volume 6 */
+.Default3362045812__root .Button2871549472__root[class~="Button2871549472---variant-1-3"][class~="Button2871549472---vol-1-6"] {
+    width: 72px;
+    height: 72px;
+  }
+
+/**
+ * = INPUT BASE - inputBase.st.css
+ *
+ * This file applies the base styles to our textal form components such as 
+ * inputs, textareas and selects or any compbo boxes we might construct.
+ *
+ * Most of the base styles live in the mixins so they can be shared but the 
+ * variants are styled here as they are more specific to our markup.
+ * 
+ * ========================================================================= */
+
+/* = Root Component */
+
+/* = Mixins */
+
+/*==== BASE ====*/
+
+/* = Native input field. */
+
+/* = Use a named import as a class to get the adjacent selectors working. */
+
+/* = Textarea wrapper which can be used for scrolling. */
+
+/*==== STATES ====*/
+
+/* = Error */
+
+/* = Disabled */
+
+/*==== VOLUMES ====*/
+
+/* = Volume 1 */
+
+/* = Volume 2 */
+
+@media screen and (min-width: 1800px) {}
+
+/* = Volume 3 */
+
+@media screen and (min-width: 1800px) {}
+
+/* = Volume 4 */
+
+@media screen and (min-width: 1800px) {}
+
+/* = Volume 5 */
+
+@media screen and (min-width: 1800px) {}
+
+/* = Volume 6 */
+
+@media screen and (min-width: 1800px) {}
+
+/*==== VARIANTS ====*/
+
+/* = Variant 1 - "Body" */
+
+/* = Variant 2 - "Data" */
+
+/**
+ * = INPUT SELECT - inputSelect.st.css
+ *
+ * The base styles taken care of by InputBase, here we are just adding the 
+ * that we want for our <select> element.
+ *
+ * ========================================================================= */
+
+/* = Root Component */
+
+/* = Mixins */
+
+/* = Example targeting the root. */
+
+/* = Example targeting the label. */
+
+/* = Apply selectFieldContainer to the base fieldContainer. */
+
+/* = Display the right hand indicator on <select>'s to encase the arrow icon. */
+
+/*= Applies the down arrow, aka --select-icon and associated styles. */
+
+/**
+ * = INPUT SELECTION - inputSelection.st.css
+ *
+ * Selection control (radio, checkboxes, toggle) with label, positioning 
+ * and variants
+ *
+ * ========================================================================= */
+
+
+/* = Project and vars */
+
+/* = Root style API. */
+
+/* = Child component styles API's */
+
+/* = Mixins */
+
+/* = Don't really 'type' at this level but they exist should we/you need. */
+
+/* ==== VOLUMES ====*/
+
+/* = Volume 1 */
+
+/* = Volume 2 */
+
+@media screen and (min-width: 1800px) {}
+
+/* = Volume 3 */
+
+@media screen and (min-width: 1800px) {}
+
+/* = Volume 4 */
+
+@media screen and (min-width: 1800px) {}
+
+/* = Volume 5 */
+
+@media screen and (min-width: 1800px) {}
+
+/* = Volume 6 */
+
+@media screen and (min-width: 1800px) {}
+
+/* ==== VARIANTS ====*/
+
+/* = Variant 1 - Basic alignment. */
+
+/* = Variant 2 - Form row style. */
+
+/** inputSelectionControl.st.css */
+
+/* project and vars */
+
+/* = Root Component */
+
+/* = Mixins */
+
+/* = This is how we can scope the styles. */
+/* = Radio Checkbox common styles. */
+/* = Radio */
+/* = Toggle */
+
+
+@-moz-document url-prefix() {
+
+  /**
+    * = Cross browser - Firefox 
+    
+    * This is annoying but Firefox is opposite as it seems to follow a focus-visible 
+    * rule for focus but will show our active styles that we only set to avoid the opposite
+    * in Chrome. 
+    */
+}
+
+/**
+ * Example override file used to change the button based on the context
+ * in which it is used.
+ */
+
+/* :import {
+  -st-from: "../components/Button/button.st.css";
+  -st-default: Button;
+  -st-named: vol1
+} */
+
+.testAttribute[class~="testAttribute"] {
+    background: wheat
+  }
+
+.testAttribute.testClass {
+    background: purple
+  }
+
+/* Button.override {
+    background: rebeccapurple;
+    margin-bottom: 16px;
+  } */

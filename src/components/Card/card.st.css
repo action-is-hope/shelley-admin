@@ -1,0 +1,103 @@
+:import {
+  /* -st-from: "../../../components/Button/button.st.css"; */
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+
+.root {
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #ddd;
+  transition: all ease-in 75ms;
+}
+
+.root:focus-within,
+.root:hover {
+  box-shadow: 0 0 0 0.25rem #376873;
+}
+
+.media {
+  height: 8rem;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 1rem));
+  /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 0rem)); */
+  overflow: hidden;
+}
+
+.media img {
+  width: 100%;
+  margin-top: -30px
+}
+
+.text {
+  padding: 1rem;
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.text > * + * {
+  margin-top: 0.75rem;
+}
+
+.text :global(p)Text {
+  /* max-width: 60ch; */
+
+  /* noWrap: {
+    overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+  }
+
+  ,
+  lineClamp: {
+    "@supports (-webkit-line-clamp: 2)": {
+      display: "-webkit-box",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        WebkitLineClamp: props=> props.lineClamp,
+        WebkitBoxOrient: "vertical",
+    }
+
+    ,
+  }
+
+  ,
+} */
+
+
+}
+
+@supports (-webkit-line-clamp: 2) {
+  .root .text :global(p) {
+    width: 100%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+}
+
+
+.root .text > :last-child {
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.root Text > .link {
+  text-decoration: none;
+  border: none;
+  color: inherit;
+  position: static;
+}
+
+.root Text > .link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
