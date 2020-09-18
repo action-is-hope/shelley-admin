@@ -22,7 +22,7 @@ const Launch = ({
   const [allBoards, setBoards] = useState(boards);
   return (
     <div className={st(rootClassNames)} {...rest}>
-      <P vol={5}>A 'doing platform'.</P>
+      <P vol={5}>A 'doing' platform.</P>
       {/* <P vol={5}>Let's get things done.</P> */}
 
       <H2 uppercase vol={3} className={classes.listTitle}>
