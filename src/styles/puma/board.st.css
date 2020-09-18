@@ -1,0 +1,573 @@
+@st-global-custom-property --vh;
+
+/** board.st.css */
+
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit,
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "./project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-ui-inverse,
+    --color-accent-1,
+    --color-accent-2,
+    --color-accent-3,
+    --color-accent-4,
+    --color-background-2;
+}
+
+/* = Root Component */
+:import {
+  -st-from: "../../components/Board/board.st.css";
+  -st-default: Board;
+}
+
+/* = Child. */
+:import {
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+
+@st-scope Puma {
+  Board {
+    overflow: hidden;
+    position: relative;
+    /* overflow-x: scroll; */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  @st-scope Puma {
+    Board {
+      /* Allows horizontal scrolling of the entire board. */
+      /* overflow-x: scroll; */
+      /* scroll-snap-type: x mandatory;
+      overflow-x: scroll; */
+    }
+  }
+}
+
+/*=== Header/Title Area ===*/
+
+@st-scope Puma {
+
+  Board::header {
+    display: grid;
+    grid-template-columns: 34vw 32vw 34vw;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  @st-scope Puma {
+    Board::header {
+      display: block;
+      width: calc(3 * 72vw);
+    }
+
+    Board::colHeader {
+      width: 72vw;
+      float: left;
+      /*
+      FYI: 'sticky' was not working with the header using a
+      grid container so we switched to an old-skool float layout 
+      for this which seems to fix the horizontal stickyness we want for
+      the header. Boom tings! One to flip on the @rtl layout.
+    */
+      position: sticky;
+      left: 8px;
+    }
+
+    Board::colHeader:first-child {
+      margin-left: 8px;
+      width: calc(72vw - 8px);
+    }
+
+    Board::colHeader:nth-child(2) .colHeaderText {
+      background-color: #04070d;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  @st-scope Puma {
+    Board::header> :first-child {
+      margin-left: 16px;
+    }
+  }
+}
+
+@media only screen and (min-width: 461px) and (max-width: 730px) {
+  @st-scope Puma {
+    Board::header {
+      grid-template-columns: 40vw 40vw 40vw;
+    }
+  }
+}
+
+@media only screen and (min-width: 731px) and (max-width: 800px) {
+  @st-scope Puma {
+    Board::header {
+      grid-template-columns: 33.33334vw 33.33334vw 33.33334vw;
+    }
+  }
+}
+
+/*=== Board Column Headers ===*/
+@st-scope Puma {
+  Board::colHeader {
+    color: #cfd5d6;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin-top: 1em;
+    margin-bottom: 1rem;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  @st-scope Puma {
+    Board::colHeader {
+      font-size: 1rem;
+      text-align: center;
+    }
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  @st-scope Puma {
+    Board::colHeader {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@st-scope Puma {
+
+  :global(body) {
+    /* height: 100vh; */
+  }
+
+  :global(body) {
+    /* The hack for Safari */
+    /* height: -webkit-fill-available; */
+  }
+
+  /* Avoid Chrome to see Safari hack */
+  @supports (-webkit-touch-callout: none) {
+    :global(body) {
+      /* The hack for Safari */
+      /* height: -webkit-fill-available; */
+      overflow: hidden;
+      height: -webkit-fill-available;
+    }
+  }
+
+
+  Board::slider {
+    font-family: sans-serif;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    overflow-x: scroll;
+    clear: both;
+    position: relative;
+
+    font-size: 80%;
+    height: calc(100vh - 70px - 115px);
+
+    height: calc(var(--vh, 1vh) * 100 - 75px);
+  }
+
+  Board::slider::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 36px;
+    left: 97vw;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../images/wider-earth.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0%;
+    opacity: 0.6;
+    width: 250vw;
+  }
+
+
+  Board::slideCol Text:uppercase {
+    color: var(--color-ui);
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+
+  Board::slideCol {
+    /* margin-left: 10vw; */
+    /* height: 100vh; */
+
+    scroll-snap-align: start;
+    text-align: center;
+    position: relative;
+
+  }
+
+  Board::backlog {
+    min-width: 97vw;
+    /* width: 100vw;
+  height: 80vw; */
+  }
+
+  Board::todo {
+    min-width: 70vw;
+  }
+
+  Board::todo Text {
+    text-align: center;
+    margin-left: 23%;
+  }
+
+  Board::progress {
+    min-width: 80vw;
+  }
+
+  Board::progress Text {
+    text-align: right;
+    margin-right: 19%;
+  }
+
+  Board::done {
+    min-width: 70vw;
+  }
+
+  Board::done Text {
+    text-align: right;
+    margin-right: 21%;
+  }
+
+
+
+  Board::scroller {
+    overflow-x: scroll;
+  }
+
+  Board::boardTaskLink {
+    color: var(--color-ui);
+    display: block;
+    position: relative;
+    /* z-index: 1000; */
+
+    outline: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+    /* max-width: 21vw; */
+    /* max-width: calc(42vw - 200px); */
+    /* Invokes some extra resources to handle rendering this over other transformed items, in this case the board. */
+    transform: translateZ(0);
+
+  }
+}
+
+/*=== Board ===*/
+@st-scope Puma {
+  Board::board {
+    /* display: grid; */
+    /* grid-template-columns: 34vw 32vw 34vw; */
+    /* height: calc(100% - 300px); */
+    /* height: 100%; */
+    /* min-width: calc(72vw * 3); */
+    width: 250vw;
+    /* 
+    height: 54.5vh; This was causing issue on mobile scroll. 
+    vh and vw are incrediably useful but they can be a bit buggy.
+    especially on the iPad it would seem and even more so in an 
+    iframe on an iPad, seen some weird stuff there!*/
+    /* overflow: hidden; */
+    /* We love this image, thanks NASA! */
+    /* background-image: url("../../images/wider-earth.png"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0%;
+    /* position: relative; */
+    /* padding-left: 20px; */
+
+    position: absolute;
+    top: 36px;
+    right: 0;
+    bottom: 0;
+    left: 97.5vw;
+
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
+  /* Board::board:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../../images/wider-earth.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 0%;
+    opacity: 0.6;
+  } */
+}
+
+/* rgb(24, 26, 35) */
+Board::solutionItem {
+  scroll-snap-align: start;
+  position: relative;
+  z-index: 10;
+  left: 0;
+  padding: calc(var(--spacing-unit) * 1.3) var(--spacing-unit);
+  padding-right: 80px;
+  background: rgba(24, 26, 35, 0.85);
+  width: 80vw;
+  margin-top: 16px;
+  font-size: 93%;
+  border-bottom: 1px solid #5a60a573;
+  color: var(--color-accent-2);
+}
+
+Board::solutionItem Text:uppercase {
+  letter-spacing: .08em !important;
+}
+
+Board::solutionBoard:last-child {
+  padding-bottom: 80vh;
+}
+
+@media only screen and (max-width: 460px) {
+  @st-scope Puma {
+    Board::solutionBoard {
+      display: grid;
+      width: 100%;
+      grid-template-columns: 80vw 80vw 80vw;
+      position: relative;
+      /* scroll-snap-type: x mandatory; */
+      /* display: flex;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: scroll; */
+      overflow: hidden;
+    }
+  }
+}
+
+/* @media only screen and (min-width: 461px) and (max-width: 730px) {
+  @st-scope Puma {
+    Board::board {
+      grid-template-columns: 40vw 40vw 40vw;
+    }
+  }
+}
+
+@media only screen and (min-width: 731px) and (max-width: 800px) {
+  @st-scope Puma {
+    Board::board {
+      width: calc(33.33334vw * 3);
+      grid-template-columns: 33.33334vw 33.33334vw 33.33334vw;
+    }
+  }
+} */
+
+/* 
+  Please excuse the following selectors over direct classes. They are a bit 
+  fragile but we cannot reliably apply classes to the columns without them 
+  going walkabout. So opting for the old-skool, but very useful 'CSS selectors'
+  How 2010! :-)
+  */
+@st-scope Puma {
+  Board::solutionBoard>div {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* height: 100vh; */
+    /* height: 82vh; */
+    min-height: 2vh;
+    max-height: 22vh;
+    width: 80vw;
+    /* scroll-snap-align: start; */
+    /* 
+    Whilst this fixes the scrolling older iOS it also cuts off the action between
+    columns. We wanted to keep this around so as to support older versions of iOS
+    but this kinda kills that idea. The actions are comoletely cut off on drag.*/
+    /* -webkit-overflow-scrolling: touch; */
+  }
+
+  Board::solutionBoard>div {
+    position: relative;
+    padding-bottom: 120px;
+  }
+
+  Board::solutionBoard>div:before {
+    /* content: " ";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; */
+  }
+
+  /* linear-gradient(
+    90deg,
+    rgba(16, 31, 43, 0.75) 0%,
+    rgba(14, 24, 33, 0.65) 100%
+  ) */
+
+  /* Slightly different gradients for each column and some layout ammends.*/
+  Board::solutionBoard>div:first-child {
+    background: linear-gradient(90deg,
+        rgba(24, 26, 35, 0.75) 0%,
+        rgba(24, 26, 35, 0.65) 100%);
+
+    /* background: linear-gradient(
+    90deg,
+    rgba(8, 11, 14, 0.75) 0%,
+    rgba(12, 22, 31, 0.7) 100%
+  ); */
+  }
+
+  Board::solutionBoard>div:nth-child(2) {
+    background: linear-gradient(90deg,
+        rgba(24, 26, 35, 0.65) 0%,
+        rgba(24, 26, 35, 0.5) 100%);
+    border-left: 2px dashed #ddd0;
+    border-right: 2px dashed #ddd0;
+    background-repeat: no-repeat;
+    /* Makes the lines white on the solutionBoard. Odd. */
+  }
+
+  Board::solutionBoard>div:last-child {
+    background: linear-gradient(90deg,
+        rgba(24, 26, 35, 0.5) 0%,
+        rgba(24, 26, 35, 0.1) 100%);
+  }
+
+  Board::solutionBoard>div {
+    /* padding-left: calc(2vw + 16px);
+    padding-right: calc(2vw + 16px); */
+  }
+}
+
+@media only screen and (min-width: 1020px) {
+  @st-scope Puma {
+    Board::solutionBoard>div:first-child {
+      padding-left: calc(27vw - 290px);
+      padding-left: calc(27vw - 510px);
+      padding-right: 7vw;
+      padding-right: 4vw;
+
+      padding-left: 4vw;
+      padding-right: 3vw;
+      /* 
+    padding-left: calc(27vw - 370px);
+    padding-right: 7vw; */
+    }
+
+    Board::solutionBoard>div:nth-child(2) {
+      padding-left: calc(16vw - 145px);
+      padding-right: calc(16vw - 145px);
+
+      padding-left: calc(16vw - 255px);
+      padding-right: calc(16vw - 255px);
+      padding-left: 4vw;
+      padding-right: 3vw;
+    }
+
+    Board::solutionBoard>div:last-child {
+      padding-right: calc(27vw - 510px);
+      padding-left: 7vw;
+      padding-left: 4vw;
+      padding-right: 3vw;
+    }
+  }
+}
+
+/*=== Action Styles ===*/
+@st-scope Puma {
+  Board::board>div>a {
+    outline: none;
+    user-select: none;
+    display: block;
+    text-decoration: none;
+
+    /* max-width: 21vw; */
+    /* max-width: calc(42vw - 200px); */
+    margin-left: auto;
+  }
+
+  Board::board>div>a:focus :global .asteroid {
+    /* box-shadow: 16px 8px 16px rgba(35, 2, 223, 0.259); */
+  }
+
+  /* Contextual Action styles... */
+  .board>div:first-child>* :global .asteroid {
+    transform: rotate(4deg);
+  }
+
+  .board>div:nth-child(2)>* :global .asteroid {
+    transform: rotate(2deg);
+    /* box-shadow: 16px 8px 16px rgba(244, 240, 54, 0.25882352941176473); */
+  }
+
+  .board>div:last-child>* :global .asteroid {
+    transform: rotate(1deg);
+    /* box-shadow: 22px 5px 14px rgba(113, 241, 255, 0.30980392156862746); */
+  }
+
+  .board>div>* {
+    border-radius: 50% 50% 50% 75% / 60% 60% 40% 40%;
+    border-radius: 100% 16% 16% 174% / 80% 100% 100% 108%;
+  }
+
+  .board>div>*:nth-child(odd) {
+    position: relative;
+    left: 1vw;
+  }
+
+  /*=== Buttons ===*/
+  .todoButtons {
+    position: absolute;
+    z-index: 10;
+    left: 8px;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+
+
+
+
+:global(.boardContainer-enter-active) {
+  transition: transform 250ms cubic-bezier(0.03, 0.63, 0.28, 1.02);
+  transform: translateY(0);
+}
+
+:global(.boardContainer-enter-done) {
+  transform: none;
+}
+
+:global(.boardContainer-exit) {
+  transform: translateY(0);
+}
+
+:global(.boardContainer-exit-active) {
+  transition: transform 250ms cubic-bezier(0.42, 0, 0.21, 1.13);
+  transform: translateY(75vh);
+}

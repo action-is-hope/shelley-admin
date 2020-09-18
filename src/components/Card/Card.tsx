@@ -8,7 +8,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLBaseElement> {
   title: string;
   media?: string;
   description?: string;
-  url: string;
+  url?: string;
   /** HTML tag to render as the root for your grid. */
   tag?: string;
   /** Designed to toggle child formatting/alignment rules. */
@@ -25,26 +25,37 @@ const Card = ({
   title,
   description,
   media,
+  onClick,
   url,
   ...rest
 }: CardProps) => {
   const rootClassNames = classnames(classes.root, classNameProp);
 
   return (
-    <div className={st(rootClassNames)}>
-      <div className={classes.media}>
-        <img src={media} alt="" />
-      </div>
+    <li className={st(rootClassNames)}>
+      {media && (
+        <li className={classes.media}>
+          <img src={media} alt="" />
+        </li>
+      )}
+
       <div className={classes.text}>
-        <H3 className={classes.title} vol={5}>
-          <Link className={classes.link} to={url}>
-            {title}
-          </Link>
+        <H3 className={classes.title} uppercase vol={3}>
+          {url && (
+            <Link className={classes.link} to={url}>
+              {title}
+            </Link>
+          )}
+          {onClick && (
+            <a className={classes.link} onClick={e => onClick(e)} href="#">
+              {title}
+            </a>
+          )}
         </H3>
         <P>{description}</P>
         {children}
       </div>
-    </div>
+    </li>
   );
 };
 

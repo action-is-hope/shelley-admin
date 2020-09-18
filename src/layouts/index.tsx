@@ -86,9 +86,29 @@ const DefaultLayout = ({ children }: any) => {
 
   useEffect(
     // Set the theme based on what is in local storage.
+
     () => setAltTheme(window.localStorage.getItem("currentTheme") === "light"),
     [altTheme]
   );
+
+  // https://css-tricks.com/run-useeffect-only-once/
+  React.useEffect(() => {
+    // Run! Like go get some data from an API.
+
+    // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+    const vh = window.innerHeight * 0.01;
+    console.log("me", vh);
+    // Then we set the value in the --vh custom property to the root of the document
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+    // We listen to the resize event
+    window.addEventListener("resize", () => {
+      // We execute the same script as before
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    });
+  }, []);
+
   return (
     <>
       <Helmet
@@ -106,8 +126,10 @@ const DefaultLayout = ({ children }: any) => {
           class: currentTheme
         }}
       />
+      <link rel="manifest" href="./shelley.webmanifest"></link>
+      <link rel="stylesheet" href="https://use.typekit.net/bml4mzu.css"></link>
 
-      <Header {...{ altTheme, changeTheme }} />
+      {/* <Header {...{ altTheme, changeTheme }} /> */}
 
       {children}
     </>

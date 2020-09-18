@@ -20,6 +20,8 @@ import { classes as spacing } from "@actionishope/shelley/styles/default/spacing
 import Banner from "../components/Banner/Banner";
 import Dialog from "../components/Dialog/Dialog";
 
+import { usePopper } from "react-popper";
+
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema.
 interface IndexPageProps {
@@ -33,15 +35,35 @@ interface IndexPageProps {
 }
 
 const IndexPage = ({ data }: IndexPageProps) => {
+  const [
+    referenceElement,
+    setReferenceElement
+  ] = useState<HTMLButtonElement | null>(null);
+
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+    null
+  );
+  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    modifiers: [{ name: "arrow", options: { element: arrowElement } }],
+    placement: "auto-end"
+  });
+
   const [backlogModalOpen, setBacklogModalOpen] = useState(false);
   const [modelClickAway, setModelClickAway] = useState(true);
   const toggleBacklogModal = () => {
     setBacklogModalOpen(prevState => !prevState);
   };
 
+  const [open, setOpen] = useState(false);
+
   const divRef = useRef<HTMLBaseElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const toggle = () => {
+    setOpen(o => !o);
+  };
 
   return (
     <DefaultLayout>
@@ -50,6 +72,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
           Shelley
         </H1>
       </Banner>
+
       <Button variant={2} onClick={() => setBacklogModalOpen(true)}>
         Open
       </Button>
@@ -73,22 +96,38 @@ const IndexPage = ({ data }: IndexPageProps) => {
         // entryNode={false}
         // theme={defaultTheme}
       >
-        <Button variant={2} onClick={() => toggleBacklogModal()}>
-          Close
-        </Button>
-        <button onClick={() => toggleBacklogModal()}>Not me</button>
+        <div
+          ref={setPopperElement}
+          style={styles.popper}
+          {...attributes.popper}
+        >
+          <Button variant={2} onClick={() => toggleBacklogModal()}>
+            Close
+          </Button>
+          <button onClick={() => toggleBacklogModal()}>Not me</button>
 
-        <Button ref={buttonRef} onClick={() => toggleBacklogModal()}>
-          Got me!
-        </Button>
-        <input ref={inputRef} />
+          <Button ref={buttonRef} onClick={() => toggleBacklogModal()}>
+            Got me!
+          </Button>
+          <input ref={inputRef} />
+          <div ref={setArrowElement} style={styles.arrow} />
+        </div>
       </Dialog>
 
       <Grid tag="main" role="main" variant={1} formatted ref={divRef}>
         <P vol={4} className={text.intro}>
           Welcome to your new Gatsby &amp; Shelley website.
         </P>
-
+        <P>
+          {" "}
+          <Button
+            type="button"
+            ref={setReferenceElement}
+            onClick={() => setOpen(o => !o)}
+          >
+            Reference element
+          </Button>
+        </P>
         <P>
           Shelley as a core ships with no styles or very limited styles so that
           we / you always have the ability to provide and own all of the CSS

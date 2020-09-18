@@ -1,0 +1,37 @@
+.root {}
+
+/*=== Header/Title Area ===*/
+
+.header {}
+
+/*=== Board Column Headers ===*/
+
+.colHeader {}
+
+/*=== Board ===*/
+
+.scroller {}
+
+.slider {}
+
+.slideCol {}
+
+.todo {}
+
+.progress {}
+
+.done {}
+
+.board {}
+
+.solutionBoard {}
+
+.solutionItem {}
+
+.boardTaskLink {}
+
+/*=== Buttons ===*/
+
+.backlog {}
+
+.todoButtons {}

@@ -21,6 +21,11 @@ import Dialog from "./dialog.st.css";
 
 // = Application Components
 import Footer from "./footer.st.css";
+import Inches from "./inches.st.css";
+import Card from "./card.st.css";
+import Launch from "./launch.st.css";
+import Board from "./board.st.css";
+import BoardTask from "./boardTask.st.css";
 
 // = Project
 import Puma from "./project.st.css";
@@ -79,6 +84,21 @@ export const text = (...values: []) =>
 // ...
 export const footer = (...values: []) =>
   getStylableClassNames(values, Footer, "footer");
+
+export const inches = (...values: []) =>
+  getStylableClassNames(values, Inches, "inches");
+
+export const card = (...values: []) =>
+  getStylableClassNames(values, Card, "card");
+
+export const launch = (...values: []) =>
+  getStylableClassNames(values, Launch, "launch");
+
+export const board = (...values: []) =>
+  getStylableClassNames(values, Board, "board");
+
+export const boardTask = (...values: []) =>
+  getStylableClassNames(values, BoardTask, "boardTask");
 
 // = Main classname export
 export const Project = Puma.classes.root;

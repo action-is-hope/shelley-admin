@@ -3,8 +3,6 @@ import React from "react";
 import classnames from "classnames";
 import { st, classes } from "./editPreview.st.css";
 
-import { classes as defaultTheme } from "@actionishope/shelley/styles/default/project.st.css";
-
 import {
   Button,
   InputSelection,
@@ -33,7 +31,7 @@ import {
 const EditPreview = ({ className: classNameProp, ...rest }: any) => {
   return (
     // <DefaultLayout>
-    <div className={defaultTheme.root}>
+    <div>
       <div className={st(classnames(classes.root, classNameProp))}>
         <header className={classes.header}>Meuu</header>
         <div className={classes.internalGrid}>

@@ -70,6 +70,7 @@ export type DialogProps = {
 
 /** Influenced by https://reacttraining.com/reach-ui/dialog */
 
+// BLUR
 const Dialog = React.forwardRef(
   (
     {

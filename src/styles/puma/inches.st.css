@@ -1,0 +1,193 @@
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit,
+    breakpoint-md, breakpoint-sm;
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "./project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-ui-inverse,
+    --color-accent-1,
+    --color-accent-2,
+    --color-accent-3,
+    --color-accent-4;
+}
+
+/* = Root Component */
+:import {
+  -st-from: "../../components/Inches/inches.st.css";
+  -st-default: Inches;
+  -st-named: logo;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+
+/* = This is how we can scope the styles in Stylable. */
+@st-scope Puma {
+
+  Inches {}
+
+  Inches::header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-rows: auto auto calc(52vh) auto; */
+  }
+}
+
+@media value(breakpoint-md) {
+  @st-scope Puma {
+    Inches::header {
+      grid-template-columns: 25vw 25vw 25vw 25vw;
+      /* grid-template-rows: 25vh calc(100vh - 25vh - 80px) 0; */
+    }
+  }
+}
+
+@media only screen and (min-width: 1025px) {}
+
+
+@st-scope Puma {
+
+  Inches::logo {
+    margin-top: 3vw;
+    margin-left: var(--spacing-unit);
+    font-size: 108%;
+    transform-origin: 4vw top;
+    transition: transform 190ms, margin 190ms;
+    grid-column: 1 / span 2;
+  }
+
+  Inches::logo :global(h1)Text {
+    font-family: Futura, Trebuchet MS, Arial, sans-serif;
+    letter-spacing: .05em;
+  }
+
+  Inches::logo :global(h1)Text::after {
+    content: "";
+    display: flex;
+    height: .05em;
+    width: 1.02em;
+    margin-top: 0.02em;
+    margin-left: 0.085em;
+    background-color: var(--color-accent-2);
+  }
+
+  Inches::logo :global(p)Text {
+    margin-top: calc(var(--spacing-unit) * 3)
+  }
+
+  Inches:boardOnDeck::logo {
+    transform: scale(0.6);
+    margin-top: 4vw;
+    margin-left: 0;
+  }
+
+  Inches::launch {}
+}
+
+@media value(breakpoint-sm) {
+  @st-scope Puma {
+    Inches::logo {
+      margin-top: 10vh;
+      margin-left: 8vw;
+      transform-origin: 30% 24px;
+    }
+
+    Inches:boardOnDeck::logo {
+      margin-top: 4vw;
+    }
+
+    Inches::launch {
+      margin-left: 8vw;
+    }
+  }
+}
+
+/* Background transition. */
+/* :global(.enter) Dialog::backdrop {
+    opacity: 0;
+  }
+
+  :global(.enter-active) Dialog::backdrop {
+    opacity: 1;
+    transition: opacity 190ms;
+  }
+
+  :global(.enter-done) Dialog::backdrop {
+    opacity: 1;
+  }
+
+  :global(.exit) Dialog::backdrop {
+    opacity: 1;
+  }
+
+  :global(.exit-active) Dialog::backdrop {
+    opacity: 0;
+    transition: opacity 300ms;
+  } */
+
+/* Content transition. */
+
+/* :global(.enter) Dialog:transition(1)::content {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  :global(.enter-active) Dialog:transition(1)::content {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 190ms, opacity 190ms;
+  }
+
+  :global(.enter-done) Dialog:transition(1)::content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  :global(.exit) Dialog:transition(1)::content {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  :global(.exit-active) Dialog:transition(1)::content {
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 190ms, opacity 190ms;
+  }
+
+  :global(.enter) Dialog:transition(2)::content {
+    transform: translateY(calc(100vh / 2 + 100%));
+    opacity: 0;
+  }
+
+  :global(.enter-active) Dialog:transition(2)::content {
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 190ms, opacity 190ms;
+  }
+
+  :global(.enter-done) Dialog:transition(2)::content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  :global(.exit) Dialog:transition(2)::content {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  :global(.exit-active) Dialog:transition(2)::content {
+    transform: translateY(calc(100vh / 2 + 100%));
+    opacity: 0;
+    transition: transform 190ms, opacity 190ms;
+  } */
