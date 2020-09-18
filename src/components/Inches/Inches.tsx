@@ -59,71 +59,71 @@ const boardData = {
   todo: [
     {
       id: `item-a1`,
-      what: `Switch to a green energy provider`,
+      what: `Research and find a provider that is building green infrastructure.`,
       why: `Why TBC`,
       how: `How TBC`,
       status: "todo"
     },
     {
       id: `item-a2`,
-      what: `Waste less energy, it's precious, conserve it`,
+      what: `Snap a picture of the meters the next time you pass them.`,
       why: `Why TBC`,
       how: `How TBC`,
       status: "todo"
     },
     {
       id: `item-a3`,
-      what: `Support a clean air initiative`,
+      what: `Make the call to Ecotricity on 0808 123 0 123 knowing it's all good.`,
       why: `Why TBC`,
       how: `How TBC`,
       status: "todo"
     },
     {
       id: `item-a4`,
-      what: `Lets all get outside and go geocaching!`,
+      what: `Confirm that the switch has happened and you are now green powered.`,
       why: `Why TBC`,
       how: `How TBC`,
       status: "todo"
     },
     {
       id: `item-a5`,
-      what: `Learn about BCorporations, `,
-      why: `Why TBC`,
-      how: `How TBC`,
-      status: "todo"
-    },
-    {
-      id: `item-a6`,
-      what: `Don't 'buy' some more', 'make' some more`,
-      why: `Why TBC`,
-      how: `How TBC`,
-      status: "todo"
-    },
-    {
-      id: `item-a7`,
-      what: `Winter is coming, get a foam gun!`,
-      why: `Why TBC`,
-      how: `How TBC`,
-      status: "todo"
-    },
-    // {
-    //   id: `item-a5`,
-    //   what: `Work from home or at a mates`,
-    // },
-    {
-      id: `item-a8`,
-      what: `Make a London bus, like Boris 🚌.`,
-      why: `Why TBC`,
-      how: `How TBC`,
-      status: "todo"
-    },
-    {
-      id: `item-a9`,
-      what: `Make a London bus, like Boris 🚌. wheels tracables?`,
+      what: `Take on the next challenge, conserve energy.`,
       why: `Why TBC`,
       how: `How TBC`,
       status: "todo"
     }
+    // {
+    //   id: `item-a6`,
+    //   what: `Don't 'buy' some more', 'make' some more`,
+    //   why: `Why TBC`,
+    //   how: `How TBC`,
+    //   status: "todo"
+    // },
+    // {
+    //   id: `item-a7`,
+    //   what: `Winter is coming, get a foam gun!`,
+    //   why: `Why TBC`,
+    //   how: `How TBC`,
+    //   status: "todo"
+    // }
+    // {
+    //   id: `item-a5`,
+    //   what: `Work from home or at a mates`,
+    // },
+    // {
+    //   id: `item-a8`,
+    //   what: `Make a London bus, like Boris 🚌.`,
+    //   why: `Why TBC`,
+    //   how: `How TBC`,
+    //   status: "todo"
+    // },
+    // {
+    //   id: `item-a9`,
+    //   what: `Make a London bus, like Boris 🚌. wheels tracables?`,
+    //   why: `Why TBC`,
+    //   how: `How TBC`,
+    //   status: "todo"
+    // }
   ],
   doing: [
     {
@@ -142,7 +142,7 @@ const boardData = {
     },
     {
       id: `item-b3`,
-      what: `Swap flying for an adventure in 2020`,
+      what: `Swap flying for an adventure in 2021`,
       why: `Why TBC`,
       how: `How TBC`,
       status: "wip"
