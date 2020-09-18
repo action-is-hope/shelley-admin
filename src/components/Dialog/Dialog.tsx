@@ -77,7 +77,7 @@ const Dialog = React.forwardRef(
       className,
       children,
       contentClassName,
-      entryNode = document && document.body,
+      // entryNode ,
       focusOnProps: FocusOnPropsInput,
       initialFocusRef,
       isOpen,
@@ -96,6 +96,27 @@ const Dialog = React.forwardRef(
     }: DialogProps,
     forwardedRef?: React.Ref<HTMLDivElement>
   ) => {
+    const [entryNode, setEntryNode] = React.useState<any>(false);
+
+    React.useEffect(() => {
+      setEntryNode(document.body);
+      // entryNode = document && document.body
+      // // Run! Like go get some data from an API.
+
+      // // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+      // const vh = window.innerHeight * 0.01;
+      // console.log("me", vh);
+      // // Then we set the value in the --vh custom property to the root of the document
+      // document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+      // // We listen to the resize event
+      // window.addEventListener("resize", () => {
+      //   // We execute the same script as before
+      //   const vh = window.innerHeight * 0.01;
+      //   document.documentElement.style.setProperty("--vh", `${vh}px`);
+      // });
+    }, []);
+
     const activateFocusLock = React.useCallback(() => {
       if (initialFocusRef && initialFocusRef.current) {
         initialFocusRef.current.focus();
