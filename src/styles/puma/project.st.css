@@ -40,7 +40,8 @@
   font-plain:
     Helvetica Neue, Helvetica, Arial, sans-serif;
   /* Georgia, serif; */
-  font-special: Helvetica Neue, Helvetica, Arial, sans-serif;
+  /* font-special: Helvetica Neue, Helvetica, Arial, sans-serif; */
+  font-special: futura-pt, Helvetica Neue, Helvetica, Arial, sans-serif;
   /* Georgia, serif; */
   font-mono:
     Menlo, Courier, Courier New, Andale Mono, monospace;

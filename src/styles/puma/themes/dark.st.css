@@ -35,7 +35,7 @@
 .root :global(h2)Text:uppercase,
 .root :global(h3)Text:uppercase,
 .root :global(h4)Text:uppercase {
-  color: var(--color-accent-2);
+  /* color: var(--color-accent-2); */
 }
 
 /* 

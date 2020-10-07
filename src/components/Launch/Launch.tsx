@@ -26,7 +26,7 @@ const Launch = ({
       {/* <P vol={5}>Let's get things done.</P> */}
 
       <H2 uppercase vol={3} className={classes.listTitle}>
-        Team Boards
+        My teams
       </H2>
 
       <ul className={classes.boardList}>

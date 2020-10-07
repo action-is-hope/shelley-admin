@@ -10,6 +10,7 @@ exports.components = {
   "component---src-pages-admin-tsx": hot(preferDefault(require("/Users/gfunk/Code/shelley-admin/src/pages/admin.tsx"))),
   "component---src-pages-inches-tsx": hot(preferDefault(require("/Users/gfunk/Code/shelley-admin/src/pages/inches.tsx"))),
   "component---src-pages-index-tsx": hot(preferDefault(require("/Users/gfunk/Code/shelley-admin/src/pages/index.tsx"))),
-  "component---src-pages-page-2-tsx": hot(preferDefault(require("/Users/gfunk/Code/shelley-admin/src/pages/page-2.tsx")))
+  "component---src-pages-page-2-tsx": hot(preferDefault(require("/Users/gfunk/Code/shelley-admin/src/pages/page-2.tsx"))),
+  "component---src-pages-solution-tsx": hot(preferDefault(require("/Users/gfunk/Code/shelley-admin/src/pages/solution.tsx")))
 }
 

@@ -39,11 +39,12 @@
 
   /* = Uppercase */
   Text:uppercase {
-    letter-spacing: .25em;
+    /* letter-spacing: .25em; */
+    letter-spacing: .05em;
   }
 
   Text:vol(1):uppercase {
-    letter-spacing: .41em;
+    letter-spacing: .15em;
   }
 
   Text:vol(2):uppercase {
