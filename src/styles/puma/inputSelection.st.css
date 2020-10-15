@@ -140,7 +140,7 @@
   /* = Fabulous! https://css-tricks.com/touch-devices-not-judged-size/ */
   @media (pointer: coarse) {
     .darkLightToggle HintText {
-      -st-mixin: visuallyHidden
+      -st-mixin: visuallyHidden;
     }
   }
 

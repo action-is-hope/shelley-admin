@@ -26,6 +26,7 @@
     "@types/react-beautiful-dnd": "^13.0.0",
     "@types/react-transition-group": "^4.4.0",
     "classnames": "^2.2.6",
+    "debounce": "^1.2.0",
     "gatsby": "^2.24.37",
     "gatsby-link": "^2.4.13",
     "gatsby-plugin-react-helmet": "^3.3.10",

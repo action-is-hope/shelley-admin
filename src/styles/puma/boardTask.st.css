@@ -71,7 +71,7 @@
     /* text-align: right; */
     display: flex;
     /* height: 60px; */
-    font-size: 14px;
+    /* font-size: 14px; */
   }
 
   BoardTask::title {

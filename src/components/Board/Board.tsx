@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { st, classes } from "./board.st.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
+import { debounce } from "debounce";
 import BoardTask from "../BoardTask/BoardTask";
 // import Action from "./Action";
 // import Modal from "../Modal/Modal";
@@ -97,6 +98,48 @@ const Board = ({
     setBacklogModalOpen(prevState => !prevState);
   };
 
+  const [BoardOffsetY, setBoardOffsetY] = useState(0);
+
+  const slider = useRef(null);
+
+  // BoardOffsetY = debounce(updateOffsetValue, 10000)
+
+  // var myHeavyFunction = debounce(function() {
+  //   // do heavy things
+  // }, 250);
+  // window.addEventListener('mousemove', myHeavyFunction);
+
+  useEffect(
+    // Set the theme based on what is in local storage.
+    () => {
+      console.log(slider.current);
+
+      // debounce(updateOffsetValue, 1);
+
+      slider &&
+        slider.current.addEventListener(
+          "scroll",
+          debounce(() => {
+            console.log("huiuu");
+            setBoardOffsetY(slider.current.scrollLeft);
+          })
+        );
+
+      // slider.current.addEventListener("scroll", () => {
+      //   console.log("hi");
+      //   setBoardOffsetY(slider.current.scrollLeft);
+      // });
+
+      // const sliderDOM = document.getElementById("slider");
+      // slider && slider.addEventListener("scroll", () => console.log("scroll!"));
+      // slider && setBoardOffsetY(slider.scrollLeft);
+      console.log(BoardOffsetY);
+    },
+    [BoardOffsetY]
+  );
+
+  // slider2.scrollLeft
+
   return (
     <div className={st(classnames(classes.root, classNameProp))}>
       {/* <header className={classes.header}>
@@ -183,7 +226,7 @@ const Board = ({
           />
         </Modal>
       </CSSTransition> */}
-      <section className={classes.slider}>
+      <section id="slider2" className={classes.slider} ref={slider}>
         <section className={classnames(classes.slideCol, classes.backlog)}>
           <H2 uppercase vol={1}>
             Backlog
@@ -217,7 +260,10 @@ const Board = ({
             <Button>Find</Button>
           </ButtonGroup>
         </section>
-        <section className={classnames(classes.slideCol, classes.todo)}>
+        <section
+          className={classnames(classes.slideCol, classes.todo)}
+          id="test"
+        >
           <H2 uppercase vol={1}>
             To-do
           </H2>
@@ -233,12 +279,23 @@ const Board = ({
           </H2>
         </section>
 
+        <div
+          className={classnames(classes.solutionItem, classes.solutionOuter)}
+          // style={{ left: `calc(${BoardOffsetY}px - 100vw)` }}
+          // style={{
+          //   transform:
+          //     BoardOffsetY != 0
+          //       ? `translateX(calc(${BoardOffsetY}px - 100vw + 11px))`
+          //       : "none"
+          // }}
+
+          // transform: translateX(50px);
+        >
+          <H3 vol={2} uppercase>
+            Switch to real green energy
+          </H3>
+        </div>
         <section className={classes.board}>
-          <div className={classes.solutionItem}>
-            <H3 vol={2} uppercase>
-              Switch to real green energy
-            </H3>
-          </div>
           <div className={classes.solutionBoard}>
             <DragDropContext onDragEnd={onDragEnd}>
               {dragColumns.map(({ id: columnId }) => (
@@ -287,7 +344,15 @@ const Board = ({
               ))}
             </DragDropContext>
           </div>
-          <div className={classes.solutionItem}>
+          <div
+            className={classes.solutionItem}
+            style={{
+              transform:
+                BoardOffsetY != 0
+                  ? `translateX(calc(${BoardOffsetY}px - 100vw + 11px))`
+                  : "none"
+            }}
+          >
             <H3 vol={2} uppercase>
               Go fully charged with an electric car
             </H3>
@@ -340,7 +405,15 @@ const Board = ({
               ))}
             </DragDropContext>
           </div>
-          <div className={classes.solutionItem}>
+          <div
+            className={classes.solutionItem}
+            style={{
+              transform:
+                BoardOffsetY != 0
+                  ? `translateX(calc(${BoardOffsetY}px - 100vw + 11px))`
+                  : "none"
+            }}
+          >
             <H3 vol={2} uppercase>
               Item container
             </H3>
@@ -393,7 +466,15 @@ const Board = ({
               ))}
             </DragDropContext>
           </div>
-          <div className={classes.solutionItem}>
+          <div
+            className={classes.solutionItem}
+            style={{
+              transform:
+                BoardOffsetY != 0
+                  ? `translateX(calc(${BoardOffsetY}px - 100vw + 11px))`
+                  : "none"
+            }}
+          >
             <H3 vol={2} uppercase>
               Item container
             </H3>
