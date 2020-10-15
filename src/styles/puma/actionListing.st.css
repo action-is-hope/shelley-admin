@@ -1,0 +1,103 @@
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit,
+    breakpoint-sm, breakpoint-md-max;
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "./project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-ui,
+    --color-ui-inverse,
+    --color-accent-1,
+    --color-accent-2,
+    --color-accent-3,
+    --color-accent-4;
+}
+
+/* = Root Component */
+:import {
+  -st-from: "../../components/ActionListing/actionListing.st.css";
+  -st-default: ActionListing;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Button/button.st.css";
+  -st-default: Button;
+}
+
+
+@st-scope Puma {
+  ActionListing {
+    padding: calc(var(--spacing-unit) * 1) 0;
+    margin: 0;
+    list-style-type: none;
+    display: grid;
+    grid-gap: var(--spacing-unit);
+    grid-template-columns: 80px 1fr 36px;
+    /* background-color: rgb(0 0 0 / 42%); */
+    margin-bottom: 2px;
+
+    font-size: 95%;
+  }
+
+  /* rgb(5 15 27 / 65%) */
+  ActionListing::text {
+    text-align: start
+  }
+
+  ActionListing::text :global(h4)Text {
+    letter-spacing: 0.08em;
+    font-weight: 400;
+  }
+
+  ActionListing::text :global(h4)Text>a {
+    text-decoration: none;
+    border-width: 0;
+  }
+
+  ActionListing::actions {
+    align-self: center
+  }
+}
+
+/* @media value(breakpoint-md-max) {
+  @st-scope Puma {
+    Launch {
+      font-size: 85%;
+      margin-top: calc(var(--spacing-unit) * 0.1);
+    }
+
+    Launch>Text:first-child {
+      margin-bottom: 10vh;
+      margin-left: var(--spacing-unit);
+    }
+
+    Launch Text:uppercase.listTitle {
+      margin-left: var(--spacing-unit);
+    }
+
+    Launch::snapScroll {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      display: grid;
+      grid-template-columns: 98vw 98vw;
+      scroll-snap-type: x mandatory;
+    }
+
+    Launch::slide {
+      width: 95vw;
+      scroll-snap-align: start;
+    }
+  }
+} */

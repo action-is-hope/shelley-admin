@@ -4,6 +4,7 @@ import Link from "gatsby-link";
 import { H2, P, Button } from "@actionishope/shelley";
 import { st, classes } from "./launch.st.css";
 import Card from "../Card/Card";
+import ListBasic from "../ListBasic/ListBasic";
 
 export interface LaunchProps extends React.HTMLAttributes<HTMLDivElement> {
   boards: any;
@@ -25,11 +26,38 @@ const Launch = ({
       <P vol={5}>A 'doing' platform.</P>
       {/* <P vol={5}>Let's get things done.</P> */}
 
-      <H2 uppercase vol={3} className={classes.listTitle}>
-        My teams
-      </H2>
+      <div className={classes.snapScroll}>
+        <div className={classes.slide}>
+          <H2 uppercase vol={4} className={classes.listTitle}>
+            My teams
+          </H2>
 
-      <ul className={classes.boardList}>
+          <ListBasic
+            items={allBoards}
+            id="teamList"
+            onClick={event => {
+              event.preventDefault();
+              onBoardSelect();
+            }}
+          />
+        </div>
+
+        <div className={classes.slide}>
+          <H2 uppercase vol={4} className={classes.listTitle}>
+            My 'Sphere of Influence'
+          </H2>
+
+          <ListBasic
+            items={allBoards}
+            id="teamList"
+            onClick={event => {
+              event.preventDefault();
+              onBoardSelect();
+            }}
+          />
+        </div>
+      </div>
+      {/* <ul className={classes.boardList}>
         {allBoards.map((item: any) => (
           <Card
             key={item.id}
@@ -47,7 +75,7 @@ const Launch = ({
             +
           </Button>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 };

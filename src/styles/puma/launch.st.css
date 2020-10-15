@@ -41,8 +41,8 @@
 @media value(breakpoint-md-max) {
   @st-scope Puma {
     Launch {
-      font-size: 80%;
-      margin-top: calc(var(--spacing-unit) * 2);
+      font-size: 85%;
+      margin-top: calc(var(--spacing-unit) * 0.1);
     }
 
     Launch>Text:first-child {
@@ -55,9 +55,22 @@
       margin-left: var(--spacing-unit);
     }
 
+    Launch::snapScroll {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      display: grid;
+      grid-template-columns: 98vw 98vw;
+      scroll-snap-type: x mandatory;
+    }
 
+    Launch::slide {
+      width: 95vw;
+      scroll-snap-align: start;
+    }
   }
 }
+
+
 
 @st-scope Puma {
   Launch {
@@ -79,13 +92,13 @@
     letter-spacing: 0.15em;
     /* margin-bottom: calc(var(--spacing-unit) * 2); */
     margin-bottom: 5vh;
-    font-weight: 600;
+    font-weight: 400;
   }
 
   Launch::boardList {
     display: grid;
     grid-gap: var(--spacing-unit);
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
     /* grid-template-columns: repeat(2, minmax(154px, 20vw)); */
     list-style: none;
     padding: 0;
@@ -102,7 +115,7 @@
     }
 
     Launch::boardList {
-      grid-template-columns: repeat(2, minmax(154px, 20vw));
+      /* grid-template-columns: repeat(2, minmax(154px, 20vw)); */
 
     }
 

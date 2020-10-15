@@ -21,18 +21,45 @@ import {
 } from "@actionishope/shelley";
 import Launch from "../Launch/Launch";
 import Board from "../Board/Board";
+import Logo from "../Logo/Logo";
 
 const boards = [
   {
     id: `item-1`,
-    name: `My first team!`,
+    emoji: `🌎`,
+    title: `Team Me!`,
     description: `Your first team board, check it out!`,
     location: `Bristol, UK`,
     points: `100`
   },
   {
     id: `item-2`,
-    name: `G-Family`,
+    emoji: `🏡`,
+    title: `G-Family`,
+    description: `Our family board to try and be a carbon neutral home within 5 years.`,
+    location: `Bristol, UK`,
+    points: `100`
+  },
+  {
+    id: `item-3`,
+    emoji: `🐼`,
+    title: `Beacon`,
+    description: `Our family board to try and be a carbon neutral home within 5 years.`,
+    location: `Bristol, UK`,
+    points: `100`
+  },
+  {
+    id: `item-4`,
+    emoji: `🐙`,
+    title: `Octopus`,
+    description: `Our family board to try and be a carbon neutral home within 5 years.`,
+    location: `Bristol, UK`,
+    points: `100`
+  },
+  {
+    id: `item-5`,
+    emoji: `👑`,
+    title: `Kingsdown`,
     description: `Our family board to try and be a carbon neutral home within 5 years.`,
     location: `Bristol, UK`,
     points: `100`
@@ -73,14 +100,14 @@ const boardData = {
     },
     {
       id: `item-a3`,
-      what: `Make the call to Ecotricity on 0808 123 0 123 knowing it's all good.`,
+      what: `Make the call to Ecotricity on 0808 123 0 123.`,
       why: `Why TBC`,
       how: `How TBC`,
       status: "todo"
     },
     {
       id: `item-a4`,
-      what: `Confirm that the switch has happened and you are now green powered.`,
+      what: `Confirm that the switch has happened and you are now like Hulk, green powered.`,
       why: `Why TBC`,
       how: `How TBC`,
       status: "todo"
@@ -208,88 +235,7 @@ const Inches = ({ className: classNameProp }: any) => {
             setLaunchDisplay(o => !o);
           }}
         >
-          <Icon
-            alt="Inches"
-            viewBox="0 0 480 262"
-            style={{ fontSize: "12.5rem", height: "100%" }}
-          >
-            <g
-              id="Page-1"
-              stroke="none"
-              strokeWidth="1"
-              fill="none"
-              fillRule="evenodd"
-            >
-              <g id="logo" transform="translate(-8.000000, 0.000000)">
-                <rect
-                  id="Rectangle"
-                  fill="#52FBA7"
-                  opacity="0.711053757"
-                  x="8"
-                  y="259"
-                  width="122"
-                  height="3"
-                ></rect>
-                <text
-                  id="Inches"
-                  fontFamily="Futura-Medium, Futura"
-                  fontSize="115"
-                  fontWeight="400"
-                  letterSpacing="7.847067"
-                  fill="#FFFFFF"
-                >
-                  <tspan x="0" y="236">
-                    INCHES
-                  </tspan>
-                </text>
-                <g
-                  id="Group-3-Copy"
-                  opacity="0.72937593"
-                  transform="translate(250.000000, 0.000000)"
-                  fill="#52FBA7"
-                >
-                  <rect
-                    id="Rectangle"
-                    x="235"
-                    y="1"
-                    width="3"
-                    height="240"
-                  ></rect>
-                  <rect
-                    id="Rectangle"
-                    x="180"
-                    y="0"
-                    width="3"
-                    height="70"
-                  ></rect>
-                  <rect
-                    id="Rectangle"
-                    x="60"
-                    y="1"
-                    width="3"
-                    height="70"
-                  ></rect>
-                  <rect
-                    id="Rectangle"
-                    x="120"
-                    y="1"
-                    width="3"
-                    height="109"
-                  ></rect>
-                  <rect
-                    id="Rectangle"
-                    x="0"
-                    y="0"
-                    width="3"
-                    height="130"
-                  ></rect>
-                </g>
-              </g>
-            </g>
-          </Icon>
-          {/* <H1 vol={9} uppercase>
-            Inches
-          </H1> */}
+          <Logo className={classes.logoSVG} />
         </div>
       </header>
 

@@ -10,6 +10,7 @@ import BoardTask from "../BoardTask/BoardTask";
 // import Badge from "../Badge/Badge";
 // import Backlog from "../Backlog/Backlog";
 import { H2, H3, P, ButtonGroup, Button } from "@actionishope/shelley";
+import ActionListing from "../ActionListing/ActionListing";
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
   // change background colour if dragging
@@ -19,6 +20,44 @@ const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
   // styles we need to apply on draggables
   ...draggableStyle
 });
+
+const backlog = [
+  {
+    id: `item-a1`,
+    title: `Switch to a real green energy provider.`,
+    description: `Why TBC`,
+    url: `How TBC`,
+    status: "todo"
+  },
+  {
+    id: `item-a2`,
+    title: `Go FullyCharged with an electric car`,
+    description: `Why TBC`,
+    url: `How TBC`,
+    status: "todo"
+  },
+  {
+    id: `item-a3`,
+    title: `Make the call to Ecotricity on 0808 123 0 123.`,
+    description: `Why TBC`,
+    url: `How TBC`,
+    status: "todo"
+  },
+  {
+    id: `item-a4`,
+    title: `Enable dark mode on your OLED devices`,
+    description: `Why TBC`,
+    url: `How TBC`,
+    status: "todo"
+  },
+  {
+    id: `item-a5`,
+    what: `Take on the next challenge, conserve energy.`,
+    why: `Why TBC`,
+    how: `How TBC`,
+    status: "todo"
+  }
+];
 
 const getColumnStyle = (isDraggingOver: boolean) => ({
   backgroundColor: isDraggingOver ? "rgba(0, 0, 0, 0.2)" : "transparent"
@@ -149,6 +188,25 @@ const Board = ({
           <H2 uppercase vol={1}>
             Backlog
           </H2>
+          <ul
+            style={{
+              padding: "16px 0 0 0",
+              margin: "10px 0 0 0"
+              // background: "pink"
+            }}
+          >
+            {backlog.map((item: any) => {
+              return (
+                <ActionListing
+                  title={item.title}
+                  url={item.url}
+                  description={item.description}
+                  key={item.id}
+                  // className={classes.item}
+                />
+              );
+            })}
+          </ul>
           <ButtonGroup
             vol={4}
             tone={5}

@@ -26,6 +26,8 @@ import Card from "./card.st.css";
 import Launch from "./launch.st.css";
 import Board from "./board.st.css";
 import BoardTask from "./boardTask.st.css";
+import ListBasic from "./listBasic.st.css";
+import ActionListing from "./actionListing.st.css";
 
 // = Project
 import Puma from "./project.st.css";
@@ -99,6 +101,12 @@ export const board = (...values: []) =>
 
 export const boardTask = (...values: []) =>
   getStylableClassNames(values, BoardTask, "boardTask");
+
+export const listBasic = (...values: []) =>
+  getStylableClassNames(values, ListBasic, "listBasic");
+
+export const actionListing = (...values: []) =>
+  getStylableClassNames(values, ActionListing, "actionListing");
 
 // = Main classname export
 export const Project = Puma.classes.root;

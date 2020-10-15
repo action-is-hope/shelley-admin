@@ -126,6 +126,10 @@ const DefaultLayout = ({ children }: any) => {
           class: currentTheme
         }}
       />
+      <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+      ></meta>
       <link rel="manifest" href="./shelley.webmanifest"></link>
       <link rel="stylesheet" href="https://use.typekit.net/bml4mzu.css"></link>
 

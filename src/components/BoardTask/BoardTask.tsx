@@ -32,7 +32,7 @@ const BoardTask = ({
       {...rest}
     >
       <div className={classes.icon}></div>
-      <H4 vol={2} className={classes.title}>
+      <H4 vol={3} className={classes.title}>
         {title}
       </H4>
       {/* <P className={classes.desc}>{desc}</P> */}
