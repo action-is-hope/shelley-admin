@@ -29,6 +29,7 @@
 :import {
   -st-from: "../../components/Board/board.st.css";
   -st-default: Board;
+  -st-named: solutionItemContainer;
 }
 
 /* = Child. */
@@ -383,25 +384,35 @@
   }
 }
 
+Board::solutionItemContainer {
+  scroll-snap-align: start;
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  transition: transform .18s ease-in-out;
+  border-bottom: 2px solid rgba(0,0,0,0.2);
+}
 
 /* rgb(24, 26, 35) */
 Board::solutionItem {
-  scroll-snap-align: start;
-  position: relative;
-  z-index: 10;
-  left: 0;
   /* padding: calc(var(--spacing-unit) * 1.3) var(--spacing-unit); */
   padding: calc(var(--spacing-unit) * .5) var(--spacing-unit);
-  /* padding-right: 80px; */
-  padding-right: 38px;
+  /* padding-right: 16px; */
+  /* padding-left: 38px; */
   background: rgba(24, 26, 35, 0.85);
-  width: 82vw;
-  margin-top: 16px;
-  font-size: 95%;
-  border-bottom: 2px solid rgba(255,255,255,0.05);
+  /* width: 82vw; */
+  margin-top: 40px;
+  font-size: 90%;
+  /* border-bottom: 2px solid rgba(255,255,255,0.05); */
   /* margin-bottom: 2px; */
   color: var(--color-accent-2);
-  transition: transform .15s ease-in
+}
+
+Board::solutionItem::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 100%;
 }
 
 Board::solutionItem Text:uppercase {
@@ -412,12 +423,25 @@ Board::solutionBoard:last-child {
   padding-bottom: 82vh;
 }
 
+Board::posToDo .solutionItemContainer {
+  transform: translateX(0);
+}
 
+
+Board::posInProgress .solutionItemContainer {
+  transform: translateX(70vw);
+}
+
+Board::posDone .solutionItemContainer {
+  transform: translateX(150.5vw);
+}
+
+/* 
 Board::solutionOuter {
   flex-grow: 4;
   position: sticky;
   right: 25vw;
-}
+} */
 
 
 @media value(breakpoint-md) {

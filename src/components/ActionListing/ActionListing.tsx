@@ -32,7 +32,8 @@ const ActionListing = ({
       <div className={classes.media}>{image && <img src={image} alt="" />}</div>
       <div className={classes.text}>
         <H4 uppercase vol={2}>
-          <Link to={url}>{title}</Link>
+          {/* <Link to={url}>{title}</Link> */}
+          {title}
         </H4>
         {description && <P vol={2}>{description}</P>}
       </div>

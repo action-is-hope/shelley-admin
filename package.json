@@ -31,12 +31,14 @@
     "gatsby-link": "^2.4.13",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-typescript": "^2.4.15",
+    "lodash.throttle": "^4.1.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "react-focus-on": "^3.5.0",
     "react-helmet": "^6.1.0",
     "react-popper": "^2.2.3",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "throttle-debounce": "^2.3.0"
   },
   "main": "n/a",
   "scripts": {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { st, classes } from "./board.st.css";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
-import { debounce } from "debounce";
+import { debounce, throttle } from "throttle-debounce";
 import BoardTask from "../BoardTask/BoardTask";
 // import Action from "./Action";
 // import Modal from "../Modal/Modal";
@@ -12,6 +12,8 @@ import BoardTask from "../BoardTask/BoardTask";
 // import Backlog from "../Backlog/Backlog";
 import { H2, H3, P, ButtonGroup, Button } from "@actionishope/shelley";
 import ActionListing from "../ActionListing/ActionListing";
+
+import _throttle from "lodash.throttle";
 
 const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
   // change background colour if dragging
@@ -98,11 +100,14 @@ const Board = ({
     setBacklogModalOpen(prevState => !prevState);
   };
 
-  const [BoardOffsetY, setBoardOffsetY] = useState(0);
+  const [boardOffsetX, setBoardOffsetX] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState("forwards");
+
+  const [sliderPos, setSliderPos] = useState("ToDo");
 
   const slider = useRef(null);
 
-  // BoardOffsetY = debounce(updateOffsetValue, 10000)
+  // boardOffsetX = debounce(updateOffsetValue, 10000)
 
   // var myHeavyFunction = debounce(function() {
   //   // do heavy things
@@ -112,30 +117,107 @@ const Board = ({
   useEffect(
     // Set the theme based on what is in local storage.
     () => {
-      console.log(slider.current);
+      // console.log(slider.current);
 
       // debounce(updateOffsetValue, 1);
+
+      // slider &&
+      //   slider.current.addEventListener(
+      //     "scroll",
+      //     debounce(30, true, () => {
+      //       setBoardOffsetX(slider.current.scrollLeft);
+      //     })
+      //   );
+
+      // slider &&
+      //   slider.current.addEventListener(
+      //     "scroll",
+      //     throttle(100000, true, () => {
+      //       const currentOffset = slider.current.scrollLeft;
+      //       const direction =
+      //         currentOffset > boardOffsetX ? "forwards" : "back";
+      //       setBoardOffsetX(slider.current.scrollLeft);
+      //       setScrollDirection(direction);
+
+      //       console.log("now", slider.current.scrollLeft, direction);
+      //     })
+      //   );
 
       slider &&
         slider.current.addEventListener(
           "scroll",
-          debounce(() => {
-            console.log("huiuu");
-            setBoardOffsetY(slider.current.scrollLeft);
-          })
+          _throttle(
+            () => {
+              const currentOffset = slider.current.scrollLeft;
+              const direction =
+                currentOffset > boardOffsetX ? "forwards" : "back";
+              setBoardOffsetX(slider.current.scrollLeft);
+              setScrollDirection(direction);
+
+              // console.log("now", slider.current.scrollLeft, direction);
+              if (
+                (currentOffset > 626 && direction === "forwards") ||
+                (currentOffset > 928 && direction === "back")
+              ) {
+                setSliderPos("Done");
+              } else if (
+                (currentOffset > 364 && direction === "forwards") ||
+                (currentOffset > 626 && direction === "back")
+              ) {
+                setSliderPos("InProgress");
+              } else if (currentOffset < 626) {
+                setSliderPos("ToDo");
+              }
+              // if (currentOffset > 600 && direction === "back") {
+              //   setSliderPos("InProgress");
+              // }
+            },
+            100000,
+            { trailing: false }
+          )
         );
 
+      // slider &&
+      //   slider.current.addEventListener("scroll", () => {
+      //     // console.log("now", slider.current.scrollLeft);
+      //     const currentOffset = slider.current.scrollLeft;
+      //     const direction = currentOffset > boardOffsetX ? "forwards" : "back";
+      //     setBoardOffsetX(slider.current.scrollLeft);
+      //     setScrollDirection(direction);
+      //     console.log(scrollDirection);
+      //   });
+
+      //scrollDirection
+      //setScrollDirection
+      // onScroll(event){
+      //   var currentOffset = event.nativeEvent.contentOffset.y;
+      //   var direction = currentOffset > this.state.offset ? 'down' : 'up';
+      //   this.setState({
+      //         offset : currentOffset.y
+      //       }),
+      //   Alert.alert(direction);
+      // }
+
+      //   const debounceFunc = debounce(1000, false, (num) => {
+      //     console.log('num:', num);
+      // });
+
+      // // Can also be used like this, because atBegin is false by default
+      // const debounceFunc = debounce(1000, (num) => {
+      //     console.log('num:', num);
+      // });
+
       // slider.current.addEventListener("scroll", () => {
-      //   console.log("hi");
-      //   setBoardOffsetY(slider.current.scrollLeft);
+      //   setBoardOffsetX(slider.current.scrollLeft);
+      //   console.log(slider.current.scrollLeft);
       // });
 
       // const sliderDOM = document.getElementById("slider");
       // slider && slider.addEventListener("scroll", () => console.log("scroll!"));
-      // slider && setBoardOffsetY(slider.scrollLeft);
-      console.log(BoardOffsetY);
+      // slider && setBoardOffsetX(slider.scrollLeft);
+      // console.log(boardOffsetX);
     },
-    [BoardOffsetY]
+    [boardOffsetX, scrollDirection]
   );
 
   // slider2.scrollLeft
@@ -279,83 +361,20 @@ const Board = ({
           </H2>
         </section>
 
-        <div
-          className={classnames(classes.solutionItem, classes.solutionOuter)}
-          // style={{ left: `calc(${BoardOffsetY}px - 100vw)` }}
-          // style={{
-          //   transform:
-          //     BoardOffsetY != 0
-          //       ? `translateX(calc(${BoardOffsetY}px - 100vw + 11px))`
-          //       : "none"
-          // }}
-
-          // transform: translateX(50px);
+        <section
+          className={classnames(classes.board, classes[`pos${sliderPos}`], {
+            // [classes.posInProgress]:
+            //   (boardOffsetX > 364 && scrollDirection === "forwards") ||
+            //   (boardOffsetX > 600 && scrollDirection === "back")
+            // [classes.posDone]: boardOffsetX > 650
+          })}
         >
-          <H3 vol={2} uppercase>
-            Switch to real green energy
-          </H3>
-        </div>
-        <section className={classes.board}>
-          <div className={classes.solutionBoard}>
-            <DragDropContext onDragEnd={onDragEnd}>
-              {dragColumns.map(({ id: columnId }) => (
-                <Droppable key={columnId} droppableId={columnId}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      style={getColumnStyle(snapshot.isDraggingOver)}
-                    >
-                      {boardData[columnId].map((item: any, index: number) => (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                        >
-                          {(provided, snapshot) => (
-                            <a
-                              ref={provided.innerRef}
-                              href={`#${item.id}`}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}
-                              className={classes.boardTaskLink}
-                              onClick={event => {
-                                event.preventDefault();
-                                toggleUpdateModal();
-                                setOnDeck(item);
-                              }}
-                            >
-                              <BoardTask
-                                title={item.what}
-                                id={item.id}
-                                desc={item.status}
-                              />
-                            </a>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </DragDropContext>
-          </div>
-          <div
-            className={classes.solutionItem}
-            style={{
-              transform:
-                BoardOffsetY != 0
-                  ? `translateX(calc(${BoardOffsetY}px - 100vw + 11px))`
-                  : "none"
-            }}
-          >
-            <H3 vol={2} uppercase>
-              Go fully charged with an electric car
-            </H3>
+          <div className={classes.solutionItemContainer}>
+            <div className={classes.solutionItem}>
+              <H3 vol={2} uppercase>
+                Switch to real green energy
+              </H3>
+            </div>
           </div>
           <div className={classes.solutionBoard}>
             <DragDropContext onDragEnd={onDragEnd}>
@@ -405,18 +424,13 @@ const Board = ({
               ))}
             </DragDropContext>
           </div>
-          <div
-            className={classes.solutionItem}
-            style={{
-              transform:
-                BoardOffsetY != 0
-                  ? `translateX(calc(${BoardOffsetY}px - 100vw + 11px))`
-                  : "none"
-            }}
-          >
-            <H3 vol={2} uppercase>
-              Item container
-            </H3>
+
+          <div className={classes.solutionItemContainer}>
+            <div className={classes.solutionItem}>
+              <H3 vol={2} uppercase>
+                Go fully charged with an electric car
+              </H3>
+            </div>
           </div>
           <div className={classes.solutionBoard}>
             <DragDropContext onDragEnd={onDragEnd}>
@@ -466,19 +480,72 @@ const Board = ({
               ))}
             </DragDropContext>
           </div>
-          <div
-            className={classes.solutionItem}
-            style={{
-              transform:
-                BoardOffsetY != 0
-                  ? `translateX(calc(${BoardOffsetY}px - 100vw + 11px))`
-                  : "none"
-            }}
-          >
-            <H3 vol={2} uppercase>
-              Item container
-            </H3>
+
+          <div className={classes.solutionItemContainer}>
+            <div className={classes.solutionItem}>
+              <H3 vol={2} uppercase>
+                Something else nice to do
+              </H3>
+            </div>
           </div>
+
+          <div className={classes.solutionBoard}>
+            <DragDropContext onDragEnd={onDragEnd}>
+              {dragColumns.map(({ id: columnId }) => (
+                <Droppable key={columnId} droppableId={columnId}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      style={getColumnStyle(snapshot.isDraggingOver)}
+                    >
+                      {boardData[columnId].map((item: any, index: number) => (
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id}
+                          index={index}
+                        >
+                          {(provided, snapshot) => (
+                            <a
+                              ref={provided.innerRef}
+                              href={`#${item.id}`}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              )}
+                              className={classes.boardTaskLink}
+                              onClick={event => {
+                                event.preventDefault();
+                                toggleUpdateModal();
+                                setOnDeck(item);
+                              }}
+                            >
+                              <BoardTask
+                                title={item.what}
+                                id={item.id}
+                                desc={item.status}
+                              />
+                            </a>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              ))}
+            </DragDropContext>
+          </div>
+
+          <div className={classes.solutionItemContainer}>
+            <div className={classes.solutionItem}>
+              <H3 vol={2} uppercase>
+                Another nice to do
+              </H3>
+            </div>
+          </div>
+
           <div className={classes.solutionBoard}>
             <DragDropContext onDragEnd={onDragEnd}>
               {dragColumns.map(({ id: columnId }) => (

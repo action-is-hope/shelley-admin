@@ -112,7 +112,7 @@ const DefaultLayout = ({ children }: any) => {
   return (
     <>
       <Helmet
-        title="Shelley - A Stylable User Interface"
+        title="Inches"
         meta={[
           {
             name: "description",

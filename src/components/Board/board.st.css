@@ -25,9 +25,11 @@
 .board {}
 
 .solutionBoard {}
-
+.solutionItemContainer {}
 .solutionItem {}
-
+.posToDo{}
+.posInProgress {}
+.posDone {}
 .solutionOuter {}
 .boardTaskLink {}
 
