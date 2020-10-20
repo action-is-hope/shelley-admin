@@ -133,6 +133,8 @@
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
   background: rgb(125, 185, 232);
   background: radial-gradient(farthest-corner at 10% 10%, rgba(30, 60, 102, 1) 0%, rgba(14, 28, 47, 1) 100%);
+
+  overflow: hidden;
 }
 
 html {

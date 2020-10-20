@@ -43,6 +43,7 @@
   Board {
     overflow: hidden;
     position: relative;
+    margin-top: 50px;
     /* overflow-x: scroll; */
   }
 }
@@ -90,7 +91,7 @@
     clear: both;
     position: relative;
     /* font-size: 90%; */
-    height: calc(var(--vh, 1vh) * 100 - 75px);
+    height: calc(var(--vh, 1vh) * 100 - 125px + 2px);
   }
 
   /*= The board background. */
@@ -139,14 +140,18 @@
     scroll-snap-align: start;
     text-align: center;
     position: relative;
-
-
   }
 
   Board::backlog {
     min-width: 97vw;
-    /* width: 100vw;
-  height: 80vw; */
+  }
+
+  Board::backlogList {
+    padding: 0;
+    margin: 9px 0 0 0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(var(--vh, 1vh) * 100 - 125px - 18px - 8px - 10px - 51px - 20px);
   }
 
   Board::todo {
@@ -195,7 +200,13 @@
     /* max-width: calc(42vw - 200px); */
     /* Invokes some extra resources to handle rendering this over other transformed items, in this case the board. */
     transform: translateZ(0);
-
+  }
+  Board::boardTaskLink:not(:last-child)::after {
+    content: "";
+    display: block;
+    height: 0;
+    /* background-color: pink; */
+    border-bottom: 1px dashed rgb(83 141 220 / 22%);
   }
 }
 
@@ -257,6 +268,7 @@
 
     z-index: 10;
     /* transform: translateZ(0); */
+        border-left: 1px solid #ffffff1c;
   }
 
 }
@@ -302,80 +314,6 @@
   }
 }
 
-/* @media only screen and (min-width: 461px) and (max-width: 730px) {
-  @st-scope Puma {
-    Board::board {
-      grid-template-columns: 40vw 40vw 40vw;
-    }
-  }
-}
-
-@media only screen and (min-width: 731px) and (max-width: 800px) {
-  @st-scope Puma {
-    Board::board {
-      width: calc(33.33334vw * 3);
-      grid-template-columns: 33.33334vw 33.33334vw 33.33334vw;
-    }
-  }
-} */
-
-/* 
-  Please excuse the following selectors over direct classes. They are a bit 
-  fragile but we cannot reliably apply classes to the columns without them 
-  going walkabout. So opting for the old-skool, but very useful 'CSS selectors'
-  How 2010! :-)
-  */
-@st-scope Puma {
-  Board::solutionBoard>div {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    /* height: 100vh; */
-    /* height: 82vh; */
-    min-height: 2vh;
-    max-height: 25vh;
-    width: 82vw;
-    /* scroll-snap-align: start; */
-    /* 
-    Whilst this fixes the scrolling older iOS it also cuts off the action between
-    columns. We wanted to keep this around so as to support older versions of iOS
-    but this kinda kills that idea. The actions are comoletely cut off on drag.*/
-    /* -webkit-overflow-scrolling: touch; */
-  }
-
-  Board::solutionBoard>div {
-    position: relative;
-    padding-bottom: 120px;
-  }
-
-  /* Slightly different gradients for each column and some layout ammends.*/
-  Board::solutionBoard>div:first-child {
-    background: linear-gradient(90deg,
-        rgba(24, 26, 35, 0.75) 0%,
-        rgba(24, 26, 35, 0.65) 100%);
-  }
-
-  Board::solutionBoard>div:nth-child(2) {
-    background: linear-gradient(90deg,
-        rgba(24, 26, 35, 0.65) 0%,
-        rgba(24, 26, 35, 0.5) 100%);
-    border-left: 2px dashed #ddd0;
-    border-right: 2px dashed #ddd0;
-    background-repeat: no-repeat;
-    /* Makes the lines white on the solutionBoard. Odd. */
-  }
-
-  Board::solutionBoard>div:last-child {
-    background: linear-gradient(90deg,
-        rgba(24, 26, 35, 0.5) 0%,
-        rgba(24, 26, 35, 0.1) 100%);
-  }
-
-  Board::solutionBoard>div {
-    /* padding-left: calc(2vw + 16px);
-    padding-right: calc(2vw + 16px); */
-  }
-}
-
 @media value(breakpoint-md) {
   @st-scope Puma {
     Board::solutionBoard>div {
@@ -396,16 +334,18 @@ Board::solutionItemContainer {
 /* rgb(24, 26, 35) */
 Board::solutionItem {
   /* padding: calc(var(--spacing-unit) * 1.3) var(--spacing-unit); */
-  padding: calc(var(--spacing-unit) * .5) var(--spacing-unit);
+  padding: calc(var(--spacing-unit) * .5) var(--spacing-unit) calc(var(--spacing-unit) * .5) calc(var(--spacing-unit) * .5);
   /* padding-right: 16px; */
   /* padding-left: 38px; */
-  background: rgba(24, 26, 35, 0.85);
+  /* background: rgba(24, 26, 35, 0.85); */
+  background: rgb(12 27 45 / 69%);
   /* width: 82vw; */
   margin-top: 40px;
   font-size: 90%;
   /* border-bottom: 2px solid rgba(255,255,255,0.05); */
   /* margin-bottom: 2px; */
   color: var(--color-accent-2);
+  position: relative;
 }
 
 Board::solutionItem::after {
@@ -417,10 +357,6 @@ Board::solutionItem::after {
 
 Board::solutionItem Text:uppercase {
   letter-spacing: .08em !important;
-}
-
-Board::solutionBoard:last-child {
-  padding-bottom: 82vh;
 }
 
 Board::posToDo .solutionItemContainer {

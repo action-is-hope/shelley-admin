@@ -1,35 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import { st, classes } from "./board.st.css";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import classnames from "classnames";
-import { debounce, throttle } from "throttle-debounce";
-import BoardTask from "../BoardTask/BoardTask";
-// import Action from "./Action";
-// import Modal from "../Modal/Modal";
-// import { CSSTransition } from "react-transition-group";
-// import EditActionForm from "../EditActionForm/EditActionForm";
-// import Badge from "../Badge/Badge";
-// import Backlog from "../Backlog/Backlog";
-import { H2, H3, P, ButtonGroup, Button } from "@actionishope/shelley";
-import ActionListing from "../ActionListing/ActionListing";
-
 import _throttle from "lodash.throttle";
 
-const getItemStyle = (isDragging: boolean, draggableStyle: any) => ({
-  // change background colour if dragging
-  backgroundColor: isDragging
-    ? "rgba(255, 255, 255, 0.1)"
-    : "rgba(0, 0, 0, 0.2)",
-  // styles we need to apply on draggables
-  ...draggableStyle
-});
+import { H2, H3, P, ButtonGroup, Button } from "@actionishope/shelley";
+import BoardSolution from "../BoardSolution/BoardSolution";
+import ActionListing from "../ActionListing/ActionListing";
 
 const backlog = [
   {
     id: `item-a1`,
-    title: `Switch to a real green energy provider.`,
+    title: `☀️ Switch to a real green energy provider.`,
     description: `Why TBC`,
     url: `How TBC`,
+    image: "https://ik.imagekit.io/tcvka0ufln/green-energy_pbJgMBrmmMw.png",
     status: "todo"
   },
   {
@@ -37,6 +21,7 @@ const backlog = [
     title: `Go FullyCharged with an electric car`,
     description: `Why TBC`,
     url: `How TBC`,
+    image: "https://ik.imagekit.io/tcvka0ufln/charger_yE7qcZvzz.png",
     status: "todo"
   },
   {
@@ -44,6 +29,7 @@ const backlog = [
     title: `Make the call to Ecotricity on 0808 123 0 123.`,
     description: `Why TBC`,
     url: `How TBC`,
+    image: "https://ik.imagekit.io/tcvka0ufln/phone_oNBGzu4k5.png",
     status: "todo"
   },
   {
@@ -51,6 +37,7 @@ const backlog = [
     title: `Enable dark mode on your OLED devices`,
     description: `Why TBC`,
     url: `How TBC`,
+    image: "https://ik.imagekit.io/tcvka0ufln/phone_oNBGzu4k5.png",
     status: "todo"
   },
   {
@@ -58,13 +45,10 @@ const backlog = [
     what: `Take on the next challenge, conserve energy.`,
     why: `Why TBC`,
     how: `How TBC`,
+    image: "https://ik.imagekit.io/tcvka0ufln/phone_oNBGzu4k5.png",
     status: "todo"
   }
 ];
-
-const getColumnStyle = (isDraggingOver: boolean) => ({
-  backgroundColor: isDraggingOver ? "rgba(0, 0, 0, 0.2)" : "transparent"
-});
 
 export interface BoardProps extends React.HTMLAttributes<HTMLBaseElement> {
   dragColumns: { name: string; id: string }[];
@@ -102,72 +86,43 @@ const Board = ({
 
   const [boardOffsetX, setBoardOffsetX] = useState(0);
   const [scrollDirection, setScrollDirection] = useState("forwards");
-
   const [sliderPos, setSliderPos] = useState("ToDo");
 
-  const slider = useRef(null);
-
-  // boardOffsetX = debounce(updateOffsetValue, 10000)
-
-  // var myHeavyFunction = debounce(function() {
-  //   // do heavy things
-  // }, 250);
-  // window.addEventListener('mousemove', myHeavyFunction);
+  const slider = useRef<HTMLDivElement>(null);
 
   useEffect(
-    // Set the theme based on what is in local storage.
+    // Figure out where the scroll is going and set the class to position the item.
     () => {
-      // console.log(slider.current);
-
-      // debounce(updateOffsetValue, 1);
-
-      // slider &&
-      //   slider.current.addEventListener(
-      //     "scroll",
-      //     debounce(30, true, () => {
-      //       setBoardOffsetX(slider.current.scrollLeft);
-      //     })
-      //   );
-
-      // slider &&
-      //   slider.current.addEventListener(
-      //     "scroll",
-      //     throttle(100000, true, () => {
-      //       const currentOffset = slider.current.scrollLeft;
-      //       const direction =
-      //         currentOffset > boardOffsetX ? "forwards" : "back";
-      //       setBoardOffsetX(slider.current.scrollLeft);
-      //       setScrollDirection(direction);
-
-      //       console.log("now", slider.current.scrollLeft, direction);
-      //     })
-      //   );
-
-      slider &&
+      // TODO: remove listener on unmount...
+      slider.current !== null &&
         slider.current.addEventListener(
           "scroll",
           _throttle(
             () => {
-              const currentOffset = slider.current.scrollLeft;
-              const direction =
-                currentOffset > boardOffsetX ? "forwards" : "back";
-              setBoardOffsetX(slider.current.scrollLeft);
-              setScrollDirection(direction);
-
-              // console.log("now", slider.current.scrollLeft, direction);
-              if (
-                (currentOffset > 626 && direction === "forwards") ||
-                (currentOffset > 928 && direction === "back")
-              ) {
-                setSliderPos("Done");
-              } else if (
-                (currentOffset > 364 && direction === "forwards") ||
-                (currentOffset > 626 && direction === "back")
-              ) {
-                setSliderPos("InProgress");
-              } else if (currentOffset < 626) {
-                setSliderPos("ToDo");
+              if (slider.current !== null) {
+                const currentOffset = slider.current.scrollLeft;
+                const direction =
+                  currentOffset > boardOffsetX ? "forwards" : "back";
+                setBoardOffsetX(slider.current.scrollLeft);
+                setScrollDirection(direction);
+                if (
+                  (currentOffset > 626 && direction === "forwards") ||
+                  (currentOffset > 928 && direction === "back")
+                ) {
+                  setSliderPos("Done");
+                } else if (
+                  (currentOffset > 364 && direction === "forwards") ||
+                  (currentOffset > 626 && direction === "back")
+                ) {
+                  setSliderPos("InProgress");
+                } else if (currentOffset < 626) {
+                  setSliderPos("ToDo");
+                }
+                // if (currentOffset < 0) {
+                //   console.log("close?");
+                // }
               }
+
               // if (currentOffset > 600 && direction === "back") {
               //   setSliderPos("InProgress");
               // }
@@ -176,51 +131,9 @@ const Board = ({
             { trailing: false }
           )
         );
-
-      // slider &&
-      //   slider.current.addEventListener("scroll", () => {
-      //     // console.log("now", slider.current.scrollLeft);
-      //     const currentOffset = slider.current.scrollLeft;
-      //     const direction = currentOffset > boardOffsetX ? "forwards" : "back";
-      //     setBoardOffsetX(slider.current.scrollLeft);
-      //     setScrollDirection(direction);
-      //     console.log(scrollDirection);
-      //   });
-
-      //scrollDirection
-      //setScrollDirection
-      // onScroll(event){
-      //   var currentOffset = event.nativeEvent.contentOffset.y;
-      //   var direction = currentOffset > this.state.offset ? 'down' : 'up';
-      //   this.setState({
-      //         offset : currentOffset.y
-      //       }),
-      //   Alert.alert(direction);
-      // }
-
-      //   const debounceFunc = debounce(1000, false, (num) => {
-      //     console.log('num:', num);
-      // });
-
-      // // Can also be used like this, because atBegin is false by default
-      // const debounceFunc = debounce(1000, (num) => {
-      //     console.log('num:', num);
-      // });
-
-      // slider.current.addEventListener("scroll", () => {
-      //   setBoardOffsetX(slider.current.scrollLeft);
-      //   console.log(slider.current.scrollLeft);
-      // });
-
-      // const sliderDOM = document.getElementById("slider");
-      // slider && slider.addEventListener("scroll", () => console.log("scroll!"));
-      // slider && setBoardOffsetX(slider.scrollLeft);
-      // console.log(boardOffsetX);
     },
     [boardOffsetX, scrollDirection]
   );
-
-  // slider2.scrollLeft
 
   return (
     <div className={st(classnames(classes.root, classNameProp))}>
@@ -231,59 +144,6 @@ const Board = ({
           </h3>
         ))}
       </header> */}
-      {/* <section className={classes.slider}>
-        <section className={classes.backlog}>BACKLOG</section>
-        <section className={classes.backlog}>BACKLOG</section>
-      </section> */}
-      {/* <div className={styles.todoButtons}>
-        <Badge position="topEnd" count={boardData.backlog.length}>
-          <IconButton
-            className={styles.backlogButton}
-            label="Notes"
-            onClick={() => {
-              setBacklogTabIndex(0);
-              toggleBacklogModal();
-            }}
-            icon="notes"
-          />
-        </Badge>
-        <IconButton
-          className={styles.addButton}
-          label="Add action"
-          onClick={() => {
-            // setState({ backlogTabIndex: 1 })
-            setBacklogTabIndex(1);
-            toggleBacklogModal();
-            setModelClickAway(false);
-          }}
-          icon="add"
-        />
-      </div> */}
-
-      {/* <CSSTransition in={backlogModalOpen} timeout={300} unmountOnExit>
-        <Modal
-          visible={backlogModalOpen}
-          handleClose={() => modelClickAway && toggleBacklogModal()}
-        >
-          <Backlog
-            backlogCount={boardData.backlog.length}
-            initialTabIndex={backlogTabIndex}
-            handleClose={() => {
-              toggleBacklogModal();
-              setModelClickAway(true);
-            }}
-            handleCreate={item => createAction(item)}
-            handleSave={item => {
-              saveAction(item);
-            }}
-            handleDelete={item => deleteAction(item)}
-            handleMove={(item, status) => setActionStatus(item, status)}
-            setModelClickAway={setModelClickAway}
-            modelClickAway={modelClickAway}
-            items={boardData.backlog}
-          ></Backlog>
-        </Modal>
-      </CSSTransition> */}
 
       {/* <CSSTransition in={updateModalOpen} timeout={300} unmountOnExit>
         <Modal
@@ -311,14 +171,25 @@ const Board = ({
       <section id="slider2" className={classes.slider} ref={slider}>
         <section className={classnames(classes.slideCol, classes.backlog)}>
           <H2 uppercase vol={1}>
-            Backlog
+            Team 'Planning'
           </H2>
+          {/* <ButtonGroup
+            vol={2}
+            tone={1}
+            variant={1}
+            style={{ marginTop: "1rem" }}
+          >
+            <Button>Proposed</Button>
+            <Button>Ready to do</Button>
+            <Button>Game on!</Button>
+          </ButtonGroup> */}
           <ul
-            style={{
-              padding: "16px 0 0 0",
-              margin: "10px 0 0 0"
-              // background: "pink"
-            }}
+            style={
+              {
+                // background: "pink"
+              }
+            }
+            className={classes.backlogList}
           >
             {backlog.map((item: any) => {
               return (
@@ -327,6 +198,7 @@ const Board = ({
                   url={item.url}
                   description={item.description}
                   key={item.id}
+                  image={item.image}
                   // className={classes.item}
                 />
               );
@@ -362,124 +234,33 @@ const Board = ({
         </section>
 
         <section
-          className={classnames(classes.board, classes[`pos${sliderPos}`], {
-            // [classes.posInProgress]:
-            //   (boardOffsetX > 364 && scrollDirection === "forwards") ||
-            //   (boardOffsetX > 600 && scrollDirection === "back")
-            // [classes.posDone]: boardOffsetX > 650
-          })}
+          className={classnames(classes.board, classes[`pos${sliderPos}`])}
         >
           <div className={classes.solutionItemContainer}>
             <div className={classes.solutionItem}>
               <H3 vol={2} uppercase>
-                Switch to real green energy
+                ☀️ Switch to real green energy
               </H3>
             </div>
           </div>
-          <div className={classes.solutionBoard}>
-            <DragDropContext onDragEnd={onDragEnd}>
-              {dragColumns.map(({ id: columnId }) => (
-                <Droppable key={columnId} droppableId={columnId}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      style={getColumnStyle(snapshot.isDraggingOver)}
-                    >
-                      {boardData[columnId].map((item: any, index: number) => (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                        >
-                          {(provided, snapshot) => (
-                            <a
-                              ref={provided.innerRef}
-                              href={`#${item.id}`}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}
-                              className={classes.boardTaskLink}
-                              onClick={event => {
-                                event.preventDefault();
-                                toggleUpdateModal();
-                                setOnDeck(item);
-                              }}
-                            >
-                              <BoardTask
-                                title={item.what}
-                                id={item.id}
-                                desc={item.status}
-                              />
-                            </a>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </DragDropContext>
-          </div>
+          <BoardSolution
+            onDragEnd={onDragEnd}
+            dragColumns={dragColumns}
+            boardData={boardData}
+          />
 
           <div className={classes.solutionItemContainer}>
             <div className={classes.solutionItem}>
               <H3 vol={2} uppercase>
-                Go fully charged with an electric car
+                🚗 Go fully charged with an electric car
               </H3>
             </div>
           </div>
-          <div className={classes.solutionBoard}>
-            <DragDropContext onDragEnd={onDragEnd}>
-              {dragColumns.map(({ id: columnId }) => (
-                <Droppable key={columnId} droppableId={columnId}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      style={getColumnStyle(snapshot.isDraggingOver)}
-                    >
-                      {boardData[columnId].map((item: any, index: number) => (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                        >
-                          {(provided, snapshot) => (
-                            <a
-                              ref={provided.innerRef}
-                              href={`#${item.id}`}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}
-                              className={classes.boardTaskLink}
-                              onClick={event => {
-                                event.preventDefault();
-                                toggleUpdateModal();
-                                setOnDeck(item);
-                              }}
-                            >
-                              <BoardTask
-                                title={item.what}
-                                id={item.id}
-                                desc={item.status}
-                              />
-                            </a>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </DragDropContext>
-          </div>
+          <BoardSolution
+            onDragEnd={onDragEnd}
+            dragColumns={dragColumns}
+            boardData={boardData}
+          />
 
           <div className={classes.solutionItemContainer}>
             <div className={classes.solutionItem}>
@@ -489,54 +270,11 @@ const Board = ({
             </div>
           </div>
 
-          <div className={classes.solutionBoard}>
-            <DragDropContext onDragEnd={onDragEnd}>
-              {dragColumns.map(({ id: columnId }) => (
-                <Droppable key={columnId} droppableId={columnId}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      style={getColumnStyle(snapshot.isDraggingOver)}
-                    >
-                      {boardData[columnId].map((item: any, index: number) => (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                        >
-                          {(provided, snapshot) => (
-                            <a
-                              ref={provided.innerRef}
-                              href={`#${item.id}`}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}
-                              className={classes.boardTaskLink}
-                              onClick={event => {
-                                event.preventDefault();
-                                toggleUpdateModal();
-                                setOnDeck(item);
-                              }}
-                            >
-                              <BoardTask
-                                title={item.what}
-                                id={item.id}
-                                desc={item.status}
-                              />
-                            </a>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </DragDropContext>
-          </div>
+          <BoardSolution
+            onDragEnd={onDragEnd}
+            dragColumns={dragColumns}
+            boardData={boardData}
+          />
 
           <div className={classes.solutionItemContainer}>
             <div className={classes.solutionItem}>
@@ -546,54 +284,11 @@ const Board = ({
             </div>
           </div>
 
-          <div className={classes.solutionBoard}>
-            <DragDropContext onDragEnd={onDragEnd}>
-              {dragColumns.map(({ id: columnId }) => (
-                <Droppable key={columnId} droppableId={columnId}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      style={getColumnStyle(snapshot.isDraggingOver)}
-                    >
-                      {boardData[columnId].map((item: any, index: number) => (
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}
-                        >
-                          {(provided, snapshot) => (
-                            <a
-                              ref={provided.innerRef}
-                              href={`#${item.id}`}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}
-                              className={classes.boardTaskLink}
-                              onClick={event => {
-                                event.preventDefault();
-                                toggleUpdateModal();
-                                setOnDeck(item);
-                              }}
-                            >
-                              <BoardTask
-                                title={item.what}
-                                id={item.id}
-                                desc={item.status}
-                              />
-                            </a>
-                          )}
-                        </Draggable>
-                      ))}
-                      {provided.placeholder}
-                    </div>
-                  )}
-                </Droppable>
-              ))}
-            </DragDropContext>
-          </div>
+          <BoardSolution
+            onDragEnd={onDragEnd}
+            dragColumns={dragColumns}
+            boardData={boardData}
+          />
         </section>
       </section>
     </div>

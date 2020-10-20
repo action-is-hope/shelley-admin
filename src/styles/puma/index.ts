@@ -28,6 +28,7 @@ import Board from "./board.st.css";
 import BoardTask from "./boardTask.st.css";
 import ListBasic from "./listBasic.st.css";
 import ActionListing from "./actionListing.st.css";
+import BoardSolution from "./boardSolution.st.css";
 
 // = Project
 import Puma from "./project.st.css";
@@ -107,6 +108,10 @@ export const listBasic = (...values: []) =>
 
 export const actionListing = (...values: []) =>
   getStylableClassNames(values, ActionListing, "actionListing");
+
+
+export const boardSolution = (...values: []) =>
+getStylableClassNames(values, BoardSolution, "boardSolution");
 
 // = Main classname export
 export const Project = Puma.classes.root;

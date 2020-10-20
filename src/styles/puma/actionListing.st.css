@@ -3,7 +3,8 @@
   -st-from: "@actionishope/shelley/styles/default/project.st.css";
   -st-named:
     --spacing-unit,
-    breakpoint-sm, breakpoint-md-max;
+    breakpoint-sm, 
+    breakpoint-md-max;
 }
 
 /* = Shelley project scope and vars. */
@@ -43,33 +44,128 @@
     margin: 0;
     list-style-type: none;
     display: grid;
-    grid-gap: var(--spacing-unit);
-    grid-template-columns: 80px 1fr 36px;
-    /* background-color: rgb(0 0 0 / 42%); */
-    margin-bottom: 2px;
+    /* grid-gap: var(--spacing-unit); */
+    grid-template-columns: 105px 1fr auto;
 
-    font-size: 95%;
+    grid-template-columns: 70px 1fr auto;
+    
+    background-color: rgb(0 0 0 / 12%);
+    margin-top: 1px;
+    margin-bottom: 1px;
+
+    font-size: 90%;
+    position: relative;
+
+    overflow: hidden;
+    padding: 0px;
   }
 
+  ActionListing::media {
+
+    max-height: 73px;
+
+  }
+
+/* 
+Ideas
+
+Suggestions
+Shortlist 
+In-Play
+Timeline
+Complete
+
+Achieved
+Active
+
+Hidden chest at the bottom of the screen, systems thinker, looking outside of the box...:global(
+  Reminders for repeating, like washing machines when to use... solar cycle, ambient lighting, 
+)
+*/
+
+  ActionListing::media img {
+    width: 200px;
+    object-fit: cover;
+    display: block;
+    -webkit-mask-size: cover;
+    /* -webkit-mask-image: linear-gradient(-90deg, transparent 19%, black 94%); */
+    -webkit-mask-image: linear-gradient(-90deg, transparent 42%, black 100%);
+    -webkit-mask-image: linear-gradient(-90deg, transparent 11%, black 72%);
+    -webkit-mask-image: linear-gradient(-90deg, transparent 11%, black 120%);
+    -webkit-mask-image:  linear-gradient(-90deg, transparent 0%, black 280%);
+
+    -webkit-mask-image:  linear-gradient(-90deg, transparent 0%,  black 240%), linear-gradient(-90deg, transparent 20%,  black 140%);
+    
+    -webkit-mask-image: linear-gradient(-90deg, transparent 44%, black 86%), linear-gradient(-90deg, transparent 20%, black 150%);
+
+    -webkit-mask-image: linear-gradient(-90deg, transparent 50%, black 86%), linear-gradient(-90deg, transparent 32%, black 110%);
+    margin-left: -20px;
+
+    /* mask-image: linear-gradient(90deg,  transparent 25%, black 75%); */
+  }
+/* ActionListing::media::after {
+  content: "";
+  display: block;
+  
+  width: 160px;
+  background: rgba(0,0,0,0.9);
+  background: rgb(14,29,50);
+  background: linear-gradient(90deg, rgba(14,29,50,0.2049194677871149) 30%, rgba(12,25,44,1) 100%);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+} */
   /* rgb(5 15 27 / 65%) */
   ActionListing::text {
-    text-align: start
+    margin-top: 8px;
+    text-align: start;
+    position: relative;
+    padding-right: 8px;
   }
 
   ActionListing::text :global(h4)Text {
     letter-spacing: 0.08em;
     font-weight: 400;
+    line-height: 1.5;
   }
+  
 
   ActionListing::text :global(h4)Text>a {
     text-decoration: none;
     border-width: 0;
+    color: var(--color-accent-2);
   }
 
   ActionListing::actions {
-    align-self: center
+    align-self: center;
+    height: 100%;
+  }
+
+  ActionListing Button {
+    border-radius: 0;
+    height: inherit;
+    position: relative;
+    z-index: 100;
+    background: #0c18298f;
+    color: #fff;
+    font-size: 20px !important;
+    padding: 0;
+    width: 50px;
   }
 }
+
+@supports (-webkit-line-clamp: 2) {
+  @st-scope Puma {
+    ActionListing::text :global(h4)Text {
+      width: 100%;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+  }
+}
+
 
 /* @media value(breakpoint-md-max) {
   @st-scope Puma {

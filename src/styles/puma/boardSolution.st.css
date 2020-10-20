@@ -1,0 +1,162 @@
+@st-global-custom-property --vh;
+
+/** board.st.css */
+
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit,
+    breakpoint-md,
+    breakpoint-md-max;
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "./project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-ui-inverse,
+    --color-accent-1,
+    --color-accent-2,
+    --color-accent-3,
+    --color-accent-4,
+    --color-background-2;
+}
+
+/* = Root Component */
+:import {
+  -st-from: "../../components/BoardSolution/boardSolution.st.css";
+  -st-default: BoardSolution;
+}
+
+/* = Child. */
+:import {
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+
+/*=== Board ===*/
+
+@st-scope Puma {
+  BoardSolution {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 82vw 82vw 82vw;
+    position: relative;
+    /* scroll-snap-type: x mandatory; */
+    /* display: flex;
+      -webkit-overflow-scrolling: touch;
+      overflow-x: scroll; */
+  }
+}
+
+@media value(breakpoint-md-max) {
+  @st-scope Puma {
+    BoardSolution {
+      overflow: hidden;
+    }
+  }
+}
+
+@media value(breakpoint-md) {
+  @st-scope Puma {
+    BoardSolution {
+      grid-template-columns: 25vw 25vw 25vw;
+    }
+  }
+}
+
+
+@st-scope Puma {
+  BoardSolution > div {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* height: 100vh; */
+    /* height: 82vh; */
+    min-height: 2vh;
+    max-height: 25vh;
+    width: 82vw;
+    /* scroll-snap-align: start; */
+    /* 
+    Whilst this fixes the scrolling older iOS it also cuts off the action between
+    columns. We wanted to keep this around so as to support older versions of iOS
+    but this kinda kills that idea. The actions are comoletely cut off on drag.*/
+    /* -webkit-overflow-scrolling: touch; */
+  }
+
+BoardSolution:last-child {
+  padding-bottom: 82vh;
+}
+
+  BoardSolution>div {
+    position: relative;
+    padding-bottom: 120px;
+  }
+
+  /* Slightly different gradients for each column and some layout ammends.*/
+  BoardSolution>div:first-child {
+    background: linear-gradient(90deg,
+        rgba(16, 34, 55, 0.75) 0%,
+        rgba(16, 34, 55, 0.65) 100%);
+  }
+
+  BoardSolution>div:nth-child(2) {
+    background: linear-gradient(90deg,
+        rgba(16, 34, 55, 0.65) 0%,
+        rgba(16, 34, 55, 0.5) 100%);
+    border-left: 2px dashed #ddd0;
+    border-right: 2px dashed #ddd0;
+    background-repeat: no-repeat;
+    /* Makes the lines white on the BoardSolution. Odd. */
+  }
+
+  BoardSolution>div:last-child {
+    background: linear-gradient(90deg,
+        rgba(16, 34, 55, 0.5) 0%,
+        rgba(16, 34, 55, 0.1) 100%);
+  }
+
+  BoardSolution>div {
+    /* padding-left: calc(2vw + 16px);
+    padding-right: calc(2vw + 16px); */
+  }
+}
+
+@media value(breakpoint-md) {
+  @st-scope Puma {
+    BoardSolution>div {
+      width: 25vw
+    }
+  }
+}
+
+
+@st-scope Puma {
+
+  BoardSolution::boardTaskLink {
+    color: var(--color-ui);
+    display: block;
+    position: relative;
+    /* z-index: 1000; */
+
+    outline: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+    /* max-width: 21vw; */
+    /* max-width: calc(42vw - 200px); */
+    /* Invokes some extra resources to handle rendering this over other transformed items, in this case the board. */
+    transform: translateZ(0);
+  }
+  BoardSolution::boardTaskLink:not(:last-child)::after {
+    content: "";
+    display: block;
+    height: 0;
+    /* background-color: pink; */
+    border-bottom: 1px dashed rgb(83 141 220 / 22%);
+  }
+}

@@ -41,7 +41,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     /* grid-template-rows: auto auto calc(52vh) auto; */
-    padding-bottom: 50px
+    /* padding-bottom: 50px */
   }
 }
 

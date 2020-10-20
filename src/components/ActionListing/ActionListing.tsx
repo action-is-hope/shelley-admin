@@ -2,10 +2,10 @@ import React from "react";
 import classnames from "classnames";
 import { st, classes } from "./actionListing.st.css";
 
-import { H4, P } from "@actionishope/shelley";
+import { Button, H4, P } from "@actionishope/shelley";
 import { Link } from "gatsby";
 
-import Add from "../icons/Add";
+import AddToBoard from "../icons/AddToBoard";
 
 interface ActionListingProps extends React.HTMLAttributes<HTMLLIElement> {
   title: string;
@@ -33,12 +33,17 @@ const ActionListing = ({
       <div className={classes.text}>
         <H4 uppercase vol={2}>
           {/* <Link to={url}>{title}</Link> */}
-          {title}
+          <a href={url}>{title}</a>
         </H4>
         {description && <P vol={2}>{description}</P>}
       </div>
       <div className={classes.actions}>
-        <Add />
+        <Button
+          tone={5}
+          variant={3}
+          vol={2}
+          icon={<AddToBoard alt="Add to board" />}
+        />
       </div>
     </li>
   );
