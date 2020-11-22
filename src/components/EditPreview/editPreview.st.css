@@ -2,7 +2,7 @@
 :import {
   -st-from: "@actionishope/shelley/styles/default/project.st.css";
   -st-named:
-    --spacing-unit,
+    --spacing-unit;
 }
 
 /* = Shelley project scope and vars. */
@@ -20,10 +20,25 @@
   -st-default: SelectionControl;
 }
 
+:import {
+  -st-from: "@actionishope/shelley/components/Grid/grid.st.css";
+  -st-default: Grid;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/InputBase/inputBase.st.css";
+  -st-default: InputBase;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Label/label.st.css";
+  -st-default: Label;
+}
+
 @st-scope Puma {
   .root {
     /* background: pink;
-  grid-template-areas: 'editor preview''. preview'; */
+    grid-template-areas: 'editor preview''. preview'; */
     display: grid;
     grid-template-rows: 64px auto;
     height: 100vh;
@@ -114,16 +129,24 @@
     height: 1px;
     background: none;
     border-bottom: 1px solid #89ffca;
+    box-shadow: 0 0 2px 1px #09b1f1;
   }
 
+  .previewModes SelectionControl:type(radio)::inputField:focus::before {
+    box-shadow: 0 0 8px 2px #09b1f1;
+  }
+
+
+
   .previewModes SelectionControl:type(radio)::inputField::after {
-    top: auto;
+    display: none;
+    /* top: auto;
     height: 0px;
     bottom: 1px;
     border-radius: 0;
     box-shadow: none;
     background: #09b1f1;
-    box-shadow: 0 0 1px 1px #09b1f1;
+    box-shadow: 0 0 1px 1px #09b1f1; */
   }
 
   /* 
@@ -151,14 +174,16 @@
 
   .scroll {
     height: calc(100vh - 64px);
-    overflow-y: scroll
+    overflow-y: scroll;
+    /* = Gives 1px above the meta image block. */
+    margin-top: 1px;
   }
 
   .contentBlock {
-    padding: 1.3rem;
+    padding: 0.8rem 0 1.3rem;
     /* padding: value(spacing-unit) */
 
-    padding: 1.3rem 0;
+    /* padding: 1.3rem 0; */
     border: 1px dashed #50505085;
     border-width: 0px 0 1px;
     /* margin: 32px; */
@@ -171,9 +196,91 @@
     background: #0b0d12;
   }
 
+  .contentBlock InputBase::fieldInput {
+    padding-left: 50px;
+    -webkit-font-smoothing: antialiased;
+  }
 
+  .contentBlock Label {
+    padding-left: 30px;
+    margin-bottom: 14px;
+    color: rgb(57 255 220);
 
-  .radioIcon+.radioIcon {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 12px;
+  }
+
+  .radioIcon + .radioIcon {
     margin-left: 40px
   }
+
+
+
+  .tdi {
+    display: grid;
+    grid-gap: calc(var(--spacing-unit) * 1);
+    grid-template-columns: 120px auto;
+  }
+
+  .tdi img {
+    max-width: 100%;
+  }
+
+
+
+  .contentBlock.metaBlock {
+    padding-bottom: 16px;
+    position: sticky;
+    top: -35px;
+    z-index: 20;
+    overflow: hidden;
+    transition: all ease-in-out 120ms;
+
+    border-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: #ffffff6b;
+    height: 135px;
+    transform: translateZ(0);
+  }
+
+  .contentBlock.metaBlockMini {
+    height: 87px;
+  }
+
+  /* .contentBlock.metaBlockMini > label + Grid {
+    height: 87px;
+
+    height: 27px;
+  } */
+
+  .contentBlock.metaBlock .tdi img {
+    transition: transform ease-in-out 110ms;
+  }
+
+  .contentBlock.metaBlockMini .tdi img {
+    transform: translateY(-20px);
+  }
+
+  Grid.metaGrid {
+    padding-left: 50px;
+    grid-gap: var(--spacing-unit);
+  }
+
+  Grid.metaGrid::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: #0b0d12;
+    width: 120px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  Grid.metaGrid InputBase::fieldInput {
+    padding-left: var(--spacing-unit);
+    padding-top: 0;
+    padding-bottom: 0
+  }
+
 }

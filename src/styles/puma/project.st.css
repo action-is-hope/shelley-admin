@@ -120,6 +120,10 @@
 
 /*=== Root Level CSS ===*/
 
+.root {
+  background-color: var(--color-background-1);
+}
+
 /** 
  * This ideally will just be a spinkling of higher level styles that use 
  * variables. For the reset globals we set them in ./allGlobals.st.css 
@@ -127,19 +131,12 @@
 .root body {
   font-family: value(font-plain);
   color: var(--color-ui);
-  background-color: var(--color-background-1);
+  /* background-color: var(--color-background-1); */
   min-height: 100vh;
-
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#7db9e8+0,1e5799+100 */
-  background: rgb(125, 185, 232);
-  background: radial-gradient(farthest-corner at 10% 10%, rgba(30, 60, 102, 1) 0%, rgba(14, 28, 47, 1) 100%);
-
   overflow: hidden;
 }
 
-html {
-  background-color: rgba(30, 60, 102, 1);
-}
+
 
 .root h1 {
   font-family: value(font-special);

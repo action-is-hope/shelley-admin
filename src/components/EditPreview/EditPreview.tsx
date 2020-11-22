@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef, ReactChild } from "react";
+
+import _throttle from "lodash.throttle";
 
 import classnames from "classnames";
 import { st, classes } from "./editPreview.st.css";
@@ -11,7 +13,8 @@ import {
   Grid,
   ButtonGroup,
   P,
-  H2
+  H2,
+  Label
 } from "@actionishope/shelley";
 
 // function TextInputWithFocusButton() {
@@ -29,6 +32,79 @@ import {
 // }
 
 const EditPreview = ({ className: classNameProp, ...rest }: any) => {
+  const slider = useRef<HTMLDivElement>(null);
+  const [sliderOffset, setSliderOffset] = useState(0);
+  const [sliderScrolled, setSliderScrolled] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState("forwards");
+
+  const setSliderShuntPosition = _throttle(
+    () => {
+      if (slider.current !== null) {
+        const currentOffset = slider.current.scrollTop;
+        // console.log(currentOffset);
+        // const direction = currentOffset > boardOffsetX ? "forwards" : "back";
+        // console.log("in3", scrollDirection);
+        setSliderOffset(currentOffset);
+        // setScrollDirection(direction);
+
+        // const currentOffset = slider.current.scrollLeft;
+        // const direction = currentOffset > boardOffsetX ? "forwards" : "back";
+        // setBoardOffsetX(slider.current.scrollLeft);
+        // setScrollDirection(direction);
+      }
+    },
+    1,
+    { trailing: true }
+  );
+
+  useEffect(
+    // Figure out where the scroll is going and set the class to position the item.
+    () => {
+      setSliderShuntPosition.cancel();
+      // TODO: remove listener on unmount...
+      slider.current !== null &&
+        slider.current.addEventListener("scroll", setSliderShuntPosition);
+    },
+    [setSliderShuntPosition]
+  );
+
+  useEffect(
+    // Figure out where the scroll is going and set the class to position the item.
+    () => {
+      // console.log("in", slider.current);
+      if (slider.current !== null) {
+        const currentOffset = slider.current.scrollTop;
+        // console.log("in2", currentOffset, sliderOffset);
+        if (
+          // scrollDirection === "forwards" &&
+          sliderOffset > 35 &&
+          !sliderScrolled
+        ) {
+          setSliderScrolled(true);
+          console.log("in");
+          setSliderOffset(sliderOffset);
+        }
+      }
+      // if (sliderOffset > 100 && !sliderScrolled) {
+      //   setSliderScrolled(true);
+      //   console.log("in");
+      //   setSliderOffset(sliderOffset);
+      // }
+      if (
+        sliderOffset === 0 &&
+        // scrollDirection === "backwards" &&
+        sliderScrolled
+      ) {
+        // console.log("in2");
+        setSliderScrolled(false);
+        // setSliderOffset(sliderOffset);
+      }
+
+      // sliderOffset < 100 && sliderScrolled && setSliderScrolled(false);
+    },
+    [sliderOffset, sliderScrolled]
+  );
+
   return (
     // <DefaultLayout>
     <div>
@@ -36,26 +112,114 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
         <header className={classes.header}>Meuu</header>
         <div className={classes.internalGrid}>
           <div className={classes.content}>
-            <div className={classes.scroll}>
-              <div className={classes.contentBlock}>
-                <P>Meta</P>
+            <div className={classes.scroll} ref={slider}>
+              <div
+                className={classnames(classes.contentBlock, classes.metaBlock, {
+                  [classes.metaBlockMini]: sliderScrolled
+                })}
+              >
+                <Label>Meta data</Label>
+                <Grid variant={2} className={classes.metaGrid}>
+                  <div className={classes.tdi}>
+                    <img
+                      src="https://ucarecdn.com/68d4e740-b645-4273-bf86-5752a208a6ce/-/crop/3863x2172/0,396/-/preview/-/format/auto/"
+                      alt=""
+                    />
+                    <div>
+                      <InputText
+                        id="metaTitle"
+                        labelVisuallyHidden
+                        placeholder="Meta title"
+                        label={"Meta title"}
+                        type="text"
+                        vol={1}
+                      />
+                      <InputText
+                        id="metaDesc"
+                        labelVisuallyHidden
+                        placeholder="Meta description"
+                        label={"Meta description"}
+                        type="text"
+                        rows={1}
+                        vol={1}
+                      />
+                      {/* <P vol={2}>Meta Title</P>
+                      <P vol={2}>Meta Description</P> */}
+                    </div>
+                  </div>
+                  <div>
+                    <InputText
+                      id="metaDesc"
+                      labelVisuallyHidden
+                      placeholder="Select a URL"
+                      label={"Meta description"}
+                      type="text"
+                      // rows={2}
+                      vol={1}
+                    />
+                    <InputText
+                      id="metaDesc"
+                      labelVisuallyHidden
+                      placeholder="Select associated tags"
+                      label={"Meta description"}
+                      type="text"
+                      // rows={2}
+                      vol={1}
+                    />
+                  </div>
+                </Grid>
               </div>
 
               <div className={classes.contentBlock}>
+                <Label>Page Title</Label>
                 <InputText
                   id="blah2"
                   labelVisuallyHidden
-                  placeholder="Page title"
+                  placeholder="Title"
                   label={"Page title"}
                   type="text"
                   vol={6}
                 />
               </div>
               <div className={classes.contentBlock}>
+                <Label>Banner</Label>
                 <InputText
                   id="blah2"
                   labelVisuallyHidden
-                  placeholder="Section title"
+                  placeholder="Title"
+                  label={"Page title"}
+                  type="text"
+                  vol={6}
+                />
+                <InputText
+                  id="blah2"
+                  labelVisuallyHidden
+                  placeholder="Description"
+                  label={"Page title"}
+                  type="textarea"
+                  // rows={}
+                  vol={4}
+                />
+              </div>
+
+              <div className={classes.contentBlock}>
+                <Label>Body copydfg45a</Label>
+                <InputText
+                  id="blah2"
+                  labelVisuallyHidden
+                  placeholder="Content"
+                  label={"Page title"}
+                  type="textarea"
+                  rows={3}
+                  vol={3}
+                />
+              </div>
+              <div className={classes.contentBlock}>
+                <Label>Reference list</Label>
+                <InputText
+                  id="blah2"
+                  labelVisuallyHidden
+                  placeholder="Title"
                   label={"Page title"}
                   type="text"
                   vol={5}
@@ -63,7 +227,7 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
                 <InputText
                   id="blah2"
                   labelVisuallyHidden
-                  placeholder="Content"
+                  placeholder="Description"
                   label={"Page title"}
                   type="textarea"
                   // rows={}
