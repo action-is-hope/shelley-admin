@@ -121,7 +121,9 @@
 /*=== Root Level CSS ===*/
 
 .root {
-  background-color: var(--color-background-1);
+  /* background-color: var(--color-background-1); */
+  background-color: #0f1117;
+  /* background-color: #0b0d12; */
 }
 
 /** 

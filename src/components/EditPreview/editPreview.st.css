@@ -75,9 +75,10 @@
 
   .previewVisibility {
     grid-area: previewModes;
-    margin-left: -42px;
+    /* margin-left: -42px; */
+    margin-left: 20px;
     width: 94px;
-    z-index: 10;
+    z-index: 100;
   }
 
   .previewModes {
@@ -177,6 +178,7 @@
     overflow-y: scroll;
     /* = Gives 1px above the meta image block. */
     margin-top: 1px;
+    /* transform: translateZ(0); */
   }
 
   .contentBlock {
@@ -230,22 +232,49 @@
 
 
   .contentBlock.metaBlock {
-    padding-bottom: 16px;
+    padding: 20px 0;
+    margin-top: 0;
     position: sticky;
-    top: -35px;
+    top: 0;
+    /* top: -35px; */
     z-index: 20;
     overflow: hidden;
-    transition: all ease-in-out 120ms;
+    transition: all ease-in 80ms;
 
-    border-style: solid;
-    border-bottom-width: 2px;
+    /* border-style: solid; */
+    /* border-bottom-width: 1px; */
     border-bottom-color: #ffffff6b;
-    height: 135px;
-    transform: translateZ(0);
+    /* height: 106px; */
+    height: 110px;
+
+    opacity: 1;
+    backdrop-filter: blur(5px);
+
   }
 
-  .contentBlock.metaBlockMini {
-    height: 87px;
+  /* .contentBlock.metaBlock::before { */
+  .spacer {
+    /* display: block; */
+    /* content: ""; */
+    height: 0px;
+    width: 100px;
+    /* background-color: pink; */
+    transition: all ease-in 81ms;
+  }
+
+  .scroll.metaBlockMini .contentBlock.metaBlock {
+    /* margin-top: 49px; */
+    height: 63px;
+    opacity: .95;
+  }
+
+  .scroll.metaBlockMini .spacer {
+    height: 47px;
+  }
+
+  .scroll.metaBlockMini .contentBlock.metaBlock:focus-within {
+    height: 110px;
+    opacity: 1;
   }
 
   /* .contentBlock.metaBlockMini > label + Grid {
@@ -255,11 +284,15 @@
   } */
 
   .contentBlock.metaBlock .tdi img {
-    transition: transform ease-in-out 110ms;
+    transition: transform ease-in 160ms;
   }
 
-  .contentBlock.metaBlockMini .tdi img {
+  .scroll.metaBlockMini .contentBlock.metaBlock .tdi img {
     transform: translateY(-20px);
+  }
+
+  .scroll.metaBlockMini .contentBlock.metaBlock:focus-within .tdi img {
+    transform: translateY(0);
   }
 
   Grid.metaGrid {
