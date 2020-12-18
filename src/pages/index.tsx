@@ -17,7 +17,6 @@ import { classes as text } from "@actionishope/shelley/styles/default/text.st.cs
 import { classes as grid } from "@actionishope/shelley/styles/default/grid.st.css";
 import { classes as spacing } from "@actionishope/shelley/styles/default/spacing.st.css";
 
-import Banner from "../components/Banner/Banner";
 import Dialog from "../components/Dialog/Dialog";
 
 import { usePopper } from "react-popper";
@@ -67,12 +66,6 @@ const IndexPage = ({ data }: IndexPageProps) => {
 
   return (
     <DefaultLayout>
-      <Banner>
-        <H1 vol={8} uppercase>
-          Shelley
-        </H1>
-      </Banner>
-
       <Button variant={2} onClick={() => setBacklogModalOpen(true)}>
         Open
       </Button>
@@ -98,7 +91,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
       >
         <div
           ref={setPopperElement}
-          style={styles.popper}
+          // style={styles.popper}
           {...attributes.popper}
         >
           <Button variant={2} onClick={() => toggleBacklogModal()}>
@@ -205,7 +198,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
             style={{ width: "100%" }}
           />
           <Text
-            tag="figcaption"
+            as="figcaption"
             vol={2}
             className={classnames(grid.mid, spacing.mt1)}
           >
@@ -235,7 +228,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
         </P>
 
         <form className={classnames(grid.mid, spacing.mt2)}>
-          <Text tag="legand" vol={3} className={spacing.mb2}>
+          <Text as="legand" vol={3} className={spacing.mb2}>
             My form
           </Text>
           <InputText

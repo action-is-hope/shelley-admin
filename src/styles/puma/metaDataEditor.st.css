@@ -1,0 +1,128 @@
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit,
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "./project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-ui-inverse,
+    --color-accent-1,
+    --color-accent-2,
+    --color-accent-3,
+    --color-accent-4;
+}
+
+/* = Root Component */
+:import {
+  -st-from: "../../components/MetaDataEditor/metaDataEditor.st.css";
+  -st-default: MetaData;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/InputBase/inputBase.st.css";
+  -st-default: InputBase;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Grid/grid.st.css";
+  -st-default: Grid;
+}
+
+
+/* = This is how we can scope the styles in Stylable. */
+@st-scope Puma {
+  MetaData {
+    background: #0b0d12;
+    border: 1px dashed #50505085;
+    border-width: 0 0 1px;
+    border-bottom-color: #ffffff6b;
+    border-bottom-color: #2f2f2f;
+    padding: 20px 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    overflow: hidden;
+    /* = Enables smooth transition for focusOn dialog behavior. */
+    transition: height ease-in 170ms, filter 80ms ease-in-out, opacity 80ms ease-in-out;
+    filter: blur(0px);
+    height: 110px;
+  }
+
+  MetaData Grid:variant(2) {
+    padding-left: 50px;
+    grid-gap: var(--spacing-unit);
+    grid-template-columns: 1fr 1.15fr;
+  }
+
+
+  MetaData::tdi {
+    display: grid;
+    grid-gap: calc(var(--spacing-unit) * 1);
+    grid-template-columns: 120px auto;
+  }
+
+  MetaData::tdi img {
+    max-width: 100%;
+    transition: transform ease-in 160ms;
+  }
+
+  MetaData InputBase::fieldInput {
+    padding-left: var(--spacing-unit);
+    padding-top: 0;
+    padding-bottom: 0
+  }
+
+  /* 
+  Grid.metaGrid::after {
+    content: "";
+    display: block;
+    height: 1px;
+    background: #0b0d12;
+    width: 120px;
+    position: absolute;
+    bottom: 0;
+  } */
+
+
+
+
+  /* State */
+  MetaData:mini {
+    height: 63px;
+    opacity: 0.95;
+  }
+
+  MetaData:mini:focus-within {
+    height: 110px;
+    opacity: 1;
+  }
+
+  MetaData:mini::tdi img {
+    transform: translateY(-20px);
+  }
+
+  MetaData:mini:focus-within::tdi img {
+    transform: translateY(0);
+  }
+
+
+  /* .spacer {
+    height: 0;
+    width: 100px;
+    transition: height ease-in 170ms;
+  }
+
+  MetaData:mini + .spacer {
+    height: 47px;
+  } */
+
+
+}

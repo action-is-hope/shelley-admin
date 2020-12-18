@@ -1,0 +1,182 @@
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit,
+    breakpoint-md,
+    breakpoint-md-max;
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "./project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-ui-inverse,
+    --color-accent-1,
+    --color-accent-2,
+    --color-accent-3,
+    --color-accent-4,
+    --color-background-2;
+}
+
+/* = Root Component */
+:import {
+  -st-from: "../../components/Layout/layout.st.css";
+  -st-default: Layout;
+
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: '@actionishope/shelley/styles/default/mixins/focus.st.css';
+  -st-named:
+    pseudoFocus,
+    pseudoFocusVisible;
+}
+
+@st-scope Puma {
+  Layout {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    grid-template-rows: 64px 1fr 120px;
+    grid-template-areas:
+      'content preview'
+      'content preview'
+      'content actions';
+    background-color: transparent;
+    transition: background-color 160ms ease-in-out;
+    /*keeps border in view on fullscreen*/
+    /* padding-top: 1px; */
+  }
+
+  Layout .preview {
+    transition: all 160ms;
+    width: 45vw;
+    position: absolute;
+    left: 55vw;
+    top: 64px;
+    bottom: 0;
+  }
+
+  Layout:gridMode(previewFullScreen) .preview {
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+  }
+
+
+  Layout:gridMode(previewFullScreen) .previewModes {
+    grid-column: 1 / span 2;
+    z-index: 1002;
+  }
+
+  Layout:gridMode(previewFullScreen) .previewFullScreen {
+    z-index: 1002;
+  }
+
+
+
+  Layout:gridMode(previewHidden) {
+    background-color: #000;
+  }
+
+  Layout:gridMode(previewHidden) .content {
+    transform: translateX(22.5vw);
+  }
+
+  Layout:gridMode(previewHidden) .preview {
+    opacity: 0;
+  }
+
+  /* = Child classes used in conjuntion with the grid main component. */
+  .content {
+    grid-area: content;
+    transition: transform 160ms ease-in-out;
+    background: #0f1118;
+    z-index: 1000;
+    position: relative;
+    border-top: 1px solid #2f2f2f;
+  }
+
+  /* = Toggles the preview on/off. */
+  .previewVisibility {
+    grid-area: previewModes;
+    /* margin-left: -42px; */
+    margin-left: 20px;
+    width: 94px;
+    z-index: 100;
+  }
+
+  /* = Switches social/desktop/tablet/mobile. */
+  .previewModes {
+    max-height: 64px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px dashed #5050506e;
+    z-index: 1;
+    padding-top: 18px;
+    transition: border 80ms ease-in-out, margin 80ms ease-in-out;
+  }
+
+  /* = Houses the fullscreen preview button. */
+  .previewFullScreen {
+    grid-area: preview;
+    margin-right: 32px;
+    justify-self: flex-end;
+    z-index: 2000;
+    width: 200px;
+  }
+
+  .preview {
+    grid-area: preview;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    display: grid;
+    grid-template-rows: 64px 1fr;
+    grid-template-columns: 1fr;
+    width: 100%;
+    align-items: center;
+    justify-items: center;
+    border-color: #2f2f2f;
+    background: #000;
+  }
+
+  :global(body.on) .previewVisibility[data-focus-on-hidden] + .previewModes {
+    border-color: #463a9a;
+    /* border-bottom-color: #6656c1; */
+  }
+
+  :global(body.on) .preview {
+    border-color: #463a9a;
+  }
+
+  .actions {
+    z-index: 10;
+    grid-area: actions;
+    background: #0f1118;
+    border-top: 1px solid #2f2f2f;
+    transition: border 80ms ease-in-out;
+  }
+
+  :global(body.on) .actions {
+    opacity: 1 !important;
+    filter: blur(0px) !important;
+    border-color: #463a9a;
+  }
+
+  .actions div {
+    transition: opacity 160ms ease-in-out;
+  }
+
+  :global(body.on) .actions div {
+    opacity: 0.5 !important;
+    filter: blur(2px) !important;
+  }
+
+}

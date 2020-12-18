@@ -1,0 +1,162 @@
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit;
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "../../styles/puma/project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-accent-1,
+    --color-background-2;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/InputSelectionControl/inputSelectionControl.st.css";
+  -st-default: SelectionControl;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Grid/grid.st.css";
+  -st-default: Grid;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/InputBase/inputBase.st.css";
+  -st-default: InputBase;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Label/label.st.css";
+  -st-default: Label;
+}
+
+
+.root {
+  width: 100%;
+  display: grid;
+  grid-template-areas: "stack";
+
+  transition: filter 80ms ease-in-out, opacity 80ms ease-in-out;
+}
+
+.menu {
+  grid-area: stack;
+  justify-self: right;
+  position: sticky;
+  top: 80px;
+  z-index: 10;
+  margin: 16px 12px;
+  width: 50px;
+  height: 100px;
+}
+
+.errorText {
+  /* color: theme.palette.error.main; */
+  text-decoration: "underline";
+  /* text-decoration-color: theme.palette.error.dark; */
+}
+
+
+.dialogTransition {
+  grid-area: stack;
+  z-index: 15;
+}
+
+
+
+/* Main content - the main editing items. */
+.mainContent {
+  z-index: 0;
+  position: relative;
+  grid-area: stack;
+  /* background: pink; */
+  padding: calc(var(--spacing-unit) * 2);
+  padding-bottom: calc(var(--spacing-unit) * 5);
+
+  padding: 0.8rem 0 1.3rem;
+  /* padding: value(spacing-unit) */
+  /* padding: 1.3rem 0; */
+  border: 1px dashed #50505085;
+  border-width: 0 0 1px;
+  background: #0f1117;
+}
+
+.root .mainContent InputBase::fieldInput {
+  padding-left: 50px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mainContent Label {
+  padding-left: 30px;
+  margin-bottom: 14px;
+  color: rgb(57 255 220);
+
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+}
+
+
+/* Overlay styles */
+
+
+/* Dialog styles */
+/* .overlayDialog {
+  border-radius: 4;
+  position: sticky;
+  top: 18vh;
+  max-height: 55vh;
+  overflow-y: scroll;
+  margin-top: calc(var(--spacing-unit) * 6)
+} */
+
+/* Overrides for the settings Dialog */
+/* .settingsDialog {
+  padding: calc(var(--spacing-unit) * 3);
+  padding-bottom: 0;
+  min-width: "80%";
+} */
+
+
+
+/* Overrides for the reorder Dialog */
+.dialogContentWithActions {
+  padding-bottom: 53px;
+}
+
+
+/* .dialogActions {
+  margin: 0 -24px -53px;
+  background: #f2f2f2;
+  border-top: 1px solid #cacaca;
+  width: calc(100% + 48px);
+  position: sticky;
+  bottom: 0;
+  padding: 8px 20px;
+  border-radius: 0 0 4px 4px;
+} */
+
+
+.settingsTitle {
+  margin: 0 0 12px;
+  padding: 12px 24px 12px;
+  border-bottom: 1px dashed #463a9a;
+}
+
+
+.message {
+  padding: 2px .57rem;
+  color: #ff5b5b;
+  background: #00000059;
+  margin-top: 1px;
+}
+
+.message:last-of-type {
+  margin-bottom: calc(0.25rem + 4px);
+
+}

@@ -15,20 +15,22 @@ import InputSelection from "./inputSelection.st.css";
 // import InputSelectionControl from "./inputSelectionControl.st.css";
 // import InputText from "./inputText.st.css";
 import Label from "./label.st.css";
+import Menu from "./menu.st.css";
 import Text from "./text.st.css";
 
 import Dialog from "./dialog.st.css";
 
 // = Application Components
 import Footer from "./footer.st.css";
-import Inches from "./inches.st.css";
+
 import Card from "./card.st.css";
-import Launch from "./launch.st.css";
-import Board from "./board.st.css";
-import BoardTask from "./boardTask.st.css";
+
 import ListBasic from "./listBasic.st.css";
-import ActionListing from "./actionListing.st.css";
-import BoardSolution from "./boardSolution.st.css";
+
+import Layout from "./layout.st.css";
+import PreviewModes from "./previewModes.st.css";
+import Preview from "./preview.st.css";
+import MetaDataEditor from "./metaDataEditor.st.css";
 
 // = Project
 import Puma from "./project.st.css";
@@ -80,6 +82,9 @@ export const inputSelection = (...values: []) =>
 export const label = (...values: []) =>
   getStylableClassNames(values, Label, "label");
 
+export const menu = (...values: []) =>
+  getStylableClassNames(values, Menu, "menu");
+
 export const text = (...values: []) =>
   getStylableClassNames(values, Text, "text");
 
@@ -88,30 +93,23 @@ export const text = (...values: []) =>
 export const footer = (...values: []) =>
   getStylableClassNames(values, Footer, "footer");
 
-export const inches = (...values: []) =>
-  getStylableClassNames(values, Inches, "inches");
-
 export const card = (...values: []) =>
   getStylableClassNames(values, Card, "card");
-
-export const launch = (...values: []) =>
-  getStylableClassNames(values, Launch, "launch");
-
-export const board = (...values: []) =>
-  getStylableClassNames(values, Board, "board");
-
-export const boardTask = (...values: []) =>
-  getStylableClassNames(values, BoardTask, "boardTask");
 
 export const listBasic = (...values: []) =>
   getStylableClassNames(values, ListBasic, "listBasic");
 
-export const actionListing = (...values: []) =>
-  getStylableClassNames(values, ActionListing, "actionListing");
+export const layout = (...values: []) =>
+  getStylableClassNames(values, Layout, "layout");
 
+export const previewModes = (...values: []) =>
+  getStylableClassNames(values, PreviewModes, "previewModes");
 
-export const boardSolution = (...values: []) =>
-getStylableClassNames(values, BoardSolution, "boardSolution");
+export const preview = (...values: []) =>
+  getStylableClassNames(values, Preview, "preview");
+
+export const metaDataEditor = (...values: []) =>
+  getStylableClassNames(values, MetaDataEditor, "metaDataEditor");
 
 // = Main classname export
 export const Project = Puma.classes.root;

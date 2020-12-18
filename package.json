@@ -21,8 +21,9 @@
   },
   "homepage": "https://github.com/action-is-hope/starter-kits#readme",
   "dependencies": {
-    "@actionishope/shelley": "^0.1.1-alpha.24",
+    "@actionishope/shelley": "^0.1.1-alpha.27",
     "@popperjs/core": "^2.4.4",
+    "@reach/menu-button": "^0.11.2",
     "@types/lodash.throttle": "^4.1.6",
     "@types/react-beautiful-dnd": "^13.0.0",
     "@types/react-transition-group": "^4.4.0",
@@ -34,12 +35,12 @@
     "gatsby-plugin-typescript": "^2.4.15",
     "lodash.throttle": "^4.1.1",
     "react-beautiful-dnd": "^13.0.0",
+    "react-click-away-listener": "^1.4.4",
     "react-dom": "^16.13.1",
     "react-focus-on": "^3.5.0",
     "react-helmet": "^6.1.0",
     "react-popper": "^2.2.3",
-    "react-transition-group": "^4.4.1",
-    "throttle-debounce": "^2.3.0"
+    "react-transition-group": "^4.4.1"
   },
   "main": "n/a",
   "scripts": {

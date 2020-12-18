@@ -2,7 +2,7 @@ import React from "react";
 
 import { Icon, IconProps } from "@actionishope/shelley";
 
-const Logo = ({ className, alt }: IconProps) => {
+const Add = ({ className, alt }: IconProps) => {
   return (
     <Icon alt={alt} viewBox="0 0 24 24" className={className}>
       <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
@@ -11,4 +11,4 @@ const Logo = ({ className, alt }: IconProps) => {
   );
 };
 
-export default Logo;
+export default Add;
