@@ -1,5 +1,5 @@
 /* layout.st.css CSS API */
 .root {
   -st-states:
-    gridMode(enum(default, previewFullScreen, previewHidden));
+    gridMode(enum(fullScreenMode, focusMode));
 }

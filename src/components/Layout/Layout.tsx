@@ -6,12 +6,12 @@ import { Grid, GridProps, Text } from "@actionishope/shelley";
 import { classes as grid } from "@actionishope/shelley/styles/default/grid.st.css";
 
 export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
-  gridMode: "default" | "previewFullScreen" | "previewHidden";
+  gridMode: "fullScreenMode" | "focusMode" | false;
 }
 const Layout = ({
   className: classNameProp,
   children,
-  gridMode = "default",
+  gridMode = false,
   ...rest
 }: LayoutProps) => {
   return (

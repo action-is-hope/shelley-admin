@@ -42,9 +42,9 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
   const previewButton = useRef<HTMLButtonElement>(null);
 
   /** States */
-  const [previewHidden, setPreviewHidden] = useState<boolean>(false);
+  const [focusMode, setPreviewHidden] = useState<boolean>(false);
   const [previewMode, setPreviewMode] = useState<number>(1);
-  const [fullscreen, setFullscreen] = useState<boolean>(false);
+  const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
   const [reviewRequired, setReviewRequired] = useState(true);
   const [status, setStatus] = useState<statusOptions>("draft");
   const [sliderScrolled, setSliderScrolled] = useState(false);
@@ -73,19 +73,15 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
     <div>
       <div className={st(classnames(classes.root, classNameProp))}>
         <header className={classes.header}>Meuu</header>
-        {/* <Layout gridMode={fullscreen ? "previewFullScreen" : "default"}> */}
+        {/* <Layout gridMode={fullScreenMode ? "previewFullScreen" : "default"}> */}
         <Layout
           gridMode={
-            fullscreen
-              ? "previewFullScreen"
-              : previewHidden
-              ? "previewHidden"
-              : "default"
+            fullScreenMode ? "fullScreenMode" : focusMode ? "focusMode" : false
           }
         >
           <FocusOn
             className={layout.content}
-            enabled={previewHidden}
+            enabled={focusMode}
             // onClickOutside={callback}
             onEscapeKey={() => setPreviewHidden(false)}
             shards={[previewButton]}
@@ -179,13 +175,14 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
 
           <div className={layout.previewFullScreen} ref={previewActions}>
             <Button
-              onClick={() => setPreviewHidden(!previewHidden)}
+              onClick={() => setPreviewHidden(!focusMode)}
               variant={2}
               vol={5}
               ref={previewButton}
+              className={layout.togglePreviewButton}
               icon={
-                previewHidden ? (
-                  <PreviewOffIcon alt="Toggle preview off" />
+                focusMode ? (
+                  <PreviewOffIcon alt="Toggle preview on" />
                 ) : (
                   <PreviewIcon alt="Toggle preview off" />
                 )
@@ -195,16 +192,24 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
               variant={2}
               vol={5}
               ref={fullScreenButton}
-              onClick={() => setFullscreen(!fullscreen)}
-              icon={<ExpandIcon alt="Toggle full screen on" />}
+              className={layout.toggleFullScreenButton}
+              onClick={() => setFullScreenMode(!fullScreenMode)}
+              // icon={<ExpandIcon alt="Toggle full screen on" />}
+              icon={
+                !fullScreenMode ? (
+                  <ExpandIcon alt="Toggle full screen on" />
+                ) : (
+                  <CompressIcon alt="Toggle full screen off" />
+                )
+              }
             />
           </div>
 
           <FocusOn
             className={layout.preview}
-            enabled={fullscreen}
+            enabled={fullScreenMode}
             // onClickOutside={callback}
-            onEscapeKey={() => setFullscreen(false)}
+            onEscapeKey={() => setFullScreenMode(false)}
             shards={[previewModes, fullScreenButton]}
           >
             <PreviewModes
