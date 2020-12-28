@@ -118,7 +118,8 @@
     background: #0f1118;
     z-index: 1000;
     position: relative;
-    border-top: 1px solid #2f2f2f;
+    /* border-top: 1px solid #2f2f2f;
+    margin-top: -1px; */
   }
 
   /* = Toggles the preview on/off. */
@@ -158,6 +159,7 @@
     border-radius: 0;
     margin-right: -1px;
     border-color: #111111;
+    transition: opacity 80ms ease-in-out;
   }
 
 

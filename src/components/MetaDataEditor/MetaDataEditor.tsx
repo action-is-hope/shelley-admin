@@ -36,40 +36,44 @@ const MetaDataEditor = React.forwardRef(
         {...rest}
         ref={ref}
       >
-        <VisuallyHidden>
-          <Label>Meta data</Label>
-        </VisuallyHidden>
-        <Grid variant={2}>
-          <div className={classes.tdi}>
-            {mediaUploader}
-            <div>
-              <InputText
-                id={titleProps.id}
-                labelVisuallyHidden
-                label={titleProps.label || "Meta title"}
-                placeholder={titleProps.placeholder || "Meta title"}
-                onChange={titleProps.onChange}
-                onBlur={titleProps.onBlur}
-                onFocus={titleProps.onFocus}
-                type="text"
-                vol={1}
-              />
-              <InputText
-                id={descriptionProps.id}
-                labelVisuallyHidden
-                label={descriptionProps.label || "Meta description"}
-                placeholder={descriptionProps.placeholder || "Meta description"}
-                onChange={descriptionProps.onChange}
-                onBlur={descriptionProps.onBlur}
-                onFocus={descriptionProps.onFocus}
-                type="textarea"
-                rows={1}
-                vol={1}
-              />
+        <div className={classes.inner}>
+          <VisuallyHidden>
+            <Label>Meta data</Label>
+          </VisuallyHidden>
+          <Grid variant={2}>
+            <div className={classes.tdi}>
+              {mediaUploader}
+              <div>
+                <InputText
+                  id={titleProps.id}
+                  labelVisuallyHidden
+                  label={titleProps.label || "Meta title"}
+                  placeholder={titleProps.placeholder || "Meta title"}
+                  onChange={titleProps.onChange}
+                  onBlur={titleProps.onBlur}
+                  onFocus={titleProps.onFocus}
+                  type="text"
+                  vol={1}
+                />
+                <InputText
+                  id={descriptionProps.id}
+                  labelVisuallyHidden
+                  label={descriptionProps.label || "Meta description"}
+                  placeholder={
+                    descriptionProps.placeholder || "Meta description"
+                  }
+                  onChange={descriptionProps.onChange}
+                  onBlur={descriptionProps.onBlur}
+                  onFocus={descriptionProps.onFocus}
+                  type="textarea"
+                  rows={1}
+                  vol={1}
+                />
+              </div>
             </div>
-          </div>
-          {children}
-        </Grid>
+            {children}
+          </Grid>
+        </div>
       </div>
     );
   }

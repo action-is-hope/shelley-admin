@@ -1,0 +1,9 @@
+/* layout.st.css CSS API */
+.root {
+  -st-states:
+    gridMode(enum(fullScreenMode, focusMode));
+
+  display: grid;
+  grid-template-rows: 72px auto;
+  grid-template-columns: 200px 1fr;
+}

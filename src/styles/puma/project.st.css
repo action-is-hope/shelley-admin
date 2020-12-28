@@ -75,13 +75,14 @@
 
   /* = Accent colours */
   --color-accent-1: #65bfff;
-  --color-accent-2: #52fba7;
+  --color-accent-2: #75eaff;
   --color-accent-3: #ea91ff;
   --color-accent-4: #f7e1b9;
 
   /* = Background colours */
   --color-background-1: rgb(23, 26, 35);
-  --color-background-2: rgba(0, 0, 0, 0.56);
+  /* --color-background-2: rgba(0, 0, 0, 0.56); */
+  --color-background-2: #0b0d12;
   --color-background-3: rgba(160, 160, 160, 0.06);
   --color-background-4: rgba(11, 13, 18, 0.34);
   --color-background-modal: rgba(23, 26, 35, 0.98);

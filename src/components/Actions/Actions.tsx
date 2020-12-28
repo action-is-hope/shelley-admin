@@ -19,7 +19,7 @@ import { classes as spacing } from "@actionishope/shelley/styles/default/spacing
 export type statusOptions =
   | "published"
   | "draft"
-  | "changed"
+  | "updated"
   | "archived"
   | "unpublished";
 
@@ -63,7 +63,7 @@ const Actions = React.forwardRef(
       publishChanges: "Publish Changes",
       publishOptions: "Publish Options",
       published: "Published",
-      changed: "Changed",
+      updated: "Updated",
       archived: "Archived",
       unpublished: "Unpublished",
       reviewRequired: "Review Required",
@@ -73,7 +73,7 @@ const Actions = React.forwardRef(
     };
 
     const lookUp = {
-      changed: { text: strings.publishChanges, onClick: onPublish },
+      updated: { text: strings.publishChanges, onClick: onPublish },
       published: {
         text: strings.publish,
         onClick: () => noop

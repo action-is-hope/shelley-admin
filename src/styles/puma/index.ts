@@ -21,6 +21,7 @@ import Text from "./text.st.css";
 import Dialog from "./dialog.st.css";
 
 // = Application Components
+import Header from "./header.st.css";
 import Footer from "./footer.st.css";
 
 import Card from "./card.st.css";
@@ -90,6 +91,9 @@ export const text = (...values: []) =>
 
 // Application component exports
 // ...
+export const header = (...values: []) =>
+  getStylableClassNames(values, Header, "header");
+
 export const footer = (...values: []) =>
   getStylableClassNames(values, Footer, "footer");
 

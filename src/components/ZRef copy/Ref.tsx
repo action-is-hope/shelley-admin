@@ -1,26 +1,26 @@
 import React from "react";
 import classnames from "classnames";
-import { st, classes } from "./preview.st.css";
+import { st, classes } from "./layout.st.css";
 
 import { Grid, GridProps, Text } from "@actionishope/shelley";
 import { classes as grid } from "@actionishope/shelley/styles/default/grid.st.css";
 
-interface PreviewProps extends React.HTMLAttributes<HTMLDivElement> {
-  previewMode: number;
+interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
+  gridMode: "default" | "previewFullScreen";
 }
-const Preview = React.forwardRef(
+const Layout = React.forwardRef(
   (
     {
       className: classNameProp,
       children,
-      previewMode = 1,
+      gridMode = "default",
       ...rest
-    }: PreviewProps,
+    }: LayoutProps,
     ref?: React.Ref<HTMLDivElement>
   ) => {
     return (
       <div
-        className={st(classnames(classes.root, classNameProp), { previewMode })}
+        className={st(classnames(classes.root, classNameProp), { gridMode })}
         {...rest}
         ref={ref}
       >
@@ -30,6 +30,6 @@ const Preview = React.forwardRef(
   }
 );
 
-Preview.displayName = "Preview";
+Layout.displayName = "Layout";
 
-export default Preview;
+export default Layout;

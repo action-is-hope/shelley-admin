@@ -4,3 +4,5 @@ declare module "*.st.css" {
   const stylesheet: import("@stylable/runtime").RuntimeStylesheet;
   export = stylesheet;
 }
+
+declare module "country-flag-icons/react/3x2";

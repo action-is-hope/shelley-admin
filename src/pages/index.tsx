@@ -19,7 +19,7 @@ import { classes as spacing } from "@actionishope/shelley/styles/default/spacing
 
 import Dialog from "../components/Dialog/Dialog";
 
-import { usePopper } from "react-popper";
+// import { usePopper } from "react-popper";
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema.
@@ -43,10 +43,10 @@ const IndexPage = ({ data }: IndexPageProps) => {
     null
   );
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [{ name: "arrow", options: { element: arrowElement } }],
-    placement: "auto-end"
-  });
+  // const { styles, attributes } = usePopper(referenceElement, popperElement, {
+  //   modifiers: [{ name: "arrow", options: { element: arrowElement } }],
+  //   placement: "auto-end"
+  // });
 
   const [backlogModalOpen, setBacklogModalOpen] = useState(false);
   const [modelClickAway, setModelClickAway] = useState(true);
@@ -92,7 +92,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
         <div
           ref={setPopperElement}
           // style={styles.popper}
-          {...attributes.popper}
+          // {...attributes.popper}
         >
           <Button variant={2} onClick={() => toggleBacklogModal()}>
             Close
@@ -103,7 +103,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
             Got me!
           </Button>
           <input ref={inputRef} />
-          <div ref={setArrowElement} style={styles.arrow} />
+          {/* <div ref={setArrowElement} style={styles.arrow} /> */}
         </div>
       </Dialog>
 

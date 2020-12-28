@@ -1,0 +1,101 @@
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit,
+    breakpoint-md,
+    breakpoint-md-max;
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "./project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-ui-inverse,
+    --color-accent-1,
+    --color-accent-2,
+    --color-accent-3,
+    --color-accent-4,
+    --color-background-2;
+}
+
+/* = Root Component */
+:import {
+  -st-from: "../../components/Header/header.st.css";
+  -st-default: Header;
+
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+@st-scope Puma {
+  Header {
+    /* background: var(--color-background-2); */
+    /* background: #75eaff36; */
+    background-color: #75eaff52;
+    color: #fff;
+    border-style: solid;
+    /* border-color: #777b7b; */
+    border-color: #73e6fa63;
+    border-width: 0 0 1px;
+    height: 65px;
+    position: relative;
+    z-index: 2000;
+    justify-content: space-between;
+  }
+
+  Header > nav {
+    flex-grow: 1;
+    /* display: flex;
+    justify-content: flex-end; */
+    margin-left: 14px
+  }
+
+  Header > nav > a {
+    display: inline-block;
+    min-height: 65px;
+    padding: 24px 24px;
+    /* border-left: 1px solid #8c9c9f4d; */
+    border-left: 1px solid #73e6fa26;
+    /* 1px solid #8c9c9f4d */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  Header::controls {
+    /* display: inline-flex;
+    justify-content: flex-end; */
+
+  }
+
+  Header::flag {
+    width: 41px;
+    opacity: .8;
+    border: 1px solid #ffffffd1;
+    position: relative;
+    left: 6px;
+    filter: grayscale(80%);
+  }
+
+  Header::title {
+
+    text-decoration: none;
+    display: inline-flex;
+    margin-left: 27px;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 10px;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+
+}

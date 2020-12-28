@@ -10,7 +10,6 @@ import PreviewOffIcon from "../icons/PreviewOff";
 
 import ExpandIcon from "../icons/ExpandScreen";
 import CompressIcon from "../icons/CompressScreen";
-import Dialog from "../Dialog/Dialog";
 
 import { FocusOn } from "react-focus-on";
 
@@ -72,7 +71,6 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
     // <DefaultLayout>
     <div>
       <div className={st(classnames(classes.root, classNameProp))}>
-        <header className={classes.header}>Meuu</header>
         {/* <Layout gridMode={fullScreenMode ? "previewFullScreen" : "default"}> */}
         <Layout
           gridMode={
@@ -148,30 +146,152 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
                   vol={6}
                 />
               </BlockEditor>
+
+              <BlockEditor
+                settingsRender={() => (
+                  <P className={classes.helpText}>
+                    Select taxonomies to display in this listing.
+                  </P>
+                )}
+                shards={[preview, previewModes]}
+                data-testid="test"
+              >
+                <Label>Page Title</Label>
+                <InputText
+                  id="ptitle2"
+                  labelVisuallyHidden
+                  placeholder="Title"
+                  label={"Page title"}
+                  type="text"
+                  vol={6}
+                />
+              </BlockEditor>
+
+              <BlockEditor
+                settingsRender={() => (
+                  <P className={classes.helpText}>
+                    Select taxonomies to display in this listing.
+                  </P>
+                )}
+                shards={[preview, previewModes]}
+                data-testid="test"
+              >
+                <Label>Page Title</Label>
+                <InputText
+                  id="ptitle2"
+                  labelVisuallyHidden
+                  placeholder="Title"
+                  label={"Page title"}
+                  type="text"
+                  vol={6}
+                />
+              </BlockEditor>
+
+              <BlockEditor
+                settingsRender={() => (
+                  <P className={classes.helpText}>
+                    Select taxonomies to display in this listing.
+                  </P>
+                )}
+                shards={[preview, previewModes]}
+                data-testid="test"
+              >
+                <Label>Page Title</Label>
+                <InputText
+                  id="ptitle2"
+                  labelVisuallyHidden
+                  placeholder="Title"
+                  label={"Page title"}
+                  type="text"
+                  vol={6}
+                />
+              </BlockEditor>
+
+              <BlockEditor
+                settingsRender={() => (
+                  <P className={classes.helpText}>
+                    Select taxonomies to display in this listing.
+                  </P>
+                )}
+                shards={[preview, previewModes]}
+                data-testid="test"
+              >
+                <Label>Page Title</Label>
+                <InputText
+                  id="ptitle2"
+                  labelVisuallyHidden
+                  placeholder="Title"
+                  label={"Page title"}
+                  type="text"
+                  vol={6}
+                />
+              </BlockEditor>
+
+              <BlockEditor
+                settingsRender={() => (
+                  <P className={classes.helpText}>
+                    Select taxonomies to display in this listing.
+                  </P>
+                )}
+                shards={[preview, previewModes]}
+                data-testid="test"
+              >
+                <Label>Page Title</Label>
+                <InputText
+                  id="ptitle2"
+                  labelVisuallyHidden
+                  placeholder="Title"
+                  label={"Page title"}
+                  type="text"
+                  vol={6}
+                />
+              </BlockEditor>
+
+              <BlockEditor
+                settingsRender={() => (
+                  <P className={classes.helpText}>
+                    Select taxonomies to display in this listing.
+                  </P>
+                )}
+                shards={[preview, previewModes]}
+                data-testid="test"
+              >
+                <Label>Page Title</Label>
+                <InputText
+                  id="ptitle2"
+                  labelVisuallyHidden
+                  placeholder="Title"
+                  label={"Page title"}
+                  type="text"
+                  vol={6}
+                />
+              </BlockEditor>
+
+              <BlockEditor
+                settingsRender={() => (
+                  <P className={classes.helpText}>
+                    Select taxonomies to display in this listing.
+                  </P>
+                )}
+                shards={[preview, previewModes]}
+                data-testid="test"
+              >
+                <Label>Page Title</Label>
+                <InputText
+                  id="ptitle2"
+                  labelVisuallyHidden
+                  placeholder="Title"
+                  label={"Page title"}
+                  type="text"
+                  vol={6}
+                />
+              </BlockEditor>
+
+              <div className={classes.contentActions}>
+                <Button>Add content block</Button>
+              </div>
             </div>
           </FocusOn>
-
-          {/* <div className={layout.previewVisibility}>
-            <InputSelection
-              id="preview"
-              inputPos="bottom"
-              label={
-                <Icon viewBox="0 0 24 24" style={{ fontSize: ".9rem" }}>
-                  <path d="M0 0h24v24H0z" fill="none" />
-                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                </Icon>
-              }
-              type="toggle"
-              vol={1}
-            />
-          </div> */}
-
-          {/* <PreviewModes
-            className={layout.previewModes}
-            setPreviewMode={setPreviewMode}
-            previewMode={previewMode}
-            ref={previewModes}
-          /> */}
 
           <div className={layout.previewFullScreen} ref={previewActions}>
             <Button
@@ -249,7 +369,7 @@ const EditPreview = ({ className: classNameProp, ...rest }: any) => {
             onUnPublish={() => setStatus("unpublished")}
             onReview={() => {
               setReviewRequired(false);
-              setStatus("changed");
+              setStatus("updated");
             }}
             onPublish={() => setStatus("published")}
             // onArchive={() => console.log("archived")}

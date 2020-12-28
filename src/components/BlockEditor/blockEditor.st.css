@@ -81,9 +81,13 @@
   padding: 0.8rem 0 1.3rem;
   /* padding: value(spacing-unit) */
   /* padding: 1.3rem 0; */
-  border: 1px dashed #50505085;
-  border-width: 0 0 1px;
+  border-bottom: 1px dashed #50505085;
   background: #0f1117;
+}
+
+.root:last-of-type .mainContent {
+  border-bottom-color: transparent;
+
 }
 
 .root .mainContent InputBase::fieldInput {

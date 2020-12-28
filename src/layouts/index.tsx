@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import Link from "gatsby-link";
-import Helmet from "react-helmet";
+import { Helmet } from "react-helmet";
 import { classes as style } from "./index.st.css";
 
 import { Project as Default } from "@actionishope/shelley/styles/default";
@@ -10,48 +10,7 @@ import { Project as Shelley, Light, Dark } from "../styles/puma";
 import { classes as selection } from "../styles/puma/inputSelection.st.css";
 
 import { InputSelection, Icon } from "@actionishope/shelley";
-
-const Header = ({ altTheme, changeTheme }: any) => (
-  <div className={style.navbar}>
-    <div className={style.inner}>
-      <h1 className={style.title}>
-        <Link
-          to="/"
-          style={{
-            textDecoration: "none"
-          }}
-        >
-          Shelley
-        </Link>
-      </h1>
-      <div className={style.controls}>
-        <InputSelection
-          id="themeSelector"
-          variant={false}
-          hint="Toggle light mode"
-          label={
-            <Icon alt="Toggle light mode">
-              <path d="M16 8l-2.2-1.6 1.1-2.4-2.7-0.2-0.2-2.7-2.4 1.1-1.6-2.2-1.6 2.2-2.4-1.1-0.2 2.7-2.7 0.2 1.1 2.4-2.2 1.6 2.2 1.6-1.1 2.4 2.7 0.2 0.2 2.7 2.4-1.1 1.6 2.2 1.6-2.2 2.4 1.1 0.2-2.7 2.7-0.2-1.1-2.4 2.2-1.6zM8 13c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5z"></path>
-            </Icon>
-          }
-          className={classnames(selection.darkLightToggle, {
-            [selection.on]: altTheme
-          })}
-          checked={altTheme}
-          onKeyPress={event => {
-            if (event.key === "Enter") {
-              changeTheme();
-            }
-          }}
-          onChange={() => {
-            changeTheme();
-          }}
-          type="checkbox"
-        />
-      </div>
-    </div>
-  </div>
-);
+import Header from "../components/Header/Header";
 
 const Footer = () => (
   <div className={style.footer}>
@@ -73,22 +32,22 @@ const DefaultLayout = ({ children }: any) => {
   const ShelleyDark = classnames(Default, Shelley, Dark);
   const ShelleyLight = classnames(Default, Shelley, Light);
   // Toggle 'alternative' theme state.
-  const [altTheme, setAltTheme] = useState<boolean>(false);
+  const [altThemeEnabled, setAltTheme] = useState<boolean>(false);
   // The alternative here is the light theme.
-  const currentTheme = altTheme ? ShelleyLight : ShelleyDark;
+  const currentTheme = altThemeEnabled ? ShelleyLight : ShelleyDark;
 
-  const changeTheme = () => {
+  const toggleTheme = () => {
     // Set local storage named key: value.
-    localStorage.currentTheme = !altTheme ? "light" : "dark";
+    localStorage.currentTheme = !altThemeEnabled ? "light" : "dark";
     // Toggle between alt theme on and off.
-    setAltTheme(!altTheme);
+    setAltTheme(!altThemeEnabled);
   };
 
   useEffect(
     // Set the theme based on what is in local storage.
 
     () => setAltTheme(window.localStorage.getItem("currentTheme") === "light"),
-    [altTheme]
+    [altThemeEnabled]
   );
 
   // https://css-tricks.com/run-useeffect-only-once/
@@ -112,7 +71,7 @@ const DefaultLayout = ({ children }: any) => {
   return (
     <>
       <Helmet
-        title="Inches"
+        title="Edit Page :: Puma"
         meta={[
           {
             name: "description",
@@ -131,9 +90,36 @@ const DefaultLayout = ({ children }: any) => {
         content="black-translucent"
       ></meta>
       <link rel="manifest" href="./shelley.webmanifest"></link>
-      <link rel="stylesheet" href="https://use.typekit.net/bml4mzu.css"></link>
+      {/* <link rel="stylesheet" href="https://use.typekit.net/bml4mzu.css"></link> */}
 
-      {/* <Header {...{ altTheme, changeTheme }} /> */}
+      <Header {...{ altThemeEnabled, toggleTheme }}>
+        <nav>
+          <Link
+            to="/finder"
+            style={{
+              textDecoration: "none"
+            }}
+          >
+            Content
+          </Link>
+          <Link
+            to="/finder"
+            style={{
+              textDecoration: "none"
+            }}
+          >
+            Media
+          </Link>
+          <Link
+            to="/admin"
+            style={{
+              textDecoration: "none"
+            }}
+          >
+            Settings
+          </Link>
+        </nav>
+      </Header>
 
       {children}
     </>

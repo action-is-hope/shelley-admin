@@ -1,0 +1,64 @@
+/* = Default project vars. */
+:import {
+  -st-from: "@actionishope/shelley/styles/default/project.st.css";
+  -st-named:
+    --spacing-unit,
+    breakpoint-md,
+    breakpoint-md-max;
+}
+
+/* = Shelley project scope and vars. */
+:import {
+  -st-from: "./project.st.css";
+  -st-default: Puma;
+  -st-named:
+    /* = CSS3 Switcher vars. */
+    --color-ui-inverse,
+    --color-accent-1,
+    --color-accent-2,
+    --color-accent-3,
+    --color-accent-4,
+    --color-background-2;
+}
+
+/* = Root Component */
+:import {
+  -st-from: "../../components/Layout/layout.st.css";
+  -st-default: Layout;
+
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Text/text.st.css";
+  -st-default: Text;
+}
+
+:import {
+  -st-from: "@actionishope/shelley/components/Button/button.st.css";
+  -st-default: Button;
+}
+
+
+:import {
+  -st-from: '@actionishope/shelley/styles/default/mixins/focus.st.css';
+  -st-named:
+    pseudoFocus,
+    pseudoFocusVisible;
+}
+
+@st-scope Puma {
+  Layout {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    grid-template-rows: 64px 1fr 120px;
+    grid-template-areas:
+      'content preview'
+      'content preview'
+      'content actions';
+    background-color: transparent;
+    transition: background-color 160ms ease-in-out;
+    /*keeps border in view on fullscreen*/
+    /* padding-top: 1px; */
+  }
+
+}
