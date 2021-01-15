@@ -113,9 +113,9 @@ const Actions = React.forwardRef(
             <strong>{strings.status}</strong> {strings[status]}
           </Text>
           <Menu>
-            <ButtonGroup vol={4} tone={2} variant={3} fullWidth>
+            <ButtonGroup vol={4} tone={1} variant={3} fullWidth>
               <Button
-                tone={reviewRequired ? 1 : 2}
+                tone={reviewRequired ? 2 : 1}
                 fullWidth
                 onClick={() =>
                   reviewRequired ? onReview() : lookUp[status].onClick()
@@ -124,11 +124,12 @@ const Actions = React.forwardRef(
               >
                 {reviewRequired ? strings.reviewRequired : lookUp[status].text}
               </Button>
-              {reviewRequired ? (
+              {ActionsMenuButton}
+              {/* {reviewRequired ? (
                 <VisuallyHidden>{ActionsMenuButton}</VisuallyHidden>
               ) : (
                 ActionsMenuButton
-              )}
+              )} */}
             </ButtonGroup>
             <MenuList>
               <Text as="label" uppercase vol={1}>

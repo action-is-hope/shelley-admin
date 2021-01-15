@@ -2,18 +2,8 @@ import React from "react";
 import classnames from "classnames";
 import { st, classes } from "./header.st.css";
 import { classes as selection } from "../../styles/puma/inputSelection.st.css";
-
-import {
-  Toolbar,
-  InputSelection,
-  Icon,
-  Text,
-  Button
-} from "@actionishope/shelley";
-
-import ExpandIcon from "../icons/ExpandScreen";
-import CompressIcon from "../icons/CompressScreen";
-
+import { Toolbar, InputSelection, Icon, Button } from "@actionishope/shelley";
+import Menu from "../icons/Menu";
 import Flags from "country-flag-icons/react/3x2";
 
 interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -38,19 +28,22 @@ const Header = React.forwardRef(
         {...rest}
         ref={ref}
       >
-        <Flags.US title="United States" className={classes.flag} />
-
-        {/* <Button
+        {/* <Flags.US title="United States" className={classes.flag} /> */}
+        <Button
+          className={classes.siteSelectButton}
           variant={2}
           tone={10}
           vol={5}
           // icon={<ExpandIcon alt="Toggle full screen on" />}
-          icon={"▾"}
+          // icon={<Flags.US title="United States" className={classes.flag} />}
+          icon={<Menu />}
+          iconPos="start"
         >
-          USA
-        </Button> */}
+          <span>Publisher -</span> <span>USA</span>{" "}
+          <Flags.US title="United States" className={classes.flag} />
+        </Button>
 
-        <h1 className={classes.title}>
+        {/* <h1 className={classes.title}>
           <a
             href="/"
             style={{
@@ -59,7 +52,7 @@ const Header = React.forwardRef(
           >
             Puma publisher
           </a>
-        </h1>
+        </h1> */}
 
         {children}
         <div className={classes.controls}>

@@ -24,13 +24,16 @@ import Dialog from "./dialog.st.css";
 import Header from "./header.st.css";
 import Footer from "./footer.st.css";
 
+import ContentActions from "./contentActions.st.css";
+
 import Card from "./card.st.css";
 
 import ListBasic from "./listBasic.st.css";
 
-import Layout from "./layout.st.css";
+import EditorLayout from "./editorLayout.st.css";
 import PreviewModes from "./previewModes.st.css";
 import Preview from "./preview.st.css";
+import BlockEditor from "./blockEditor.st.css";
 import MetaDataEditor from "./metaDataEditor.st.css";
 
 // = Project
@@ -103,8 +106,8 @@ export const card = (...values: []) =>
 export const listBasic = (...values: []) =>
   getStylableClassNames(values, ListBasic, "listBasic");
 
-export const layout = (...values: []) =>
-  getStylableClassNames(values, Layout, "layout");
+export const editorLayout = (...values: []) =>
+  getStylableClassNames(values, EditorLayout, "editorLayout");
 
 export const previewModes = (...values: []) =>
   getStylableClassNames(values, PreviewModes, "previewModes");
@@ -112,8 +115,14 @@ export const previewModes = (...values: []) =>
 export const preview = (...values: []) =>
   getStylableClassNames(values, Preview, "preview");
 
+export const blockEditor = (...values: []) =>
+  getStylableClassNames(values, BlockEditor, "blockEditor");
+
 export const metaDataEditor = (...values: []) =>
   getStylableClassNames(values, MetaDataEditor, "metaDataEditor");
+
+export const contentActions = (...values: []) =>
+  getStylableClassNames(values, ContentActions, "contentActions");
 
 // = Main classname export
 export const Project = Puma.classes.root;

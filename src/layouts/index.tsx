@@ -2,30 +2,11 @@ import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import Link from "gatsby-link";
 import { Helmet } from "react-helmet";
-import { classes as style } from "./index.st.css";
 
 import { Project as Default } from "@actionishope/shelley/styles/default";
 import { Project as Shelley, Light, Dark } from "../styles/puma";
 
-import { classes as selection } from "../styles/puma/inputSelection.st.css";
-
-import { InputSelection, Icon } from "@actionishope/shelley";
 import Header from "../components/Header/Header";
-
-const Footer = () => (
-  <div className={style.footer}>
-    <div className={style.inner}>
-      {/* <Link
-        to="/"
-        style={{
-          textDecoration: "none"
-        }}
-      >
-        Home
-      </Link> */}
-    </div>
-  </div>
-);
 
 const DefaultLayout = ({ children }: any) => {
   // Define the class names for out theme.
@@ -89,6 +70,10 @@ const DefaultLayout = ({ children }: any) => {
         name="apple-mobile-web-app-status-bar-style"
         content="black-translucent"
       ></meta>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      />
       <link rel="manifest" href="./shelley.webmanifest"></link>
       {/* <link rel="stylesheet" href="https://use.typekit.net/bml4mzu.css"></link> */}
 

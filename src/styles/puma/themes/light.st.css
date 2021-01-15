@@ -20,6 +20,7 @@
     --select-icon;
 }
 
+
 :import {
   -st-from: "../project.st.css";
   -st-named:
@@ -43,7 +44,12 @@
     --color-background-2,
     --color-background-3,
     --color-background-4,
-    --color-background-modal,
+    /* = Border colors */
+    --color-border-1,
+    --color-border-2,
+    /* = Modal colours */
+    --color-background-modal-1,
+    --color-modal-border-1,
     /* = Text colours */
     --color-text-1,
     --color-text-2,
@@ -58,13 +64,12 @@
     --color-form-selection-track,
     --color-form-selection-mark, */
     /* = Gradiants */
-    --grad-1,
-    /* = Misc */
-    /* --select-icon, */
-    /* = Misc - CSS var only, fix?? */
-    /* --color-toggle-mark, */
-    --status-background,
-    --support-background;
+    --grad-1;
+}
+
+:import {
+  -st-from: "../../../components/BlockEditor/blockEditor.st.css";
+  -st-default: BlockEditor;
 }
 
 /* 
@@ -81,17 +86,25 @@
   --color-ui-raw-inverse: var(--light-01-raw);
 
   /* = Accent colours */
-  --color-accent-1: rgb(15, 108, 189);
-  --color-accent-2: rgb(3, 123, 70);
+  --color-accent-1: #1495b7;
+  --color-accent-2: rgb(15, 108, 189);
   --color-accent-3: rgb(171, 45, 201);
   --color-accent-4: rgb(134, 102, 30);
 
   /* = Background colours */
-  --color-background-1: rgba(239, 239, 239, 1) !important;
-  --color-background-2: rgb(255, 255, 255);
-  --color-background-3: rgb(255, 255, 255);
+  --color-background-1: #e8e8e8;
+  --color-background-2: #e2e2e2;
+  --color-background-3: #f3f3f3;
   --color-background-4: rgb(255, 255, 255, 0.8);
   --color-background-modal: rgba(249, 249, 249, 0.98);
+
+  /* = Border colors */
+  --color-border-1: #a8b9bd;
+  /* --color-border-2: green; */
+
+  /* = Modal colors */
+  --color-background-modal-1: #51a0af75;
+  --color-modal-border-1: #51a0af;
 
   /* = Text colours */
   --color-text-1: var(--dark-01);
@@ -117,6 +130,8 @@
   /* = Misc */
   /* --select-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='333333' xml:space='preserve'><path d='M13 4v2l-5 5-5-5v-2l5 5z'></path></svg>"); */
   --select-icon: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='333333' xml:space='preserve'><path d='M3 2v2l5 5 5-5v-2l-5 5z'></path><path d='M3 7v2l5 5 5-5v-2l-5 5z'></path></svg>");
-  --status-background: #ebbbbb;
-  --support-background: #cee1e7;
+}
+
+.root BlockEditor::mainContent {
+  /* background-color: var(--color-background-3); */
 }

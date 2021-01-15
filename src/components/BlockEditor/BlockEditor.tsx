@@ -15,8 +15,6 @@ import { st, classes } from "./blockEditor.st.css";
 import MoreHor from "../icons/MoreHor";
 import Badge from "../Badge/Badge";
 
-import { classes as spacing } from "@actionishope/shelley/styles/default/spacing.st.css";
-
 // TEMP
 export type SetContentManager = (
   visibility: boolean,

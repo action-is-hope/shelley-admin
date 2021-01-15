@@ -18,7 +18,6 @@ interface IndexPageProps {
 const IndexPage = ({ data }: IndexPageProps) => {
   return (
     <DefaultLayout>
-      {/* <EditPreview /> */}
       <EditPage />
     </DefaultLayout>
   );

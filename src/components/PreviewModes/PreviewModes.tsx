@@ -6,7 +6,8 @@ import { st, classes } from "./previewModes.st.css";
 import { InputSelection, Icon } from "@actionishope/shelley";
 
 interface PreviewModesProps extends React.HTMLAttributes<HTMLDivElement> {
-  setPreviewMode: (modeIndex: number) => void;
+  /** Callback with modeIndex as a single arg. */
+  onModeChange: (modeIndex: number) => void;
   previewMode: number;
 }
 const PreviewModes = React.forwardRef(
@@ -14,7 +15,7 @@ const PreviewModes = React.forwardRef(
     {
       className: classNameProp,
       children,
-      setPreviewMode,
+      onModeChange,
       previewMode,
       ...rest
     }: PreviewModesProps,
@@ -31,7 +32,7 @@ const PreviewModes = React.forwardRef(
           inputPos="bottom"
           className={classes.radio}
           checked={previewMode === 1}
-          onClick={() => setPreviewMode(1)}
+          onClick={() => onModeChange(1)}
           name="viewPort"
           label={
             <Icon
@@ -51,7 +52,7 @@ const PreviewModes = React.forwardRef(
           inputPos="bottom"
           className={classes.radio}
           checked={previewMode === 2}
-          onClick={() => setPreviewMode(2)}
+          onClick={() => onModeChange(2)}
           name="viewPort"
           label={
             <Icon alt="Laptop">
@@ -67,7 +68,7 @@ const PreviewModes = React.forwardRef(
           inputPos="bottom"
           className={classes.radio}
           checked={previewMode === 3}
-          onClick={() => setPreviewMode(3)}
+          onClick={() => onModeChange(3)}
           name="viewPort"
           label={
             <Icon alt="Tablet">
@@ -83,7 +84,7 @@ const PreviewModes = React.forwardRef(
           inputPos="bottom"
           className={classes.radio}
           checked={previewMode === 4}
-          onClick={() => setPreviewMode(4)}
+          onClick={() => onModeChange(4)}
           name="viewPort"
           label={
             <Icon alt="Mobile">

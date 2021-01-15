@@ -8,16 +8,9 @@ import { st, classes } from "./dialog.st.css";
 import { TransitionProps } from "react-transition-group/Transition";
 import { ReactFocusOnProps } from "react-focus-on/dist/es5/types";
 
-export function wrapEvent(theirHandler: any, ourHandler: any) {
-  return (event: React.SyntheticEvent) => {
-    theirHandler && theirHandler(event);
-    if (!event.defaultPrevented) {
-      return ourHandler(event);
-    }
-  };
-}
+import { wrapEvent } from "../Dialog/Dialog";
 
-export type DialogProps = {
+export type DialogContentProps = {
   /**
    * Controls whether the dialog is open or not.
    *
@@ -70,7 +63,7 @@ export type DialogProps = {
 
 /** Influenced by https://reacttraining.com/reach-ui/dialog */
 
-const Dialog = React.forwardRef(
+const DialogContent = React.forwardRef(
   (
     {
       className,
@@ -91,7 +84,7 @@ const Dialog = React.forwardRef(
       disableEscapeKey,
       disableBackgroundClick,
       ...rest
-    }: DialogProps,
+    }: DialogContentProps,
     forwardedRef?: React.Ref<HTMLDivElement>
   ) => {
     const activateFocusLock = React.useCallback(() => {
@@ -166,6 +159,6 @@ const Dialog = React.forwardRef(
   }
 );
 
-Dialog.displayName = "Dialog";
+DialogContent.displayName = "DialogContent";
 
-export default Dialog;
+export default DialogContent;

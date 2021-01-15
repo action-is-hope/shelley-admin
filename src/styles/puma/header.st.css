@@ -25,6 +25,7 @@
 :import {
   -st-from: "../../components/Header/header.st.css";
   -st-default: Header;
+  -st-named: flag;
 
 }
 
@@ -33,22 +34,40 @@
   -st-default: Text;
 }
 
+:import {
+  -st-from: "@actionishope/shelley/components/Icon/icon.st.css";
+  -st-default: Icon;
+}
+
 @st-scope Puma {
   Header {
     /* background: var(--color-background-2); */
     /* background: #75eaff36; */
     background-color: #75eaff52;
+    background-color: #34616d;
     color: #fff;
     border-style: solid;
     /* border-color: #777b7b; */
     border-color: #73e6fa63;
     border-width: 0 0 1px;
-    height: 65px;
+    border-width: 0;
+    height: 56px;
     position: relative;
-    z-index: 2000;
+    z-index: 1;
     justify-content: space-between;
   }
+}
 
+@media value(breakpoint-md) {
+  @st-scope Puma {
+
+    Header {
+      height: 65px;
+    }
+  }
+}
+
+@st-scope Puma {
   Header > nav {
     flex-grow: 1;
     /* display: flex;
@@ -76,12 +95,14 @@
   }
 
   Header::flag {
-    width: 41px;
-    opacity: .8;
+    width: 20px;
+    top: 1px;
+    opacity: .6;
     border: 1px solid #ffffffd1;
     position: relative;
     left: 6px;
     filter: grayscale(80%);
+    transition: opacity 0.3s ease, color 0.3s ease;
   }
 
   Header::title {
@@ -94,6 +115,30 @@
     letter-spacing: 10px;
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
+  }
+
+  Header::siteSelectButton {
+    letter-spacing: 6px;
+    font-size: 15px;
+    /* font-family: futura-pt, Helvetica Neue, Helvetica, Arial, sans-serif; */
+    font-weight: 400;
+    opacity: 1;
+  }
+
+  Header::siteSelectButton Icon {
+    font-size: calc(1em + 8px);
+    /* opacity: .6; */
+    transition: opacity 0.3s ease, color 0.3s ease;
+  }
+
+  Header::siteSelectButton:hover Icon {
+    opacity: 1;
+  }
+
+
+
+  Header::siteSelectButton:hover .flag {
+    opacity: 1;
   }
 
 

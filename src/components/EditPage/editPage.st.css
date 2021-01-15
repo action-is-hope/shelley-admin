@@ -48,36 +48,6 @@
 
   }
 
-  .root InputBase::fieldInput {
-    -webkit-font-smoothing: antialiased;
-  }
-
-
-  .header {
-    background: #0b0d12;
-    height: 64px;
-    /* position: fixed; */
-    width: 100vw;
-    z-index: 100;
-    /* top: -60px; */
-    /* transition: filter .15s ease-in-out; */
-    /* border-bottom: 1px solid #2f2f2f; */
-  }
-
-  .header,
-  /* .contentBlock.metaBlock, */
-  .actions,
-  .previewVisibility {
-    transition: filter 80ms ease-in-out, opacity 80ms ease-in-out;
-    filter: blur(0px)
-  }
-
-
-  .header:hover {
-    top: 0px;
-  }
-
-
   /* 
   .texture {
     background-size: 16px 16px;
@@ -94,23 +64,15 @@
     transform: scale(0.8);
     max-height: 75vh;
     transform-origin: center 0;
+
+    background: url("https://ik.imagekit.io/tcvka0ufln/iphone_u7ZlkmbSi.png");
+    background: url("https://ik.imagekit.io/tcvka0ufln/iphone-chrome-0.4_B9bCmf0UtEnNQ.png");
+
+    padding: 50px;
+    background-size: cover;
   }
 
 
-  .scroll {
-    height: calc(100vh - 64px);
-    overflow-x: hidden;
-    overflow-y: scroll;
-    /* = Gives 1px above the meta image block. - taken care of on with layout padding 1*/
-    /* margin-top: 1px; */
-    /* transform: translateZ(0); */
-  }
-
-
-
-  .menuItem {
-    padding: 20px
-  }
 
 
   .contentActions {

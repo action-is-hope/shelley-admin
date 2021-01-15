@@ -1,19 +1,17 @@
 import React from "react";
 import classnames from "classnames";
-import { st, classes } from "./layout.st.css";
+import { st, classes } from "./editorLayout.st.css";
 
-import { Grid, GridProps, Text } from "@actionishope/shelley";
-import { classes as grid } from "@actionishope/shelley/styles/default/grid.st.css";
-
-export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface EditorLayoutProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   gridMode: "fullScreenMode" | "focusMode" | false;
 }
-const Layout = ({
+const EditorLayout = ({
   className: classNameProp,
   children,
   gridMode = false,
   ...rest
-}: LayoutProps) => {
+}: EditorLayoutProps) => {
   return (
     <div
       className={st(classnames(classes.root, classNameProp), { gridMode })}
@@ -24,4 +22,4 @@ const Layout = ({
   );
 };
 
-export default Layout;
+export default EditorLayout;

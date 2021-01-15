@@ -1,4 +1,4 @@
-/* layout.st.css CSS API */
+/* editorLayout.st.css CSS API */
 .root {
   -st-states:
     gridMode(enum(fullScreenMode, focusMode));

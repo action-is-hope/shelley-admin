@@ -3,6 +3,10 @@
   -st-from: "@actionishope/shelley/styles/default/project.st.css";
   -st-named:
     --spacing-unit,
+    breakpoint-lg,
+    breakpoint-sm-max,
+    breakpoint-md,
+    breakpoint-md-max
 }
 
 /* = Shelley project scope and vars. */
@@ -11,8 +15,11 @@
   -st-default: Puma;
   -st-named:
     /* = CSS3 Switcher vars. */
+    --height-header-sm,
+    --height-header-md,
     --color-background-2,
     --color-ui-inverse,
+    --color-border-1,
     --color-accent-1,
     --color-accent-2,
     --color-accent-3,
@@ -39,13 +46,8 @@
 /* = This is how we can scope the styles in Stylable. */
 @st-scope Puma {
   MetaData {
-    /* background: var(--color-background-2); */
-    background-color: #0b0d12fa;
-    border: 1px dashed #50505085;
-    border-width: 0 0 1px;
-    border-bottom-color: #ffffff6b;
-    border-bottom-color: #2f2f2f;
-
+    background: var(--color-background-2);
+    border-bottom: 1px dashed var(--color-border-1);
     margin-top: 0;
     margin-bottom: 20px;
     position: sticky;
@@ -54,9 +56,7 @@
     /* = Enables smooth transition for focusOn dialog behavior. */
     transition: filter 80ms ease-in-out, opacity 80ms ease-in-out;
     filter: blur(0px);
-
     backdrop-filter: blur(3px);
-
   }
 
   MetaData::inner {
@@ -70,16 +70,17 @@
 
   MetaData Grid:variant(2) {
     padding-left: 50px;
+    padding-left: calc(var(--spacing-unit) * 2);
     grid-gap: var(--spacing-unit);
     grid-template-columns: 1fr 1.15fr;
   }
 
-
-
   MetaData::tdi {
     display: grid;
     grid-gap: calc(var(--spacing-unit) * 1);
+
     grid-template-columns: 120px auto;
+    grid-template-columns: 96px auto;
   }
 
   MetaData::tdi img {
@@ -92,7 +93,9 @@
     padding-top: 0;
     padding-bottom: 0
   }
+}
 
+@st-scope Puma {
   /* 
   Grid.metaGrid::after {
     content: "";
@@ -104,12 +107,9 @@
     bottom: 0;
   } */
 
-
-
-
   /* State */
   MetaData:mini::inner {
-    height: 63px;
+    height: var(--height-header-sm);
     opacity: 0.95;
   }
 
@@ -125,9 +125,19 @@
   MetaData:mini:focus-within::tdi img {
     transform: translateY(0);
   }
+}
+
+@media value(breakpoint-md) {
+  @st-scope Puma {
+    MetaData:mini::inner {
+      height: var(--height-header-md);
+      opacity: 0.95;
+    }
+  }
+}
 
 
-  /* .spacer {
+/* .spacer {
     height: 0;
     width: 100px;
     transition: height ease-in 170ms;
@@ -136,6 +146,3 @@
   MetaData:mini + .spacer {
     height: 47px;
   } */
-
-
-}

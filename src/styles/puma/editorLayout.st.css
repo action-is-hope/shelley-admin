@@ -3,6 +3,8 @@
   -st-from: "@actionishope/shelley/styles/default/project.st.css";
   -st-named:
     --spacing-unit,
+    breakpoint-lg,
+    breakpoint-sm-max,
     breakpoint-md,
     breakpoint-md-max;
 }
@@ -13,17 +15,23 @@
   -st-default: Puma;
   -st-named:
     /* = CSS3 Switcher vars. */
+    --height-header-sm,
+    --height-header-md,
     --color-ui-inverse,
     --color-accent-1,
     --color-accent-2,
     --color-accent-3,
     --color-accent-4,
-    --color-background-2;
+    --color-border-1,
+    --color-background-1,
+    --color-background-2,
+    --color-background-3,
+    --color-modal-border-1;
 }
 
 /* = Root Component */
 :import {
-  -st-from: "../../components/Layout/layout.st.css";
+  -st-from: "../../components/EditorLayout/editorLayout.st.css";
   -st-default: Layout;
 
 }
@@ -46,45 +54,78 @@
     pseudoFocusVisible;
 }
 
+
+
 @st-scope Puma {
   Layout {
     display: grid;
-    grid-template-columns: 55% 45%;
-    grid-template-rows: 64px 1fr 120px;
+    grid-template-columns: 100vw 100vw;
+    grid-template-rows: var(--height-header-sm) 1fr 120px;
     grid-template-areas:
       'content preview'
       'content preview'
       'content actions';
     background-color: transparent;
     transition: background-color 160ms ease-in-out;
-    /*keeps border in view on fullscreen*/
-    /* padding-top: 1px; */
   }
+}
 
+@media value(breakpoint-md) {
+  @st-scope Puma {
+    Layout {
+      grid-template-columns: 55% 45%;
+      grid-template-rows: var(--height-header-md) 1fr 120px;
+    }
+  }
+}
+
+
+@media value(breakpoint-md-max) {
+  @st-scope Puma {
+    Layout {
+      scroll-snap-type: x mandatory;
+      overflow-x: scroll;
+      overflow-y: hidden;
+    }
+
+    Layout .content,
+    Layout .preview {
+      scroll-snap-align: start;
+    }
+  }
+}
+
+
+@st-scope Puma {
   Layout .preview {
-    transition: all 160ms;
-    width: 45vw;
-    position: absolute;
-    left: 55vw;
-    top: 64px;
-    bottom: 0;
-  }
-
-  Layout:gridMode(fullScreenMode) .preview {
-    left: 0;
-    z-index: 1000;
+    transition: width 160ms, left 160ms, opacity 160ms;
+    position: static;
     width: 100vw;
   }
+}
 
+@media value(breakpoint-md) {
+  @st-scope Puma {
+    Layout .preview {
+      width: 45vw;
+      position: absolute;
+      left: 55vw;
+      top: var(--height-header-md);
+      bottom: 0;
+    }
 
-  Layout:gridMode(fullScreenMode) .previewModes {
-    grid-column: 1 / span 2;
-    z-index: 1002;
+    Layout:gridMode(fullScreenMode) .preview {
+      left: 0;
+      z-index: 50;
+      width: 100vw;
+    }
   }
+}
 
-  Layout:gridMode(fullScreenMode) .previewFullScreen {
-    z-index: 1002;
-  }
+
+
+
+@st-scope Puma {
 
   Layout:gridMode(fullScreenMode) .togglePreviewButton {
     opacity: 0;
@@ -110,95 +151,92 @@
   Layout:gridMode(focusMode) .preview {
     opacity: 0;
   }
+}
+
+@st-scope Puma {
 
   /* = Child classes used in conjuntion with the grid main component. */
   .content {
     grid-area: content;
     transition: transform 160ms ease-in-out;
-    background: #0f1118;
-    z-index: 1000;
+    background-color: var(--color-background-1);
+    z-index: 50;
     position: relative;
-    /* border-top: 1px solid #2f2f2f;
-    margin-top: -1px; */
   }
+}
 
-  /* = Toggles the preview on/off. */
-  .previewVisibility {
-    grid-area: previewModes;
-    /* margin-left: -42px; */
-    margin-left: 20px;
-    width: 94px;
-    z-index: 100;
-  }
-
-  /* = Switches social/desktop/tablet/mobile. */
-  .previewModes {
-    max-height: 64px;
-    width: 100%;
-    text-align: center;
-    border-bottom: 1px dashed #5050506e;
-    z-index: 1;
-    padding-top: 18px;
-    transition: border 80ms ease-in-out, margin 80ms ease-in-out;
-  }
+@st-scope Puma {
 
   /* = Houses the fullscreen preview button. */
-  .previewFullScreen {
+  .previewActions {
     grid-area: preview;
     justify-self: flex-end;
-    z-index: 2000;
+    z-index: 100;
+    height: var(--height-header-md);
     width: 200px;
     display: flex;
     justify-content: flex-end;
     margin-right: 52px;
   }
 
-  .previewFullScreen Button {
-    height: 64px;
+  .previewActions Button {
+    height: var(--height-header-md);
     border-width: 0 1px;
     border-radius: 0;
     margin-right: -1px;
-    border-color: #111111;
+    border-color: var(--color-border-1);
     transition: opacity 80ms ease-in-out;
   }
+}
 
 
+@media value(breakpoint-md-max) {
+  @st-scope Puma {
 
+    .previewActions {
+      display: none;
+    }
+  }
+}
+
+@st-scope Puma {
   .preview {
     grid-area: preview;
     border-style: solid;
     border-width: 1px 0 0 1px;
     display: grid;
-    grid-template-rows: 64px 1fr;
+    grid-template-rows: var(--height-header-md) 1fr;
     grid-template-columns: 1fr;
     width: 100%;
     align-items: center;
     justify-items: center;
-    border-color: #2f2f2f;
-    background: #000;
+    border-color: var(--color-border-1);
+    background-color: var(--color-background-3);
+    border-top-color: transparent;
   }
 
   :global(body.on) .previewVisibility[data-focus-on-hidden] + .previewModes {
-    border-color: #463a9a;
-    /* border-bottom-color: #6656c1; */
+    border-color: var(--color-modal-border-1);
+
   }
 
   :global(body.on) .preview {
-    border-color: #463a9a;
+    border-color: var(--color-modal-border-1);
   }
 
   .actions {
     z-index: 10;
     grid-area: actions;
-    background: #0f1118;
-    border-top: 1px solid #2f2f2f;
+    background: var(--color-background-1);
+
+    border-top: 1px solid var(--color-border-1);
     transition: border 80ms ease-in-out, opacity 80ms ease-in-out;
   }
 
   :global(body.on) .actions {
     opacity: 1 !important;
     filter: blur(0px) !important;
-    border-color: #463a9a;
+    border-color: var(--color-modal-border-1);
   }
 
   .actions div {

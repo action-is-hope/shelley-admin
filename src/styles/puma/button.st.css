@@ -63,6 +63,7 @@
   Button {
     /* We'll assign this via our variants but set it with our tones. */
     --accent: initial;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* = 'Text'  */
