@@ -17,10 +17,9 @@ import { classes as text } from "@actionishope/shelley/styles/default/text.st.cs
 import { classes as grid } from "@actionishope/shelley/styles/default/grid.st.css";
 import { classes as spacing } from "@actionishope/shelley/styles/default/spacing.st.css";
 
-import Banner from "../components/Banner/Banner";
 import Dialog from "../components/Dialog/Dialog";
 
-import { usePopper } from "react-popper";
+// import { usePopper } from "react-popper";
 
 // Please note that you can use https://github.com/dotansimha/graphql-code-generator
 // to generate all types from graphQL schema.
@@ -44,10 +43,10 @@ const IndexPage = ({ data }: IndexPageProps) => {
     null
   );
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [{ name: "arrow", options: { element: arrowElement } }],
-    placement: "auto-end"
-  });
+  // const { styles, attributes } = usePopper(referenceElement, popperElement, {
+  //   modifiers: [{ name: "arrow", options: { element: arrowElement } }],
+  //   placement: "auto-end"
+  // });
 
   const [backlogModalOpen, setBacklogModalOpen] = useState(false);
   const [modelClickAway, setModelClickAway] = useState(true);
@@ -67,12 +66,6 @@ const IndexPage = ({ data }: IndexPageProps) => {
 
   return (
     <DefaultLayout>
-      <Banner>
-        <H1 vol={8} uppercase>
-          Shelley
-        </H1>
-      </Banner>
-
       <Button variant={2} onClick={() => setBacklogModalOpen(true)}>
         Open
       </Button>
@@ -98,8 +91,8 @@ const IndexPage = ({ data }: IndexPageProps) => {
       >
         <div
           ref={setPopperElement}
-          style={styles.popper}
-          {...attributes.popper}
+          // style={styles.popper}
+          // {...attributes.popper}
         >
           <Button variant={2} onClick={() => toggleBacklogModal()}>
             Close
@@ -110,7 +103,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
             Got me!
           </Button>
           <input ref={inputRef} />
-          <div ref={setArrowElement} style={styles.arrow} />
+          {/* <div ref={setArrowElement} style={styles.arrow} /> */}
         </div>
       </Dialog>
 
@@ -205,7 +198,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
             style={{ width: "100%" }}
           />
           <Text
-            tag="figcaption"
+            as="figcaption"
             vol={2}
             className={classnames(grid.mid, spacing.mt1)}
           >
@@ -235,7 +228,7 @@ const IndexPage = ({ data }: IndexPageProps) => {
         </P>
 
         <form className={classnames(grid.mid, spacing.mt2)}>
-          <Text tag="legand" vol={3} className={spacing.mb2}>
+          <Text as="legand" vol={3} className={spacing.mb2}>
             My form
           </Text>
           <InputText

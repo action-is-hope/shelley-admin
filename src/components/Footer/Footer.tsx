@@ -2,8 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { st, classes } from "./footer.st.css";
 
-import { Grid, GridProps, Text } from "@actionishope/shelley";
-import { Link } from "gatsby";
+import { Grid, GridProps } from "@actionishope/shelley";
 import { classes as grid } from "@actionishope/shelley/styles/default/grid.st.css";
 
 const Footer = ({ className: classNameProp, children, ...rest }: GridProps) => {
@@ -14,13 +13,7 @@ const Footer = ({ className: classNameProp, children, ...rest }: GridProps) => {
       {...rest}
     >
       <nav className={grid.goal}>
-        <ul className={classes.navList}>
-          <Text uppercase vol={4} tag="li">
-            <Link className={classes.navItem} to="/page-2">
-              Page 2
-            </Link>
-          </Text>
-        </ul>
+        <ul className={classes.navList}>{children}</ul>
       </nav>
       {children}
     </Grid>

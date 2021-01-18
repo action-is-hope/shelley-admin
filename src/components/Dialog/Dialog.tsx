@@ -58,7 +58,10 @@ export type DialogProps = {
   // ref: React.Ref<HTMLDivElement>;
   entryNode?: any;
   transitionProps: TransitionProps;
-  focusOnProps?: ReactFocusOnProps;
+  focusOnProps?: Pick<
+    ReactFocusOnProps,
+    Exclude<keyof ReactFocusOnProps, "children">
+  >;
   theme?: string;
   variant?: number | boolean;
   transition?: number | boolean;
@@ -77,7 +80,7 @@ const Dialog = React.forwardRef(
       className,
       children,
       contentClassName,
-      // entryNode ,
+      entryNode: entryNodeProp = "body",
       focusOnProps: FocusOnPropsInput,
       initialFocusRef,
       isOpen,
@@ -99,9 +102,8 @@ const Dialog = React.forwardRef(
     const [entryNode, setEntryNode] = React.useState<any>(false);
 
     React.useEffect(() => {
-      setEntryNode(document.body);
+      entryNodeProp === "body" && setEntryNode(document.body);
       // entryNode = document && document.body
-      // // Run! Like go get some data from an API.
 
       // // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
       // const vh = window.innerHeight * 0.01;
@@ -115,7 +117,7 @@ const Dialog = React.forwardRef(
       //   const vh = window.innerHeight * 0.01;
       //   document.documentElement.style.setProperty("--vh", `${vh}px`);
       // });
-    }, []);
+    }, [entryNodeProp]);
 
     const activateFocusLock = React.useCallback(() => {
       if (initialFocusRef && initialFocusRef.current) {
@@ -145,6 +147,7 @@ const Dialog = React.forwardRef(
        * Possible work around to use shards?
        */
       noIsolation: !transitionProps.unmountOnExit
+      // onClickOutside: () => console.log("hello")
     };
 
     const component = (
