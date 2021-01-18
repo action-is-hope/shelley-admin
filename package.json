@@ -35,6 +35,8 @@
   "main": "n/a",
   "scripts": {
     "type-check": "tsc",
+    "clean": "rimraf dist",
+    "copy": "copyfiles -u 1 \"./src/**/*.st.css\" \"./src/**/*.css\" \"./src/**/*.js\" dist && copyfiles package.json \"./package.json\" dist && copyfiles README.md \"./README.md\" dist",
     "lint": "eslint --ignore-path .gitignore . --ext ts --ext tsx --ext js --ext jsx",
     "lint:fix": "npm run lint --fix",
     "build": "gatsby build",
@@ -71,6 +73,7 @@
     "babel-jest": "^26.1.0",
     "babel-preset-gatsby": "^0.5.2",
     "bufferutil": "^4.0.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -81,6 +84,7 @@
     "prettier": "^2.0.5",
     "react-syntax-highlighter": "^12.2.1",
     "react-test-renderer": "^16.13.1",
+    "rimraf": "3.0.2",
     "ts-jest": "^26.1.3",
     "typescript": "^3.9.7",
     "utf-8-validate": "^5.0.2"

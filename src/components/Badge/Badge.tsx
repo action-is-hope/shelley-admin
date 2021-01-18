@@ -2,8 +2,6 @@ import React from "react";
 import classnames from "classnames";
 import { st, classes } from "./badge.st.css";
 
-import { classes as spacing } from "@actionishope/shelley/styles/default/spacing.st.css";
-
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   badgeContent?: React.ReactNode;
   dot?: boolean;
