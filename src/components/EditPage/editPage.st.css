@@ -36,25 +36,7 @@
 }
 
 @st-scope Puma {
-  .root {
-    /* background: pink;
-    grid-template-areas: 'editor preview''. preview'; */
-    /* display: grid;
-    grid-template-rows: 64px auto;
-    height: 100vh; */
-
-    /* --transition-opacity: */
-    /* #6656c1 */
-
-  }
-
-  /* 
-  .texture {
-    background-size: 16px 16px;
-    background-image: linear-gradient(45deg, #f2f2f2 25%, transparent 25%), linear-gradient(-45deg, #f2f2f2 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f2f2f2 75%), linear-gradient(-45deg, transparent 75%, #f2f2f2 75%);
-    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
-  } */
-
+  .root {}
 
   .appWrap {
     background: #fff;
@@ -70,33 +52,5 @@
 
     padding: 50px;
     background-size: cover;
-  }
-
-
-
-
-  .contentActions {
-    position: sticky;
-    bottom: 1px;
-
-    /* width: 100%; */
-    /* background: #0f1118ed; */
-    background: linear-gradient(0deg, rgba(15, 17, 24, 0.927608543417367) 85%, rgba(15, 17, 24, 0.6082808123249299) 100%);
-    background: rgb(15, 17, 24);
-    background: linear-gradient(0deg, rgba(15, 17, 24, 0.927608543417367) 43%, rgba(15, 17, 24, 0.6082808123249299) 100%);
-    z-index: 100;
-    height: 69px;
-    /* border-top: 1px dashed #2d2d31; */
-    /* border-right: 1px dashed #2d2d31; */
-    display: flex;
-    justify-content: center;
-    /* margin: 10px; */
-    padding: 0px 0 28px;
-  }
-
-  .contentActions Button {
-    background: #0b0d12;
-    color: #75eaff;
-    width: 34%;
   }
 }

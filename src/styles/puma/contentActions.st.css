@@ -3,6 +3,7 @@
   -st-from: "@actionishope/shelley/styles/default/project.st.css";
   -st-named:
     --spacing-unit,
+    breakpoint-sm;
 }
 
 /* = Shelley project scope and vars. */
@@ -48,11 +49,9 @@
     padding: 0px 0 28px;
   }
 
-
   ContentActions Button {
-    background: #0b0d12;
-    color: #75eaff;
-    width: 34%;
+    padding-left: 8%;
+    padding-right: 8%;
   }
 
 }

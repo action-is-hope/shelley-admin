@@ -1,11 +1,11 @@
 {
-  "name": "@actionishope/shelley",
+  "name": "@actionishope/shelley-admin",
   "version": "0.1.1-alpha.1",
   "license": "ISC",
   "description": "Shelley + Stylable Gatsby starter kit.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/action-is-hope/starter-kits.git"
+    "url": "git+https://github.com/action-is-hope/shelley-admin.git"
   },
   "keywords": [
     "a11y",
@@ -17,9 +17,9 @@
   ],
   "author": "Action is Hope<info@action-is-hope.earth>",
   "bugs": {
-    "url": "https://github.com/action-is-hope/starter-kits/issues"
+    "url": "https://github.com/action-is-hope/shelley-admin/issues"
   },
-  "homepage": "https://github.com/action-is-hope/starter-kits#readme",
+  "homepage": "https://github.com/action-is-hope/shelley-admin#readme",
   "dependencies": {
     "@actionishope/shelley": "^0.1.1-alpha.29",
     "@types/lodash.throttle": "^4.1.6",
@@ -39,6 +39,7 @@
     "lint:fix": "npm run lint --fix",
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "build-dist": "npm run clean && npm run copy && tsc --build tsconfig-npm.json && rimraf dist/layouts && rimraf dist/pages",
     "format": "prettier --parser typescript --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.ts*\"",
     "test": "jest"
   },

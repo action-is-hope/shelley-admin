@@ -1,12 +1,9 @@
 import React from "react";
 import classnames from "classnames";
-import { st, classes } from "./layoutFinder.st.css";
-
-import { Grid, GridProps, Text } from "@actionishope/shelley";
-import { classes as grid } from "@actionishope/shelley/styles/default/grid.st.css";
+import { st, classes } from "./finderLayout.st.css";
 
 export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
-  gridMode?: "fullScreenMode" | "focusMode" | false;
+  gridMode?: string | false;
 }
 const Layout = ({
   className: classNameProp,

@@ -13,7 +13,7 @@ import CompressIcon from "../icons/CompressScreen";
 import Dialog from "../Dialog/Dialog";
 import { FocusOn } from "react-focus-on";
 
-import LayoutFinder from "../LayoutFinder/LayoutFinder";
+import FinderLayout from "../FinderLayout/FinderLayout";
 import { classes as layout } from "../../styles/puma/layoutFinder.st.css";
 
 import {
@@ -70,7 +70,7 @@ const Finder = ({ className: classNameProp, ...rest }: any) => {
   return (
     // <DefaultLayout>
     <div className={st(classnames(classes.root, classNameProp))}>
-      <LayoutFinder>
+      <FinderLayout>
         <div>Side col</div>
         <div>
           <TableContainer>
@@ -140,7 +140,7 @@ const Finder = ({ className: classNameProp, ...rest }: any) => {
             />
           </TableContainer>
         </div>
-      </LayoutFinder>
+      </FinderLayout>
     </div>
     // </DefaultLayout>
   );

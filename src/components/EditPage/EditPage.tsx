@@ -5,33 +5,28 @@ import _throttle from "lodash.throttle";
 import classnames from "classnames";
 import { st, classes } from "./editPage.st.css";
 
-import PreviewIcon from "../icons/Preview";
-import PreviewOffIcon from "../icons/PreviewOff";
-
-import ExpandIcon from "../icons/ExpandScreen";
-import CompressIcon from "../icons/CompressScreen";
-
 import EditorLayout from "../EditorLayout/EditorLayout";
-import { classes as layout } from "../../styles/puma/layout.st.css";
+import { classes as layout } from "../../styles/puma/editorLayout.st.css";
 
-import { Button, Icon, InputText, P, H2, Label } from "@actionishope/shelley";
+import { Button, InputText, P, H2, Label } from "@actionishope/shelley";
 import BlockEditor from "../BlockEditor/BlockEditor";
 import MetaDataEditor from "../MetaDataEditor/MetaDataEditor";
 import Preview from "../Preview/Preview";
-import Actions, { statusOptions } from "../Actions/Actions";
+import PageActions, { statusOptions } from "../PageActions/PageActions";
 import ContentArea from "../ContentArea/ContentArea";
 import ContentActions from "../ContentActions/ContentActions";
+import PreviewActions from "../PreviewActions/PreviewActions";
 
 const EditPreview = () => {
   /** Refs */
   const preview = useRef<HTMLDivElement>(null);
   const previewModes = useRef<HTMLDivElement>(null);
   const previewActions = useRef<HTMLDivElement>(null);
-  const fullScreenButton = useRef<HTMLButtonElement>(null);
-  const previewButton = useRef<HTMLButtonElement>(null);
+  const fullScreenModeButton = useRef<HTMLButtonElement>(null);
+  const focusModeButton = useRef<HTMLButtonElement>(null);
 
   /** States */
-  const [focusMode, setPreviewHidden] = useState<boolean>(false);
+  const [focusMode, setFocusMode] = useState<boolean>(false);
   const [previewMode, setPreviewMode] = useState<number>(1);
   const [fullScreenMode, setFullScreenMode] = useState<boolean>(false);
   const [reviewRequired, setReviewRequired] = useState(true);
@@ -50,8 +45,8 @@ const EditPreview = () => {
         onScrolled={(status: boolean) => setSliderScrolled(status)}
         focusOnProps={{
           enabled: focusMode,
-          onEscapeKey: () => setPreviewHidden(false),
-          shards: [previewButton]
+          onEscapeKey: () => setFocusMode(false),
+          shards: [focusModeButton]
         }}
       >
         <MetaDataEditor
@@ -240,46 +235,23 @@ const EditPreview = () => {
           />
         </BlockEditor>
 
-        {/* <div className={classes.contentActions}>
-          <Button vol={4}>Add content block</Button>
-        </div> */}
-
         <ContentActions>
-          <Button vol={4}>Add content block</Button>
+          <Button vol={4} variant={3} tone={3}>
+            Add content block
+          </Button>
         </ContentActions>
       </ContentArea>
 
-      <div className={layout.previewActions} ref={previewActions}>
-        <Button
-          onClick={() => setPreviewHidden(!focusMode)}
-          variant={2}
-          vol={5}
-          ref={previewButton}
-          className={layout.togglePreviewButton}
-          icon={
-            focusMode ? (
-              <PreviewOffIcon alt="Toggle preview on" />
-            ) : (
-              <PreviewIcon alt="Toggle preview off" />
-            )
-          }
-        />
-        <Button
-          variant={2}
-          vol={5}
-          ref={fullScreenButton}
-          className={layout.toggleFullScreenButton}
-          onClick={() => setFullScreenMode(!fullScreenMode)}
-          // icon={<ExpandIcon alt="Toggle full screen on" />}
-          icon={
-            !fullScreenMode ? (
-              <ExpandIcon alt="Toggle full screen on" />
-            ) : (
-              <CompressIcon alt="Toggle full screen off" />
-            )
-          }
-        />
-      </div>
+      <PreviewActions
+        className={layout.previewActions}
+        ref={previewActions}
+        focusMode={focusMode}
+        refFocusButton={focusModeButton}
+        onFocusClick={setFocusMode}
+        fullScreenMode={fullScreenMode}
+        refFullScreenButton={fullScreenModeButton}
+        onFullScreenClick={setFullScreenMode}
+      />
 
       <Preview
         className={layout.preview}
@@ -290,7 +262,7 @@ const EditPreview = () => {
         focusOnProps={{
           enabled: fullScreenMode,
           onEscapeKey: () => setFullScreenMode(false),
-          shards: [previewModes, fullScreenButton]
+          shards: [previewModes, fullScreenModeButton]
         }}
       >
         <div className={classnames(classes.appWrap, "iframe")}>
@@ -309,8 +281,8 @@ const EditPreview = () => {
           <P>Block3</P>
         </div>
       </Preview>
-      {/* <div className={layout.actions}>hi</div> */}
-      <Actions
+
+      <PageActions
         className={layout.actions}
         status={status}
         lastSaved="5 mins ago"

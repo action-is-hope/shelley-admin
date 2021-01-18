@@ -95,9 +95,12 @@
   --color-background-modal-1: #51a0af75;
   --color-modal-border-1: #51a0af;
 
-  /* #51a0af94 */
+  /* = Focus mode colors */
+  --color-focus-mode-background: #000;
 
-
+  /* = Header colors */
+  --color-header-background: #21525f;
+  --color-header-border: #73e6fa63;
 
   /* = Text colors */
   --color-text-1: var(--light-01);

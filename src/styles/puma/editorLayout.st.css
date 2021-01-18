@@ -26,7 +26,8 @@
     --color-background-1,
     --color-background-2,
     --color-background-3,
-    --color-modal-border-1;
+    --color-modal-border-1,
+    --color-focus-mode-background;
 }
 
 /* = Root Component */
@@ -44,6 +45,11 @@
 :import {
   -st-from: "@actionishope/shelley/components/Button/button.st.css";
   -st-default: Button;
+}
+
+:import {
+  -st-from: "../../components/PreviewActions/previewActions.st.css";
+  -st-default: PreviewActions;
 }
 
 
@@ -110,7 +116,7 @@
       width: 45vw;
       position: absolute;
       left: 55vw;
-      top: var(--height-header-md);
+      top: calc(var(--height-header-md) - 1px);
       bottom: 0;
     }
 
@@ -127,11 +133,11 @@
 
 @st-scope Puma {
 
-  Layout:gridMode(fullScreenMode) .togglePreviewButton {
+  Layout:gridMode(fullScreenMode) PreviewActions::toggleFocusButton {
     opacity: 0;
   }
 
-  Layout:gridMode(focusMode) .toggleFullScreenButton {
+  Layout:gridMode(focusMode) PreviewActions::toggleFullScreenButton {
     opacity: 0;
   }
 
@@ -141,7 +147,7 @@
 
 
   Layout:gridMode(focusMode) {
-    background-color: #000;
+    background-color: var(--color-focus-mode-background);
   }
 
   Layout:gridMode(focusMode) .content {
@@ -212,12 +218,12 @@
     justify-items: center;
     border-color: var(--color-border-1);
     background-color: var(--color-background-3);
-    border-top-color: transparent;
+    border-top-color: #4d98a7;
+    /* #3e3e3e */
   }
 
   :global(body.on) .previewVisibility[data-focus-on-hidden] + .previewModes {
     border-color: var(--color-modal-border-1);
-
   }
 
   :global(body.on) .preview {
@@ -228,7 +234,6 @@
     z-index: 10;
     grid-area: actions;
     background: var(--color-background-1);
-
     border-top: 1px solid var(--color-border-1);
     transition: border 80ms ease-in-out, opacity 80ms ease-in-out;
   }

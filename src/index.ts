@@ -5,9 +5,6 @@
 
 /** Default components in alphabetical order */
 
-export { default as Actions } from "./components/Actions/Actions";
-export * from "./components/Actions/Actions";
-
 export { default as Badge } from "./components/Badge/Badge";
 export * from "./components/Badge/Badge";
 
@@ -29,60 +26,61 @@ export * from "./components/Dialog/Dialog";
 export { default as DialogContent } from "./components/DialogContent/DialogContent";
 export * from "./components/DialogContent/DialogContent";
 
-export { default as InputBase } from "./components/InputBase/InputBase";
-export * from "./components/InputBase/InputBase";
+export { default as EditorLayout } from "./components/EditorLayout/EditorLayout";
+export * from "./components/EditorLayout/EditorLayout";
 
-export { default as InputSelect } from "./components/InputSelect/InputSelect";
-export * from "./components/InputSelect/InputSelect";
+export { default as Finder } from "./components/Finder/Finder";
+export * from "./components/Finder/Finder";
 
-export { default as InputSelection } from "./components/InputSelection/InputSelection";
-export * from "./components/InputSelection/InputSelection";
+export { default as FinderLayout } from "./components/FinderLayout/FinderLayout";
+export * from "./components/FinderLayout/FinderLayout";
 
-export { default as InputSelectionControl } from "./components/InputSelectionControl/InputSelectionControl";
-export * from "./components/InputSelectionControl/InputSelectionControl";
+export { default as Footer } from "./components/Footer/Footer";
+export * from "./components/Footer/Footer";
 
-export { default as InputText } from "./components/InputText/InputText";
-export * from "./components/InputText/InputText";
+export { default as Header } from "./components/Header/Header";
+export * from "./components/Header/Header";
 
-export { default as Label } from "./components/Label/Label";
-export * from "./components/Label/Label";
+export { default as MetaDataEditor } from "./components/MetaDataEditor/MetaDataEditor";
+export * from "./components/MetaDataEditor/MetaDataEditor";
 
-export * from "./components/Menu/Menu";
+export { default as PageActions } from "./components/PageActions/PageActions";
+export * from "./components/PageActions/PageActions";
 
-export { default as Text } from "./components/Text/Text";
-export * from "./components/Text/Text";
+export { default as Preview } from "./components/Preview/Preview";
+export * from "./components/Preview/Preview";
 
-export { default as Table } from "./components/Table/Table";
-export * from "./components/Table/Table";
+export { default as PreviewModes } from "./components/PreviewModes/PreviewModes";
+export * from "./components/PreviewModes/PreviewModes";
 
-export { default as TableBody } from "./components/TableBody/TableBody";
-export * from "./components/TableBody/TableBody";
+// Icons - TEMP - Move to package...
 
-export { default as TableCell } from "./components/TableCell/TableCell";
-export * from "./components/TableCell/TableCell";
+export { default as AddIconn } from "./components/icons/Add";
+export * from "./components/icons/Add";
 
-export { default as TableContainer } from "./components/TableContainer/TableContainer";
-export * from "./components/TableContainer/TableContainer";
+export { default as AddToBoardIcon } from "./components/icons/AddToBoard";
+export * from "./components/icons/AddToBoard";
 
-export { default as TableHead } from "./components/TableHead/TableHead";
-export * from "./components/TableHead/TableHead";
+export { default as ArrowDown2Icon } from "./components/icons/ArrowDown2";
+export * from "./components/icons/ArrowDown2";
 
-export { default as TableRow } from "./components/TableRow/TableRow";
-export * from "./components/TableRow/TableRow";
+export { default as CompressScreenIcon } from "./components/icons/CompressScreen";
+export * from "./components/icons/CompressScreen";
 
-export { default as TablePagination } from "./components/TablePagination/TablePagination";
-export * from "./components/TablePagination/TablePagination";
+export { default as ExpandScreenIcon } from "./components/icons/ExpandScreen";
+export * from "./components/icons/ExpandScreen";
 
-export { default as Toolbar } from "./components/Toolbar/Toolbar";
-export * from "./components/Toolbar/Toolbar";
+export { default as MenuIcon } from "./components/icons/Menu";
+export * from "./components/icons/Menu";
 
-export { default as VisuallyHidden } from "./components/VisuallyHidden/VisuallyHidden";
-export * from "./components/VisuallyHidden/VisuallyHidden";
+export { default as MoreHorIcon } from "./components/icons/MoreHor";
+export * from "./components/icons/MoreHor";
 
-/** Extras - Temp */
+export { default as MoreVerIcon } from "./components/icons/MoreVer";
+export * from "./components/icons/MoreVer";
 
-export { default as CodeSample } from "./components_site/CodeSample/CodeSample";
-export * from "./components_site/CodeSample/CodeSample";
+export { default as PreviewIcon } from "./components/icons/Preview";
+export * from "./components/icons/Preview";
 
-export { default as Logo } from "./components_site/Logo/Logo";
-export * from "./components_site/Logo/Logo";
+export { default as PreviewOffIcon } from "./components/icons/PreviewOff";
+export * from "./components/icons/PreviewOff";

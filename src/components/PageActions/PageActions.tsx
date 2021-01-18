@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { st, classes } from "./actions.st.css";
+import { st, classes } from "./pageActions.st.css";
 
 import {
   Text,
@@ -10,8 +10,7 @@ import {
   MenuList,
   MenuButton,
   MenuItem,
-  ButtonGroup,
-  VisuallyHidden
+  ButtonGroup
 } from "@actionishope/shelley";
 
 import { classes as spacing } from "@actionishope/shelley/styles/default/spacing.st.css";
@@ -35,7 +34,7 @@ interface ActionProps extends React.HTMLAttributes<HTMLDivElement> {
   onReview: () => void;
   reviewRequired?: boolean;
 }
-const Actions = React.forwardRef(
+const PageActions = React.forwardRef(
   (
     {
       className: classNameProp,
@@ -83,7 +82,7 @@ const Actions = React.forwardRef(
       archived: { text: strings.unArchive, onClick: onUnArchive || noop }
     };
 
-    const ActionsMenuButton = (
+    const PageActionsMenuButton = (
       <MenuButton
         disabled={reviewRequired}
         icon={
@@ -124,11 +123,11 @@ const Actions = React.forwardRef(
               >
                 {reviewRequired ? strings.reviewRequired : lookUp[status].text}
               </Button>
-              {ActionsMenuButton}
+              {PageActionsMenuButton}
               {/* {reviewRequired ? (
-                <VisuallyHidden>{ActionsMenuButton}</VisuallyHidden>
+                <VisuallyHidden>{PageActionsMenuButton}</VisuallyHidden>
               ) : (
-                ActionsMenuButton
+                PageActionsMenuButton
               )} */}
             </ButtonGroup>
             <MenuList>
@@ -164,6 +163,6 @@ const Actions = React.forwardRef(
   }
 );
 
-Actions.displayName = "Actions";
+PageActions.displayName = "PageActions";
 
-export default Actions;
+export default PageActions;
